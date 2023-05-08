@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Shader Graphs_DoodleFX
-  m_Shader: {fileID: -6465566751694194690, guid: cdf7c3934f95479418b856a1eb32da2f, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 052452aca60d44c50b82dbe5ced0ea7c, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -21,7 +21,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 276f4aa12f1ee5642b7dab46e8c1375e, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture2D:
