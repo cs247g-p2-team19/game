@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 /// <summary>
 /// Defines a place where a specific item should show up. 
@@ -9,7 +10,7 @@ using UnityEngine;
 public class InventoryDisplaySpot : MonoBehaviour
 {
     // TODO: What to do for items that aren't in the main scene? May need to be a string or predicate instead.
-    public InventoryItem spotFor;
+    [FormerlySerializedAs("spotFor")] public InventoryItem targetItem;
     
     public TextMeshProUGUI text;
 
@@ -18,24 +19,24 @@ public class InventoryDisplaySpot : MonoBehaviour
     private Vector3? _previousScale = null;
     public void Activate() {
         gameObject.SetActive(true);
-        text.text = spotFor.Collectable.itemName;
+        text.text = targetItem.Collectable.itemName;
 
-        spotFor.transform.parent = target.transform;
-        spotFor.transform.localPosition = Vector3.zero;
+        targetItem.transform.parent = target.transform;
+        targetItem.transform.localPosition = Vector3.zero;
 
-        _previousScale = spotFor.transform.localScale;
-        spotFor.transform.localScale = Vector3.one;
+        _previousScale = targetItem.transform.localScale;
+        targetItem.transform.localScale = Vector3.one;
             
-        spotFor.gameObject.SetActive(true);
+        targetItem.gameObject.SetActive(true);
     }
 
     public void Deactivate() {
-        Lil.Guy.Adopt(spotFor.gameObject);
-        spotFor.transform.localPosition = Vector3.zero;
+        Lil.Guy.Adopt(targetItem.gameObject);
+        targetItem.transform.localPosition = Vector3.zero;
         if (_previousScale != null) {
-            spotFor.transform.localScale = _previousScale.Value;
+            targetItem.transform.localScale = _previousScale.Value;
         }
-        spotFor.gameObject.SetActive(false);
+        targetItem.gameObject.SetActive(false);
         gameObject.SetActive(false);
     }
 }
