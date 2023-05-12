@@ -12,7 +12,8 @@ public class InventoryDisplay : MonoBehaviour
     public bool Open => display.activeInHierarchy;
     public GameObject display;
 
-    private HashSet<InventoryDisplaySpot> _spots = new();
+    private readonly HashSet<InventoryDisplaySpot> _spots = new();
+    private readonly Dictionary<InventoryItem, Vector3> _scaleMemory = new();
 
     private void Awake() {
         display.SetActive(true);
@@ -36,8 +37,10 @@ public class InventoryDisplay : MonoBehaviour
                 spot.gameObject.SetActive(true);
                 spot.spotFor.transform.parent = spot.transform;
                 spot.spotFor.transform.localPosition = Vector3.zero;
+                _scaleMemory.Add(spot.spotFor, spot.spotFor.transform.localScale);
+                spot.spotFor.transform.localScale = Vector3.one;
                 spot.spotFor.gameObject.SetActive(true);
-                spot.text.text = spot.spotFor.name;
+                spot.text.text = spot.spotFor.Collectable.itemName;
             }
         }
     }
@@ -46,6 +49,10 @@ public class InventoryDisplay : MonoBehaviour
         foreach (var item in LilGuyTMGN.PlayerInstance.inventory.Items) {
             item.transform.parent = LilGuyTMGN.PlayerInstance.inventory.transform;
             item.transform.localPosition = Vector3.zero;
+            if (_scaleMemory.ContainsKey(item)) {
+                item.transform.localScale = _scaleMemory[item];
+                _scaleMemory.Remove(item);
+            }
             item.gameObject.SetActive(false);
         }
 

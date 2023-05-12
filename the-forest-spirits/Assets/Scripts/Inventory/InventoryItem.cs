@@ -10,6 +10,8 @@ using Debug = System.Diagnostics.Debug;
 [RequireComponent(typeof(Collectable))]
 public class InventoryItem : MonoBehaviour
 {
+    public Collectable Collectable { get; private set; }
+    
     public bool isDroppable;
     public bool isConsumable;
     public UnityEvent<InventoryItem> onCollect;
@@ -18,6 +20,7 @@ public class InventoryItem : MonoBehaviour
 
     private void Awake() {
         onCollect.AddListener(OnCollect);
+        Collectable = GetComponent<Collectable>();
     }
 
     private void OnCollect(InventoryItem item) {
