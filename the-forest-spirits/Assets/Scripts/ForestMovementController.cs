@@ -16,6 +16,7 @@ public class ForestMovementController : MonoBehaviour
     private InputAction _jumpAction;
     private InputAction _interactAction;
     private InputAction _dashAction;
+    private InputAction _inventoryAction;
 
     void Awake() {
         _map = actions.FindActionMap("ForestMovement");
@@ -23,9 +24,11 @@ public class ForestMovementController : MonoBehaviour
         _jumpAction = _map.FindAction("Jump");
         _interactAction = _map.FindAction("Interact");
         _dashAction = _map.FindAction("Dash");
+        _inventoryAction = _map.FindAction("Open Inventory");
 
         _jumpAction.performed += OnJump;
         _interactAction.performed += OnInteract;
+        _inventoryAction.performed += OnInventory;
     }
 
     private void OnEnable() {
@@ -38,6 +41,8 @@ public class ForestMovementController : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
+        if (LilGuyTMGN.PlayerInstance.inventory.display.Open) return;
+        
         Vector3 movement = Vector3.right * _moveAction.ReadValue<float>();
         bool dashing = _dashAction.IsPressed();
         float moveSpeed = dashing ? dashSpeed : speed;
@@ -46,10 +51,18 @@ public class ForestMovementController : MonoBehaviour
     }
 
     private void OnJump(InputAction.CallbackContext context) {
+        if (LilGuyTMGN.PlayerInstance.inventory.display.Open) return;
+
         Debug.Log("Jumped!");
     }
 
     private void OnInteract(InputAction.CallbackContext context) {
+        if (LilGuyTMGN.PlayerInstance.inventory.display.Open) return;
+
         Debug.Log("Interacted");
+    }
+    
+    private void OnInventory(InputAction.CallbackContext context) {
+        LilGuyTMGN.PlayerInstance.inventory.display.Toggle();
     }
 }
