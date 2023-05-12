@@ -6,22 +6,22 @@ using UnityEngine.Events;
 /// This is the player character.
 ///
 /// The player character instance can always be
-/// accessed with `LilGuyTMGN.PlayerInstance`.
+/// accessed with `Player.PlayerInstance`.
 /// </summary>
-public class LilGuyTMGN : MonoBehaviour
+public class Player : MonoBehaviour
 {
-    public static LilGuyTMGN PlayerInstance { get; private set; }
+    public static Player PlayerInstance { get; private set; }
     
     public Inventory inventory;
     
     public UnityEvent<Collectable> onCollectAny;
     public UnityEvent<InventoryItem> onCollectItem;
 
-    public LilGuyTMGN() {
+    public Player() {
         if (PlayerInstance != null) {
             throw new Exception("There should only ever be one Lil Guy in a scene");
         }
-
+        
         PlayerInstance = this;
     }
     

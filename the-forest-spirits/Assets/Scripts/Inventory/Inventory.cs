@@ -13,7 +13,7 @@ using UnityEngine.Events;
 /// </summary>
 public class Inventory : MonoBehaviour
 {
-    public HashSet<InventoryItem> Items { get; } = new HashSet<InventoryItem>();
+    public HashSet<InventoryItem> Items { get; } = new();
     
     public InventoryDisplay display;
 
