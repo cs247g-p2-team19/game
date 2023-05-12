@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Lil
 {
-    public class Guy
+    public static class Guy
     {
         public static bool HasItem(InventoryItem item) {
             return Player.PlayerInstance.inventory.Items.Contains(item);
@@ -26,7 +26,7 @@ namespace Lil
         }
     }
 
-    public class Inventory
+    public static class Inventory
     {
         public static bool IsOpen => Player.PlayerInstance.inventory.display.Open;
         
