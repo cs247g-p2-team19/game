@@ -65,21 +65,19 @@ public abstract class Fadable<T> : MonoBehaviour, IFadable
     /// <summary>
     ///     Fades this in over the given fade time (to alpha = 1)
     /// </summary>
-    public float FadeIn()
+    public void FadeIn()
     {
         _fadingIn = true;
         _fadingOut = false;
-        return fadeInTime;
     }
 
     /// <summary>
     ///     Fades this out over the given fade time (to alpha = 0)
     /// </summary>
-    public float FadeOut()
+    public void FadeOut()
     {
         _fadingIn = false;
         _fadingOut = true;
-        return fadeOutTime;
     }
 
     /// <summary>

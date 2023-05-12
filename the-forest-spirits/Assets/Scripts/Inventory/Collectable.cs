@@ -24,10 +24,8 @@ public class Collectable : MonoBehaviour
     }
 
     public void Touch() {
-        Player p = Player.PlayerInstance;
-        
         onCollect.Invoke();
-        p.onCollectAny.Invoke(this);
+        Lil.Guy.onCollectAny.Invoke(this);
         if (IsItem) {
             Lil.Guy.PickUp(Item);
         }

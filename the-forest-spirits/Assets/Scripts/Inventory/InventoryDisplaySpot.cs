@@ -10,33 +10,53 @@ using UnityEngine.Serialization;
 public class InventoryDisplaySpot : MonoBehaviour
 {
     // TODO: What to do for items that aren't in the main scene? May need to be a string or predicate instead.
-    [FormerlySerializedAs("spotFor")] public InventoryItem targetItem;
-    
+    public string targetItemId;
+
+    public InventoryItem TargetItem
+    {
+        get {
+            if (_cachedItem != null) return _cachedItem;
+            return _cachedItem = InventoryItem.GetItemById(targetItemId);
+        }
+    }
+
     public TextMeshProUGUI text;
 
     public RectTransform target;
 
+    private InventoryItem _cachedItem;
     private Vector3? _previousScale = null;
-    public void Activate() {
-        gameObject.SetActive(true);
-        text.text = targetItem.Collectable.itemName;
-
-        targetItem.transform.parent = target.transform;
-        targetItem.transform.localPosition = Vector3.zero;
-
-        _previousScale = targetItem.transform.localScale;
-        targetItem.transform.localScale = Vector3.one;
-            
-        targetItem.gameObject.SetActive(true);
+    private Transform _previousParent = null;
+    
+    private void Start() {
+        Debug.Assert(TargetItem != null, $"Target item could not be found for spot {name}!");
+        text.text = TargetItem.Collectable.itemName;
     }
 
-    public void Deactivate() {
-        Lil.Guy.Adopt(targetItem.gameObject);
-        targetItem.transform.localPosition = Vector3.zero;
+    public void Adopt() {
+        _previousParent = TargetItem.transform.parent;
+        TargetItem.transform.parent = target.transform;
+        TargetItem.transform.localPosition = Vector3.zero;
+
+        _previousScale = TargetItem.transform.localScale;
+        TargetItem.transform.localScale = Vector3.one;
+
+        TargetItem.gameObject.SetActive(true);
+    }
+
+    public void Deadopt() {
+        TargetItem.transform.parent = _previousParent;
+        TargetItem.transform.position = Lil.Guy.transform.position + Vector3.right;
         if (_previousScale != null) {
-            targetItem.transform.localScale = _previousScale.Value;
+            TargetItem.transform.localScale = _previousScale.Value;
         }
-        targetItem.gameObject.SetActive(false);
+    }
+
+    public void Activate() {
+        gameObject.SetActive(true);
+    }
+    
+    public void Deactivate() {
         gameObject.SetActive(false);
     }
 }
