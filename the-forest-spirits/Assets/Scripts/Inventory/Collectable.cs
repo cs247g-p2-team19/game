@@ -11,7 +11,7 @@ public class Collectable : MonoBehaviour
 
     [TextArea] public string itemDescription;
 
-    public UnityEvent<LilGuyTMGN> onCollect;
+    public UnityEvent onCollect;
 
     private InventoryItem _item;
 
@@ -20,9 +20,9 @@ public class Collectable : MonoBehaviour
         onCollect.AddListener(OnCollect);
     }
 
-    private void OnCollect(LilGuyTMGN player) {
+    private void OnCollect() {
         if (IsItem) {
-            _item.onCollect.Invoke(player, _item);
+            _item.onCollect.Invoke(_item);
         }
     }
 }

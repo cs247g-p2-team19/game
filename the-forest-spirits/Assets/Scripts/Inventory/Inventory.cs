@@ -8,6 +8,8 @@ public class Inventory : MonoBehaviour
 {
     public HashSet<InventoryItem> Items { get; } = new HashSet<InventoryItem>();
     
+    public InventoryDisplay display;
+
     private void OnEnable() {
         Items.Clear();
         foreach (var item in GetComponentsInChildren<InventoryItem>()) {
@@ -29,9 +31,9 @@ public class Inventory : MonoBehaviour
         item.gameObject.SetActive(false);
     }
     
-    public void DropItem(LilGuyTMGN player, InventoryItem item) {
+    public void DropItem(InventoryItem item) {
         Items.Remove(item);
-        item.onDrop.Invoke(player, item);
+        item.onDrop.Invoke(item);
         
         var collider = item.GetComponent<Collider2D>();
         if (collider != null) collider.enabled = true;
