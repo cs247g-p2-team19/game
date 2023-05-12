@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -11,26 +12,27 @@ using UnityEngine.Events;
 /// </summary>
 public class Player : MonoBehaviour
 {
-    public static Player PlayerInstance { get; private set; }
-    
+    public static Player Instance { get; private set; }
+
     public Inventory inventory;
-    
+
     public UnityEvent<Collectable> onCollectAny;
     public UnityEvent<InventoryItem> onCollectItem;
-    
+
     public FadeText interactPopup;
 
     private Interactable _overlappingInteractable = null;
-
+    
+    
     public Player() {
-        if (PlayerInstance != null) {
+        if (Instance != null) {
             throw new Exception("There should only ever be one Lil Guy in a scene");
         }
-        
-        PlayerInstance = this;
+
+        Instance = this;
     }
-
-
+    
+    #region Unity Events
 
     private void OnTriggerEnter2D(Collider2D other) {
         var collectable = other.gameObject.GetComponent<Collectable>();
@@ -55,10 +57,15 @@ public class Player : MonoBehaviour
             if (_overlappingInteractable != null) {
                 HideInteractablePrompt();
             }
+
             _overlappingInteractable = null;
         }
     }
+    
+    #endregion
 
+    #region Interactables
+    
     private void ShowInteractablePrompt() {
         interactPopup.FadeIn();
     }
@@ -66,7 +73,7 @@ public class Player : MonoBehaviour
     private void HideInteractablePrompt() {
         interactPopup.FadeOut();
     }
-    
+
     public void TriggerInteractions() {
         if (_overlappingInteractable != null) {
             OnInteract(_overlappingInteractable);
@@ -76,4 +83,15 @@ public class Player : MonoBehaviour
     private void OnInteract(Interactable interactable) {
         interactable.Interact();
     }
+    
+    #endregion
+}
+
+public static class PlayerHelpers
+{
+    public static bool HasItem(this Player p, InventoryItem item) => p.inventory.Contains(item);
+
+    public static bool HasItem(this Player p, string id) => p.inventory.Contains(id);
+        
+    public static void PickUp(this Player p, InventoryItem item) => p.inventory.AddItem(item);
 }

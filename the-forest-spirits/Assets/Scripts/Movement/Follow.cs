@@ -14,7 +14,7 @@ public class Follow : MonoBehaviour
 
     public bool lockX = false;
     public bool lockY = false;
-    public bool lockZ = false;
+    public bool lockZ = true;
 
     private Vector3 _velocity;
 

@@ -6,12 +6,12 @@ public interface IFadable
     /// <summary>
     ///     Fades this object in. Returns the approximate it will take to do so.
     /// </summary>
-    public float FadeIn();
+    public void FadeIn();
 
     /// <summary>
     ///     Fades this object out. Returns the approximate it will take to do so.
     /// </summary>
-    public float FadeOut();
+    public void FadeOut();
 
     /// <summary>
     ///     Makes the object instantly visible
