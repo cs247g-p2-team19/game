@@ -44,7 +44,7 @@ public class ForestPlayerController : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
-        if (LilGuyTMGN.PlayerInstance.inventory.display.Open) return;
+        if (Lil.Inventory.IsOpen) return;
         
         Vector3 movement = Vector3.right * _moveAction.ReadValue<float>();
         bool dashing = _dashAction.IsPressed();
@@ -54,18 +54,18 @@ public class ForestPlayerController : MonoBehaviour
     }
 
     private void OnJump(InputAction.CallbackContext context) {
-        if (LilGuyTMGN.PlayerInstance.inventory.display.Open) return;
+        if (Lil.Inventory.IsOpen) return;
 
         Debug.Log("Jumped!");
     }
 
     private void OnInteract(InputAction.CallbackContext context) {
-        if (LilGuyTMGN.PlayerInstance.inventory.display.Open) return;
+        if (Player.PlayerInstance.inventory.display.Open) return;
 
         Debug.Log("Interacted");
     }
     
     private void OnInventory(InputAction.CallbackContext context) {
-        LilGuyTMGN.PlayerInstance.inventory.display.Toggle();
+        Lil.Inventory.Toggle();
     }
 }

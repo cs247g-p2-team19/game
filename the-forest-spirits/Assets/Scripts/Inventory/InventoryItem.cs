@@ -26,6 +26,6 @@ public class InventoryItem : MonoBehaviour
     private void OnCollect(InventoryItem item) {
         Debug.Assert(item == this);
         
-        LilGuyTMGN.PlayerInstance.inventory.AddItem(this);
+        Lil.Guy.Collect(this);
     }
 }

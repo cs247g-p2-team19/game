@@ -33,31 +33,17 @@ public class InventoryDisplay : MonoBehaviour
     public void Show() {
         display.SetActive(true);
         foreach (var spot in _spots) {
-            if (LilGuyTMGN.PlayerInstance.inventory.Items.Contains(spot.spotFor)) {
-                spot.gameObject.SetActive(true);
-                spot.spotFor.transform.parent = spot.transform;
-                spot.spotFor.transform.localPosition = Vector3.zero;
-                _scaleMemory.Add(spot.spotFor, spot.spotFor.transform.localScale);
-                spot.spotFor.transform.localScale = Vector3.one;
-                spot.spotFor.gameObject.SetActive(true);
-                spot.text.text = spot.spotFor.Collectable.itemName;
-            }
+            if (!Lil.Guy.HasItem(spot.spotFor)) continue;
+
+            spot.Activate();
         }
     }
 
     public void Hide() {
-        foreach (var item in LilGuyTMGN.PlayerInstance.inventory.Items) {
-            item.transform.parent = LilGuyTMGN.PlayerInstance.inventory.transform;
-            item.transform.localPosition = Vector3.zero;
-            if (_scaleMemory.ContainsKey(item)) {
-                item.transform.localScale = _scaleMemory[item];
-                _scaleMemory.Remove(item);
-            }
-            item.gameObject.SetActive(false);
-        }
-
         foreach (var spot in _spots) {
-            spot.gameObject.SetActive(false);
+            if (!Lil.Guy.HasItem(spot.spotFor)) continue;
+            
+            spot.Deactivate();
         }
         display.SetActive(false);
     }
