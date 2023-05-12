@@ -3,6 +3,11 @@ using UnityEngine;
 using UnityEngine.Events;
 using Debug = System.Diagnostics.Debug;
 
+/// <summary>
+/// Defines an item that can be found in the inventory.
+/// </summary>
+
+[RequireComponent(typeof(Collectable))]
 public class InventoryItem : MonoBehaviour
 {
     public bool isDroppable;

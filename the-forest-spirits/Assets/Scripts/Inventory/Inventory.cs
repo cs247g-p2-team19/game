@@ -4,6 +4,13 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
+/// <summary>
+/// Manages the items in the inventory.
+///
+/// It should be attached to the player object; GameObjects
+/// will be moved and stored here until they are ready to
+/// be used or alternatively displayed in the inventory screen.
+/// </summary>
 public class Inventory : MonoBehaviour
 {
     public HashSet<InventoryItem> Items { get; } = new HashSet<InventoryItem>();
