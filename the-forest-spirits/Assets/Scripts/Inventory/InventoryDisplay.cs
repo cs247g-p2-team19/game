@@ -33,7 +33,7 @@ public class InventoryDisplay : MonoBehaviour
     public void Show() {
         display.SetActive(true);
         foreach (var spot in _spots) {
-            if (!Lil.Guy.HasItem(spot.spotFor)) continue;
+            if (!Lil.Guy.HasItem(spot.targetItem)) continue;
 
             spot.Activate();
         }
@@ -41,7 +41,7 @@ public class InventoryDisplay : MonoBehaviour
 
     public void Hide() {
         foreach (var spot in _spots) {
-            if (!Lil.Guy.HasItem(spot.spotFor)) continue;
+            if (!Lil.Guy.HasItem(spot.targetItem)) continue;
             
             spot.Deactivate();
         }
