@@ -14,6 +14,8 @@ public class ForestMovementController : MonoBehaviour
     private InputAction _moveAction;
 
     private InputAction _jumpAction;
+
+    private InputAction _interactAction;
     
     void Awake()
     {
@@ -22,6 +24,9 @@ public class ForestMovementController : MonoBehaviour
         _jumpAction = _map.FindAction("Jump");
 
         _jumpAction.performed += OnJump;
+
+        _interactAction = _map.FindAction("Interact");
+        _interactAction.performed += OnInteract;
     }
 
     private void OnEnable()
@@ -45,5 +50,9 @@ public class ForestMovementController : MonoBehaviour
     private void OnJump(InputAction.CallbackContext context)
     {
         Debug.Log("Jumped!");
+    }
+
+    private void OnInteract(InputAction.CallbackContext context) {
+        Debug.Log("Interaction");
     }
 }
