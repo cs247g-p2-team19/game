@@ -29,6 +29,7 @@ public class Inventory : MonoBehaviour
         if (item.isConsumable) {
             item.onUse.AddListener(DropItem);
         }
+        item.onCollect.Invoke(item);
         
         item.transform.parent = this.transform;
         var collider = item.GetComponent<Collider2D>();

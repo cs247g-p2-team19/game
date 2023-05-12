@@ -62,7 +62,7 @@ public class ForestPlayerController : MonoBehaviour
     private void OnInteract(InputAction.CallbackContext context) {
         if (Player.PlayerInstance.inventory.display.Open) return;
 
-        Debug.Log("Interacted");
+        Player.PlayerInstance.TriggerInteractions();
     }
     
     private void OnInventory(InputAction.CallbackContext context) {

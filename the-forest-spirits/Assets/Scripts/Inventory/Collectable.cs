@@ -9,7 +9,8 @@ using UnityEngine.Events;
 /// </summary>
 public class Collectable : MonoBehaviour
 {
-    public bool IsItem => _item != null;
+    public bool IsItem => Item != null;
+    public InventoryItem Item { get; private set; } = null;
 
     public bool canBeCollected = true;
     public string itemName;
@@ -17,17 +18,22 @@ public class Collectable : MonoBehaviour
     [TextArea] public string itemDescription;
 
     public UnityEvent onCollect;
-
-    private InventoryItem _item;
-
+    
     private void Awake() {
-        _item = GetComponent<InventoryItem>();
-        onCollect.AddListener(OnCollect);
+        Item = GetComponent<InventoryItem>();
     }
 
-    private void OnCollect() {
+    public void Touch() {
+        Player p = Player.PlayerInstance;
+        
+        onCollect.Invoke();
+        p.onCollectAny.Invoke(this);
         if (IsItem) {
-            _item.onCollect.Invoke(_item);
+            Lil.Guy.PickUp(Item);
         }
+    }
+
+    public void SetCollectable(bool flag) {
+        canBeCollected = flag;
     }
 }
