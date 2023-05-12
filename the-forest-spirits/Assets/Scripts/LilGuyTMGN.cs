@@ -2,6 +2,12 @@ using System;
 using UnityEngine;
 using UnityEngine.Events;
 
+/// <summary>
+/// This is the player character.
+///
+/// The player character instance can always be
+/// accessed with `LilGuyTMGN.PlayerInstance`.
+/// </summary>
 public class LilGuyTMGN : MonoBehaviour
 {
     public static LilGuyTMGN PlayerInstance { get; private set; }

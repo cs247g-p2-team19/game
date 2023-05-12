@@ -3,6 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Helper class that manages showing/hiding game objects
+/// in the inventory screen.
+/// </summary>
 public class InventoryDisplay : MonoBehaviour
 {
     public bool Open => display.activeInHierarchy;

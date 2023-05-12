@@ -4,7 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class ForestMovementController : MonoBehaviour
+/// <summary>
+/// Implements all the main movement of the player.
+/// </summary>
+public class ForestPlayerController : MonoBehaviour
 {
     public InputActionAsset actions;
     public float speed = 5f;

@@ -2,6 +2,11 @@ using System;
 using UnityEngine;
 using UnityEngine.Events;
 
+/// <summary>
+/// Defines an object that can be collected.
+///
+/// It should be given a name in the Unity editor.
+/// </summary>
 public class Collectable : MonoBehaviour
 {
     public bool IsItem => _item != null;
