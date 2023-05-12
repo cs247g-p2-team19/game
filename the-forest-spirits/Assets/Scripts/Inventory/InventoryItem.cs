@@ -19,13 +19,6 @@ public class InventoryItem : MonoBehaviour
     public UnityEvent<InventoryItem> onDrop;
 
     private void Awake() {
-        onCollect.AddListener(OnCollect);
         Collectable = GetComponent<Collectable>();
-    }
-
-    private void OnCollect(InventoryItem item) {
-        Debug.Assert(item == this);
-        
-        Lil.Guy.Collect(this);
     }
 }

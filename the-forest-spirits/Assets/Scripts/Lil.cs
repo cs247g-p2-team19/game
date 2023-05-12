@@ -18,7 +18,7 @@ namespace Lil
             return Player.PlayerInstance.inventory.Items.Count(it => it.Collectable.itemName == name) > 0;
         }
         
-        public static void Collect(InventoryItem item) => Player.PlayerInstance.inventory.AddItem(item);
+        public static void PickUp(InventoryItem item) => Player.PlayerInstance.inventory.AddItem(item);
         
         // Parents the given GameObject to the inventory 
         public static void Adopt(GameObject any) {
