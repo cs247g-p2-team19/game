@@ -9,11 +9,18 @@ using UnityEngine;
 [RequireComponent(typeof(RectTransform))]
 public class Boundary : MonoBehaviour
 {
-    // how many times can i use the word rect in one file
-    public Rect Rect => _rect.rect;
+    public Bounds Bounds => _rect.GetWorldBounds();
+
 
     private RectTransform _rect;
+
     private void Awake() {
         _rect = GetComponent<RectTransform>();
+    }
+
+    private void OnDrawGizmos() {
+        var gizBounds = GetComponent<RectTransform>().GetWorldBounds();
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(gizBounds.center, gizBounds.size);
     }
 }

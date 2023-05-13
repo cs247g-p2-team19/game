@@ -21,13 +21,17 @@ public class Bounded : MonoBehaviour
         float objHorizontalExtent = GetHorizontalExtent();
         float objVerticalExtent = GetVerticalExtent();
 
-        var position = transform.position;
-        position = new Vector3(
-            Mathf.Clamp(position.x, by.Rect.xMin + objHorizontalExtent, by.Rect.xMax - objHorizontalExtent),
-            Mathf.Clamp(position.y, by.Rect.yMin + objVerticalExtent, by.Rect.yMax - objVerticalExtent),
-            position.z
-        );
-        transform.position = position;
+        float xMin = by.Bounds.min.x + objHorizontalExtent;
+        float xMax = by.Bounds.max.x - objHorizontalExtent;
+        float yMin = by.Bounds.min.y + objVerticalExtent;
+        float yMax = by.Bounds.max.y - objVerticalExtent;
 
+        var position = transform.position;
+        // If the boundary is smaller than the extents, choose the center.
+        float targetX = xMax < xMin ? (xMin + xMax) / 2 : Mathf.Clamp(position.x, xMin, xMax);
+        float targetY = yMax < yMin ? (yMin + yMax) / 2 : Mathf.Clamp(position.y, yMin, yMax);
+
+        position = new Vector3(targetX, targetY, position.z);
+        transform.position = position;
     }
 }

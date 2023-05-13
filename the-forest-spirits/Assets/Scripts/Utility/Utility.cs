@@ -151,6 +151,23 @@ public static class UtilityExtensions
     }
 
     /// <summary>
+    ///     Calculates the rectangle in world space of this RectTransform.
+    /// </summary>
+    /// <param name="t"></param>
+    /// <returns></returns>
+    public static Bounds GetWorldBounds(this RectTransform t) {
+        var corners = new Vector3[4];
+        t.GetWorldCorners(corners);
+
+        var width = corners[2].x - corners[1].x;
+        var height = corners[0].y - corners[1].y;
+        var center = new Vector3(corners[0].x + width / 2, corners[0].y - height / 2, t.position.z);
+        var size = new Vector3(width, height, 0);
+        
+        return new Bounds(center, size);
+    }
+
+    /// <summary>
     ///     Sets this gameObject to be "visible" or "invisible" by setting
     ///     its local scale to Vector3.zero.
     ///     Keeps track of previous scales and can restore them, too!
