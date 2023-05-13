@@ -4,23 +4,25 @@ using UnityEngine;
 
 public enum Facing
 {
-    Left = -1,
-    Right = 1
+    Left,
+    Right
 }
 
 public class MovementFlipper : MonoBehaviour
 {
-    public Facing facing = Facing.Right; 
-    
+    public Facing initialFacing = Facing.Right;
+
     private Coroutine _currentFlip;
 
     private Vector3 _lastPosition;
 
-    private float _initialScaleX;
+    private Quaternion _initialRotation;
+    private Facing _facing;
 
     private void Start() {
         _lastPosition = transform.position;
-        _initialScaleX = transform.localScale.x;
+        _initialRotation = transform.rotation;
+        _facing = initialFacing;
     }
 
     // Update is called once per frame
@@ -29,11 +31,12 @@ public class MovementFlipper : MonoBehaviour
         Vector3 movement = currentPosition - _lastPosition;
         _lastPosition = currentPosition;
 
-        if (movement.x < 0 && facing == Facing.Right) {
-            facing = Facing.Left;
+        if (movement.x < 0 && _facing == Facing.Right) {
+            _facing = Facing.Left;
             Flip();
-        } else if (movement.x > 0 && facing == Facing.Left) {
-            facing = Facing.Right;
+        }
+        else if (movement.x > 0 && _facing == Facing.Left) {
+            _facing = Facing.Right;
             Flip();
         }
     }
@@ -43,10 +46,12 @@ public class MovementFlipper : MonoBehaviour
             StopCoroutine(_currentFlip);
             _currentFlip = null;
         }
-        
-        _currentFlip = this.AutoLerp(transform.localScale.x, ((int) facing) * _initialScaleX, 0.2f, Utility.EaseInOutF, localScaleX => {
-            transform.localScale = new Vector3(localScaleX, transform.localScale.y, transform.localScale.z);
-        });
+
+        Quaternion target = Quaternion.Euler(_initialRotation.x,
+            _initialRotation.y + (_facing == initialFacing ? 0 : 180), _initialRotation.y);
+
+        _currentFlip = this.AutoLerp(transform.rotation, target, 0.4f, Utility.EaseInOut<Quaternion>(Quaternion.Lerp),
+            rotation => { transform.rotation = rotation; });
         this.WaitThen(_currentFlip, () => _currentFlip = null);
     }
 }
