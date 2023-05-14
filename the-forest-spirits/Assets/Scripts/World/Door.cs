@@ -3,7 +3,9 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class Door : MonoBehaviour
 {
-    // Start is called before the first frame update
+
+    public bool IsOpen => _animator.GetBool(Open);
+    
     private Animator _animator;
     private static readonly int Open = Animator.StringToHash("Open");
 
@@ -12,7 +14,7 @@ public class Door : MonoBehaviour
     }
 
     public void DoorOpen() {
-        _animator.SetBool(Open, !_animator.GetBool(Open));
+        _animator.SetBool(Open, !IsOpen);
     }
 
 }
