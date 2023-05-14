@@ -36,7 +36,7 @@ public class InventoryDisplaySpot : MonoBehaviour
     public void Adopt() {
         _previousParent = TargetItem.transform.parent;
         TargetItem.transform.parent = target.transform;
-        TargetItem.transform.localPosition = Vector3.zero;
+        TargetItem.transform.localPosition = Vector3.back;
 
         _previousScale = TargetItem.transform.localScale;
         TargetItem.transform.localScale = Vector3.one;

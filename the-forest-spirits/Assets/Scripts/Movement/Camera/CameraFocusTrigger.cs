@@ -38,6 +38,8 @@ public class CameraFocusTrigger : MonoBehaviour
     }
 
     private void Update() {
+        // TODO: Resize inventory...? May not be an issue once it zooms into the ghost for it.
+        
         _camera.orthographicSize = Mathf.SmoothDamp(_camera.orthographicSize, _targetSize, ref _velocity, resizeTension,
             resizeMaxSpeed);
     }
