@@ -17,10 +17,8 @@ public class Door : MonoBehaviour
     }
 
     public void DoorOpen() {
-        animator.SetBool("Open", true);
+        bool doorState = animator.GetBool("Open");
+        animator.SetBool("Open", !doorState);
     }
 
-    public void DoorClose() {
-        animator.SetBool("Open", false);
-    }
 }
