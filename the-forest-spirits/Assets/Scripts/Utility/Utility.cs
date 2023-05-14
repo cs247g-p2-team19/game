@@ -160,8 +160,8 @@ public static class UtilityExtensions
         t.GetWorldCorners(corners);
 
         var width = corners[2].x - corners[1].x;
-        var height = corners[0].y - corners[1].y;
-        var center = new Vector3(corners[0].x + width / 2, corners[0].y - height / 2, t.position.z);
+        var height = corners[1].y - corners[0].y;
+        var center = new Vector3(corners[0].x + width / 2, corners[0].y + height / 2, t.position.z);
         var size = new Vector3(width, height, 0);
         
         return new Bounds(center, size);

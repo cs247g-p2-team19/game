@@ -13,11 +13,23 @@ public class Bounded : MonoBehaviour
 {
     public Boundary by;
 
+    public int Consumers { get; set; } = 0;
+
+    public bool boundX = true;
+    public bool boundY = false;
+
+
     // By default, no extents; object will just slide to the center before it stops.
     protected virtual float GetHorizontalExtent() => 0f;
     protected virtual float GetVerticalExtent() => 0f;
 
     private void LateUpdate() {
+        if (Consumers > 0) return;
+        
+        transform.position = ClampToBoundary(transform.position);
+    }
+
+    public Vector3 ClampToBoundary(Vector3 location) {
         float objHorizontalExtent = GetHorizontalExtent();
         float objVerticalExtent = GetVerticalExtent();
 
@@ -26,12 +38,24 @@ public class Bounded : MonoBehaviour
         float yMin = by.Bounds.min.y + objVerticalExtent;
         float yMax = by.Bounds.max.y - objVerticalExtent;
 
-        var position = transform.position;
-        // If the boundary is smaller than the extents, choose the center.
-        float targetX = xMax < xMin ? (xMin + xMax) / 2 : Mathf.Clamp(position.x, xMin, xMax);
-        float targetY = yMax < yMin ? (yMin + yMax) / 2 : Mathf.Clamp(position.y, yMin, yMax);
+        var position = location;
+        float targetX;
+        if (boundX) {
+            // If the boundary is smaller than the extents, choose the center.
+            targetX = xMax < xMin ? (xMin + xMax) / 2 : Mathf.Clamp(position.x, xMin, xMax);
+        }
+        else {
+            targetX = position.x;
+        }
 
-        position = new Vector3(targetX, targetY, position.z);
-        transform.position = position;
+        float targetY;
+        if (boundY) {
+            targetY = yMax < yMin ? (yMin + yMax) / 2 : Mathf.Clamp(position.y, yMin, yMax);
+        }
+        else {
+            targetY = position.y;
+        }
+
+        return new Vector3(targetX, targetY, position.z);
     }
 }

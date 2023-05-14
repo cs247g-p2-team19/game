@@ -544,6 +544,7 @@ GameObject:
   - component: {fileID: 290284917}
   - component: {fileID: 290284919}
   - component: {fileID: 290284920}
+  - component: {fileID: 290284921}
   m_Layer: 0
   m_Name: door1
   m_TagString: Untagged
@@ -702,10 +703,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 290284914}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1c2849e1aedca941bbe425531930d9f, type: 3}
+  m_Script: {fileID: 11500000, guid: 4d650094520817f499cd8a5ce422782e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 290284919}
+--- !u!114 &290284921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 290284914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f57cfd9ad8b814954b1dfec9e9b3f21c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerType: 0
+  area: {fileID: 449786383}
+  cameraFollow: {fileID: 519420033}
+  resizeTension: 0.1
+  resizeMaxSpeed: 100
 --- !u!1 &422210068
 GameObject:
   m_ObjectHideFlags: 0
@@ -752,6 +769,55 @@ Transform:
   m_Father: {fileID: 519420032}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &449786382
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 449786384}
+  - component: {fileID: 449786383}
+  m_Layer: 0
+  m_Name: DoorFocus
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &449786383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 449786382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07bf47d9f943a4e678a8546b18c2dc3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!224 &449786384
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 449786382}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1.4997998}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 5.78, y: 1.66}
+  m_SizeDelta: {x: 5.4152, y: 5.862}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -852,6 +918,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anchor: {fileID: 2005016420}
+  respectBoundaries: {fileID: 519420034}
   tension: 0.1
   maxSpeed: 100
   lockX: 0
@@ -870,6 +937,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   by: {fileID: 986190565}
+  boundX: 1
+  boundY: 0
 --- !u!1 &576752262
 GameObject:
   m_ObjectHideFlags: 0
@@ -3061,6 +3130,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   by: {fileID: 986190565}
+  boundX: 1
+  boundY: 0
 --- !u!1 &2005055799
 GameObject:
   m_ObjectHideFlags: 0
