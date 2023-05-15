@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-
+/**
+ * Defines an area used by [CameraFocusTrigger] to focus the
+ * camera on something. Will show up as a blue rectangle in
+ * the editor. Does nothing by itself.
+ */
 [RequireComponent(typeof(RectTransform))]
 public class CameraFocusArea : MonoBehaviour
 {
