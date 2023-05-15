@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public enum Facing
@@ -8,9 +6,15 @@ public enum Facing
     Right
 }
 
+/**
+ * Automatically flips this sprite around Paper Mario-style when it changes directions.
+ */
 public class MovementFlipper : MonoBehaviour
 {
+    [Tooltip("The way this sprite is initially facing")]
     public Facing initialFacing = Facing.Right;
+    [Tooltip("How long a flip takes to finish")]
+    public float flipTime = 0.4f;
 
     private Coroutine _currentFlip;
 
@@ -25,19 +29,20 @@ public class MovementFlipper : MonoBehaviour
         _facing = initialFacing;
     }
 
-    // Update is called once per frame
     void Update() {
         Vector3 currentPosition = transform.position;
         Vector3 movement = currentPosition - _lastPosition;
         _lastPosition = currentPosition;
 
-        if (movement.x < 0 && _facing == Facing.Right) {
-            _facing = Facing.Left;
-            Flip();
-        }
-        else if (movement.x > 0 && _facing == Facing.Left) {
-            _facing = Facing.Right;
-            Flip();
+        switch (movement.x) {
+            case < 0 when _facing == Facing.Right:
+                _facing = Facing.Left;
+                Flip();
+                break;
+            case > 0 when _facing == Facing.Left:
+                _facing = Facing.Right;
+                Flip();
+                break;
         }
     }
 
@@ -50,7 +55,7 @@ public class MovementFlipper : MonoBehaviour
         Quaternion target = Quaternion.Euler(_initialRotation.x,
             _initialRotation.y + (_facing == initialFacing ? 0 : 180), _initialRotation.y);
 
-        _currentFlip = this.AutoLerp(transform.rotation, target, 0.4f, Utility.EaseInOut<Quaternion>(Quaternion.Lerp),
+        _currentFlip = this.AutoLerp(transform.rotation, target, flipTime, Utility.EaseInOut<Quaternion>(Quaternion.Lerp),
             rotation => { transform.rotation = rotation; });
         this.WaitThen(_currentFlip, () => _currentFlip = null);
     }
