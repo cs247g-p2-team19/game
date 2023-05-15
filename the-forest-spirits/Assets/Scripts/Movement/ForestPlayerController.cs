@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 /// <summary>
 /// Implements all the main movement of the player.
 /// </summary>
-public class ForestPlayerController : MonoBehaviour
+public class ForestPlayerController : PlayerController
 {
     public InputActionAsset actions;
     public float speed = 5f;
@@ -44,7 +44,7 @@ public class ForestPlayerController : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
-        if (Lil.Inventory.IsOpen) return;
+        if (Lil.Inventory.IsOpen || _stopped) return;
         
         Vector3 movement = Vector3.right * _moveAction.ReadValue<float>();
         bool dashing = _dashAction.IsPressed();
@@ -54,18 +54,20 @@ public class ForestPlayerController : MonoBehaviour
     }
 
     private void OnJump(InputAction.CallbackContext context) {
-        if (Lil.Inventory.IsOpen) return;
+        if (Lil.Inventory.IsOpen || _stopped) return;
 
         Debug.Log("Jumped!");
     }
 
     private void OnInteract(InputAction.CallbackContext context) {
-        if (Lil.Inventory.IsOpen) return;
+        if (Lil.Inventory.IsOpen || _stopped) return;
 
         Lil.Guy.TriggerInteractions();
     }
     
     private void OnInventory(InputAction.CallbackContext context) {
+        if (_stopped) return;
+        
         Lil.Inventory.Toggle();
     }
 }

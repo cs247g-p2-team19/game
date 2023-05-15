@@ -9,7 +9,8 @@ public enum CameraFocusTriggerType
     FocusOnEnter,
     FocusOnLeave,
     UnfocusOnEnter,
-    UnfocusOnLeave
+    UnfocusOnLeave,
+    None
 }
 
 public class CameraFocusTrigger : MonoBehaviour
@@ -71,7 +72,7 @@ public class CameraFocusTrigger : MonoBehaviour
         }
     }
 
-    private void Focus() {
+    public void Focus() {
         if (_bounds != null) {
             _bounds.enabled = false;
         }
@@ -92,7 +93,7 @@ public class CameraFocusTrigger : MonoBehaviour
         }
     }
 
-    private void Unfocus() {
+    public void Unfocus() {
         if (_bounds != null) {
             _bounds.enabled = true;
         }

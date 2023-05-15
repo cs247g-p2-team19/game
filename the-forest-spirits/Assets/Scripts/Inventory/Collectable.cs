@@ -10,6 +10,7 @@ using UnityEngine.Events;
 public class Collectable : MonoBehaviour
 {
     public bool IsItem => Item != null;
+
     public InventoryItem Item { get; private set; } = null;
 
     public bool canBeCollected = true;
