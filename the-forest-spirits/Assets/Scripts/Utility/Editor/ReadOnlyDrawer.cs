@@ -1,12 +1,13 @@
 using UnityEditor;
 using UnityEngine;
 
-/// <summary>
-///     https://www.patrykgalach.com/2020/01/20/readonly-attribute-in-unity-editor/
-///     This is the magic behind the ReadOnlyAttribute. Makes the attribute
-///     read-only in editor mode, and red (but read-writable) in play mode.
-///     Useful for debugging.
-/// </summary>
+
+/**
+ * https://www.patrykgalach.com/2020/01/20/readonly-attribute-in-unity-editor/
+ * This is the magic behind the ReadOnlyAttribute. Makes the attribute
+ * read-only in editor mode, and red (but read-writable) in play mode.
+ * Useful for debugging.
+ */
 [CustomPropertyDrawer(typeof(ReadOnlyAttribute))]
 public class ReadOnlyDrawer : PropertyDrawer
 {

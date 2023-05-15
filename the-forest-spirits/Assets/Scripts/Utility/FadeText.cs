@@ -3,11 +3,11 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 
-/// <summary>
-///     Utility class that allows text objects to fade in and out
-///     (if their material allows them to).
-///     Works on this game object and all children
-/// </summary>
+/**
+ * Utility class that allows text objects to fade in and out
+ * (if their material allows them to).
+ * Works on this game object and all children
+ */
 public class FadeText : Fadable<TextMeshPro>
 {
     protected override List<TextMeshPro> TargetComponents => GetComponentsInChildren<TextMeshPro>().ToList();
