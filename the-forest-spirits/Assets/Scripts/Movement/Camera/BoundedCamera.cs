@@ -10,11 +10,19 @@ using UnityEngine;
 [RequireComponent(typeof(Camera))]
 public class BoundedCamera : Bounded
 {
-    private Camera _camera;
+    private Camera _camera {
+        get {
+            if (_wasCached) return _cachedCamera;
 
-    private void Awake() {
-        _camera = GetComponent<Camera>();
+            _wasCached = true;
+            _cachedCamera = GetComponent<Camera>();
+            return _cachedCamera;
+        }
     }
+
+    private Camera _cachedCamera;
+    private bool _wasCached;
+
 
     // Gets the extent of this camera at the z of the given Boundary, for a camera with perspective.
     private Vector2 PerspectiveExtents {
