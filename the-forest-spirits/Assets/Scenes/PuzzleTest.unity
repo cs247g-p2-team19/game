@@ -1192,11 +1192,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anchor: {fileID: 2005016420}
   respectBoundaries: {fileID: 519420034}
-  tension: 0.1
+  looseness: 0.1
   maxSpeed: 100
   lockX: 0
   lockY: 0
   lockZ: 1
+  offset: {x: 0, y: 1, z: 0}
 --- !u!114 &519420034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1212,6 +1213,7 @@ MonoBehaviour:
   by: {fileID: 986190565}
   boundX: 1
   boundY: 0
+  camera: {fileID: 519420031}
 --- !u!1 &576752262
 GameObject:
   m_ObjectHideFlags: 0
@@ -3367,6 +3369,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialFacing: 1
+  flipTime: 0.4
 --- !u!1 &1547987077
 GameObject:
   m_ObjectHideFlags: 0
