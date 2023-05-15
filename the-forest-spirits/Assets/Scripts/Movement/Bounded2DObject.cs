@@ -1,12 +1,9 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// Extension of Bounded that makes sure
-/// no part of the objects leaves the Boundary.
-/// </summary>
+/**
+ * Extension of Bounded that makes sure
+ * no part of the objects leaves the Boundary.
+ */
 [RequireComponent(typeof(Collider2D))]
 public class Bounded2DObject : Bounded
 {
