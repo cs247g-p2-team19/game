@@ -37,7 +37,7 @@ public class BoundedCamera : Bounded
 
     protected override float GetHorizontalExtent() {
         if (_camera.orthographic) {
-            return _camera.orthographicSize * Screen.width / Screen.height;
+            return _camera.orthographicSize * _camera.aspect;
         }
 
         return PerspectiveExtents.x;

@@ -802,8 +802,7 @@ MonoBehaviour:
   triggerType: 0
   area: {fileID: 449786383}
   cameraFollow: {fileID: 519420033}
-  resizeTension: 0.1
-  resizeMaxSpeed: 100
+  resizeTime: 0.5
 --- !u!114 &290284922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1213,7 +1212,6 @@ MonoBehaviour:
   by: {fileID: 986190565}
   boundX: 1
   boundY: 0
-  camera: {fileID: 519420031}
 --- !u!1 &576752262
 GameObject:
   m_ObjectHideFlags: 0
@@ -4446,8 +4444,7 @@ MonoBehaviour:
   triggerType: 5
   area: {fileID: 2134353074}
   cameraFollow: {fileID: 519420033}
-  resizeTension: 0.1
-  resizeMaxSpeed: 100
+  resizeTime: 0.5
 --- !u!114 &2134353074
 MonoBehaviour:
   m_ObjectHideFlags: 0

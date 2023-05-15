@@ -27,10 +27,8 @@ public class CameraFocusTrigger : MonoBehaviour
     [Tooltip("The camera follower to snap")]
     public Follow cameraFollow;
 
-    [Range(0.01f, 0.3f)]
-    public float resizeTension = 0.1f;
-
-    public float resizeMaxSpeed = 100;
+    [Range(0.01f, 1f)]
+    public float resizeTime = 0.5f;
 
     #endregion
 
@@ -44,7 +42,10 @@ public class CameraFocusTrigger : MonoBehaviour
     private Vector3 _originalOffset;
 
     // Used for moving the camera's orthographic size using SmoothDamp
-    private float _velocity;
+    private Coroutine _resizeCoroutine;
+
+    // Smoothing function used for transitioning the orthographic size
+    private static readonly Utility.LerpFn<float> _lerp = Utility.EaseOut<float>(Mathf.SmoothStep);
 
     #region Unity Events
 
@@ -53,13 +54,6 @@ public class CameraFocusTrigger : MonoBehaviour
         _camera = cameraFollow.GetComponent<Camera>();
         _originalOrthoSize = _camera.orthographicSize;
         _targetSize = _originalOrthoSize;
-    }
-
-    private void Update() {
-        // TODO: Resize inventory...? May not be an issue once it zooms into the ghost for it.
-
-        _camera.orthographicSize = Mathf.SmoothDamp(_camera.orthographicSize, _targetSize, ref _velocity, resizeTension,
-            resizeMaxSpeed);
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
@@ -98,13 +92,17 @@ public class CameraFocusTrigger : MonoBehaviour
             _bounds.enabled = false;
         }
 
+        if (_resizeCoroutine != null) {
+            StopCoroutine(_resizeCoroutine);
+        }
+
         _oldFollower = cameraFollow.anchor;
         _originalOffset = cameraFollow.offset;
         cameraFollow.anchor = area.transform;
         cameraFollow.offset = Vector3.zero;
 
         float areaAspect = area.Bounds.size.x / area.Bounds.size.y;
-        float cameraAspect = 1f * Screen.width / Screen.height;
+        float cameraAspect = 1f * _camera.aspect;
 
         // Need to match camera width to area width
         if (areaAspect > cameraAspect) {
@@ -112,9 +110,12 @@ public class CameraFocusTrigger : MonoBehaviour
         }
 
         // need to match camera height to area height
-        if (areaAspect < cameraAspect) {
+        if (areaAspect <= cameraAspect) {
             _targetSize = area.Bounds.extents.y;
         }
+
+        _resizeCoroutine = this.AutoLerp(_camera.orthographicSize, _targetSize, resizeTime, _lerp,
+            size => _camera.orthographicSize = size);
     }
 
     public void Unfocus() {
@@ -122,12 +123,19 @@ public class CameraFocusTrigger : MonoBehaviour
             _bounds.enabled = true;
         }
 
+        if (_resizeCoroutine != null) {
+            StopCoroutine(_resizeCoroutine);
+        }
+
+
         if (_oldFollower == null) return;
 
         cameraFollow.anchor = _oldFollower;
         cameraFollow.offset = _originalOffset;
 
         _targetSize = _originalOrthoSize;
+        _resizeCoroutine = this.AutoLerp(_camera.orthographicSize, _targetSize, resizeTime, _lerp,
+            size => _camera.orthographicSize = size);
     }
 
     #endregion
