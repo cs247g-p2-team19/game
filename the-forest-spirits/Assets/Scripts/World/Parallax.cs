@@ -1,21 +1,20 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(SpriteRenderer))]
+/**
+ * Takes this GameObject and allows it to move with respect
+ * to a linked camera depending on the Parallax Factor.
+ */
 public class Parallax : MonoBehaviour
 {
     public Camera linkedCamera;
     
+    [Tooltip("Negative if closer to the camera, positive if behind")]
     [Range(-4f, 4f)]
     public float parallaxFactor = 0f;
 
-    private SpriteRenderer _renderer;
     private Vector3 _lastCamPosition;
 
     private void Awake() {
-        _renderer = GetComponent<SpriteRenderer>();
         _lastCamPosition = linkedCamera.transform.position;
     }
     
