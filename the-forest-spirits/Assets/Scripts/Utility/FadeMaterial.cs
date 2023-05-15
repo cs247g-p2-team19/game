@@ -2,11 +2,11 @@
 using System.Linq;
 using UnityEngine;
 
-/// <summary>
-///     Utility class that allows 3D objects to fade in and out
-///     (if their material allows them to).
-///     Works on this game object and all children
-/// </summary>
+/**
+ * Utility class that allows 3D objects to fade in and out
+ * (if their material allows them to).
+ * Works on this game object and all children
+ */
 public class Fade3D : Fadable<Material>
 {
     protected override List<Material> TargetComponents =>
