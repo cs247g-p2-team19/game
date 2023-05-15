@@ -3300,7 +3300,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bdf0c153779f494eb5360989eee80e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frequency: 4
+  frequency: 3
   magnitude: 0.1
 --- !u!212 &1473203057
 SpriteRenderer:
