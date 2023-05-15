@@ -12,14 +12,22 @@ public class Boundary : MonoBehaviour
     public Bounds Bounds => _rect.GetWorldBounds();
 
 
-    private RectTransform _rect;
+    private RectTransform _rect {
+        get {
+            if (_wasCached) return _cachedRect;
+            
+            _wasCached = true;
+            _cachedRect = GetComponent<RectTransform>();
 
-    private void Awake() {
-        _rect = GetComponent<RectTransform>();
+            return _cachedRect;
+        }
     }
 
+    private bool _wasCached = false;
+    private RectTransform _cachedRect;
+
     private void OnDrawGizmos() {
-        var gizBounds = GetComponent<RectTransform>().GetWorldBounds();
+        var gizBounds = _rect.GetWorldBounds();
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(gizBounds.center, gizBounds.size);
     }
