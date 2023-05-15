@@ -60,7 +60,7 @@ public class ForestPlayerController : PlayerController
     }
 
     private void OnInteract(InputAction.CallbackContext context) {
-        if (Lil.Inventory.IsOpen || _stopped) return;
+        if (Lil.Inventory.IsOpen) return;
 
         Lil.Guy.TriggerInteractions();
     }
