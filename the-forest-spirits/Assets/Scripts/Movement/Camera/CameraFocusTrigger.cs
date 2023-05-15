@@ -13,23 +13,42 @@ public enum CameraFocusTriggerType
     None
 }
 
+/**
+ * Can be attached to anything with a trigger-mode Collider2D
+ * to cause the camera to snap to a given [CameraFocusArea].
+ * Can also be invoked manually when the [triggerType] is None.
+ */
 public class CameraFocusTrigger : MonoBehaviour
 {
+    #region Unity-exposed public fields
+
     public CameraFocusTriggerType triggerType = CameraFocusTriggerType.FocusWhileWithin;
+
+    [Tooltip("The area to focus on")]
     public CameraFocusArea area;
+
+    [Tooltip("The camera follower to snap")]
     public Follow cameraFollow;
 
-    [Range(0.01f, 0.3f)] public float resizeTension = 0.1f;
+    [Range(0.01f, 0.3f)]
+    public float resizeTension = 0.1f;
+
     public float resizeMaxSpeed = 100;
 
+    #endregion
 
     private Bounded _bounds;
     private Camera _camera;
+
+    // Used to restore the camera to its original position
     private Transform _oldFollower;
     private float _originalOrthoSize;
     private float _targetSize;
 
+    // Used for moving the camera's orthographic size using SmoothDamp
     private float _velocity;
+
+    #region Unity Events
 
     private void Awake() {
         _bounds = cameraFollow.GetComponent<Bounded>();
@@ -40,7 +59,7 @@ public class CameraFocusTrigger : MonoBehaviour
 
     private void Update() {
         // TODO: Resize inventory...? May not be an issue once it zooms into the ghost for it.
-        
+
         _camera.orthographicSize = Mathf.SmoothDamp(_camera.orthographicSize, _targetSize, ref _velocity, resizeTension,
             resizeMaxSpeed);
     }
@@ -72,6 +91,10 @@ public class CameraFocusTrigger : MonoBehaviour
         }
     }
 
+    #endregion
+
+    #region Public Methods
+
     public void Focus() {
         if (_bounds != null) {
             _bounds.enabled = false;
@@ -87,6 +110,7 @@ public class CameraFocusTrigger : MonoBehaviour
         if (areaAspect > cameraAspect) {
             _targetSize = area.Bounds.extents.x / cameraAspect;
         }
+
         // need to match camera height to area height
         if (areaAspect < cameraAspect) {
             _targetSize = area.Bounds.extents.y;
@@ -104,4 +128,6 @@ public class CameraFocusTrigger : MonoBehaviour
 
         _targetSize = _originalOrthoSize;
     }
+
+    #endregion
 }
