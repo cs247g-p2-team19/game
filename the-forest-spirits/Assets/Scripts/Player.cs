@@ -3,6 +3,7 @@ using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 /// <summary>
 /// This is the player character.
@@ -16,8 +17,8 @@ public class Player : MonoBehaviour
 
     public Inventory inventory;
 
-    public UnityEvent<Collectable> onCollectAny;
-    public UnityEvent<InventoryItem> onCollectItem;
+    public UnityEvent<Collectable> onCollect;
+    public UnityEvent<InventoryItem> onUnlockItem;
 
     public FadeText interactPopup;
 
@@ -89,9 +90,7 @@ public class Player : MonoBehaviour
 
 public static class PlayerHelpers
 {
-    public static bool HasItem(this Player p, InventoryItem item) => p.inventory.Contains(item);
+    public static bool HasItem(this Player p, InventoryItem item) => p.inventory.IsItemUnlocked(item);
 
-    public static bool HasItem(this Player p, string id) => p.inventory.Contains(id);
-        
-    public static void PickUp(this Player p, InventoryItem item) => p.inventory.AddItem(item);
+    public static bool HasItem(this Player p, string id) => p.inventory.IsItemUnlocked(id);
 }

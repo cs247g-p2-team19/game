@@ -2,34 +2,41 @@ using System;
 using UnityEngine;
 using UnityEngine.Events;
 
-/// <summary>
-/// Defines an object that can be collected.
-///
-/// It should be given a name in the Unity editor.
-/// </summary>
+/**
+ * Defines an object that can be collected.
+ * It should be given a name in the Unity editor.
+ */
 public class Collectable : MonoBehaviour
 {
-    public bool IsItem => Item != null;
+    /** true if this Collectable is attached to an item */
+    public bool CollectsItem => itemId != "";
 
-    public InventoryItem Item { get; private set; } = null;
+    /** the item that this Collectable is attached to */
+    public InventoryItem Item => InventoryItem.GetItemById(itemId);
 
+    [Tooltip("True if this Collectable can currently be collected.")]
     public bool canBeCollected = true;
-    public string itemName;
 
-    [TextArea] public string itemDescription;
+    [Tooltip("Optional; if specified, the item that collecting this unlocks.")]
+    public string itemId;
 
+    [Tooltip("Triggered when this Collectable is collected")]
     public UnityEvent onCollect;
-    
-    private void Awake() {
-        Item = GetComponent<InventoryItem>();
+
+    /** Call this when the collectable is touched by lil' guy */
+    public void Touch() {
+        if (!canBeCollected) return;
+        Collect();
     }
 
-    public void Touch() {
+    /** Always collects this item, even if it's set to not be collectable */
+    public void Collect() {
         onCollect.Invoke();
-        Lil.Guy.onCollectAny.Invoke(this);
-        if (IsItem) {
-            Lil.Guy.PickUp(Item);
+        Lil.Guy.onCollect.Invoke(this);
+        if (CollectsItem) {
+            Lil.Inventory.Unlock(Item);
         }
+        Destroy(gameObject);
     }
 
     public void SetCollectable(bool flag) {
