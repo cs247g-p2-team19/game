@@ -6,6 +6,8 @@ using UnityEngine.Serialization;
  */
 public class Follow : MonoBehaviour
 {
+    #region Unity-editable public fields
+
     [Tooltip("The transform this will be anchored to")]
     public Transform anchor;
 
@@ -32,6 +34,8 @@ public class Follow : MonoBehaviour
 
     public Vector3 offset = Vector3.zero;
 
+    #endregion
+
     // Used for SmoothDamp
     private Vector3 _velocity;
 
@@ -49,6 +53,8 @@ public class Follow : MonoBehaviour
         }
     }
 
+    #region Unity events
+
     private void OnEnable() {
         _isrespectBoundariesNotNull = respectBoundaries != null;
         if (respectBoundaries != null) {
@@ -64,12 +70,24 @@ public class Follow : MonoBehaviour
         }
     }
 
-    void Update() {
+    private void Update() {
         Vector3 next = Vector3.SmoothDamp(transform.position, Target, ref _velocity, looseness, maxSpeed,
             Time.deltaTime);
 
         SetWithLock(next);
     }
+
+    #endregion
+
+    #region Public methods
+
+    public void SetAnchor(Transform newAnchor) {
+        anchor = newAnchor;
+    }
+
+    #endregion
+
+    #region Private helper functions
 
     private void SetWithLock(Vector3 position) {
         if (lockX) position.x = transform.position.x;
@@ -78,4 +96,6 @@ public class Follow : MonoBehaviour
 
         transform.position = position;
     }
+
+    #endregion
 }
