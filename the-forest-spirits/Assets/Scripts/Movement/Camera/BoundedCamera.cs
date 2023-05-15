@@ -3,21 +3,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// Extension of Bounded that makes sure no
-/// part of the camera leaves the Boundary.
-/// </summary>
+/**
+ *  Extension of Bounded that makes sure no
+ * part of the camera leaves the Boundary.
+ */
 [RequireComponent(typeof(Camera))]
 public class BoundedCamera : Bounded
 {
-    private Camera _camera;
+    private Camera _camera {
+        get {
+            if (_wasCached) return _cachedCamera;
 
-    private void Awake() {
-        _camera = GetComponent<Camera>();
+            _wasCached = true;
+            _cachedCamera = GetComponent<Camera>();
+            return _cachedCamera;
+        }
     }
 
-    private Vector2 Extents
-    {
+    private Camera _cachedCamera;
+    private bool _wasCached;
+
+
+    // Gets the extent of this camera at the z of the given Boundary, for a camera with perspective.
+    private Vector2 PerspectiveExtents {
         get {
             float z = by.Bounds.center.z;
             Vector3 min = _camera.ViewportToWorldPoint(new Vector3(0, 0, z));
@@ -29,10 +37,10 @@ public class BoundedCamera : Bounded
 
     protected override float GetHorizontalExtent() {
         if (_camera.orthographic) {
-            return _camera.orthographicSize * Screen.width / Screen.height;
+            return _camera.orthographicSize * _camera.aspect;
         }
 
-        return Extents.x;
+        return PerspectiveExtents.x;
     }
 
     protected override float GetVerticalExtent() {
@@ -40,6 +48,6 @@ public class BoundedCamera : Bounded
             return _camera.orthographicSize;
         }
 
-        return Extents.y;
+        return PerspectiveExtents.y;
     }
 }

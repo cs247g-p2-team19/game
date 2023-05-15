@@ -1,17 +1,21 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-/// <summary>
-/// Implements all the main movement of the player.
-/// </summary>
+/**
+ * Implements all the main movement of the player.
+ */
 public class ForestPlayerController : PlayerController
 {
+    [Tooltip("The controls")]
     public InputActionAsset actions;
+
+    [Tooltip("Standard speed of the ghost")]
     public float speed = 5f;
+
     public float dashSpeed = 10f;
+
+
+    #region Input Actions & Maps
 
     private InputActionMap _map;
 
@@ -20,6 +24,9 @@ public class ForestPlayerController : PlayerController
     private InputAction _interactAction;
     private InputAction _dashAction;
     private InputAction _inventoryAction;
+
+    #endregion
+
 
     void Awake() {
         _map = actions.FindActionMap("ForestMovement");
@@ -42,10 +49,10 @@ public class ForestPlayerController : PlayerController
         _map.Disable();
     }
 
-    // Update is called once per frame
+    /** Movement happens here */
     void Update() {
         if (Lil.Inventory.IsOpen || _stopped) return;
-        
+
         Vector3 movement = Vector3.right * _moveAction.ReadValue<float>();
         bool dashing = _dashAction.IsPressed();
         float moveSpeed = dashing ? dashSpeed : speed;
@@ -64,10 +71,10 @@ public class ForestPlayerController : PlayerController
 
         Lil.Guy.TriggerInteractions();
     }
-    
+
     private void OnInventory(InputAction.CallbackContext context) {
         if (_stopped) return;
-        
+
         Lil.Inventory.Toggle();
     }
 }

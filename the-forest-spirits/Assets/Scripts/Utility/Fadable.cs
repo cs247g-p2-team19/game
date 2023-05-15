@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-///     Utility class that allows objects to fade in and out.
-///     This class can be concretely implemented to work with pretty
-///     much anything.
-/// </summary>
+/**
+ * Utility class that allows objects to fade in and out.
+ * This class can be concretely implemented to work with pretty
+ * much anything.
+ */
 public abstract class Fadable<T> : MonoBehaviour, IFadable
 {
     public enum FadeStartMode
@@ -21,10 +21,7 @@ public abstract class Fadable<T> : MonoBehaviour, IFadable
     }
 
 
-    /// <summary>
-    ///     Whether we should start faded out, fade in immediately,
-    ///     or start faded in.
-    /// </summary>
+    [Tooltip("Whether we should start faded out, fade in immediately, or start faded in.")]
     public FadeStartMode startMode;
 
     [Tooltip("The time to fade in, in seconds")]
@@ -33,18 +30,16 @@ public abstract class Fadable<T> : MonoBehaviour, IFadable
     [Tooltip("The time to fade out, in seconds")]
     public float fadeOutTime = 1f;
 
-    /// (memoized version of TargetComponents)
+    /** (memoized version of TargetComponents) */
     private List<T> _components;
 
-    /// true if we are fading in
+    /** true if we are fading in */
     private bool _fadingIn;
 
-    /// true if we are fading out
+    /** true if we are fading out */
     private bool _fadingOut;
 
-    /// <summary>
-    ///     The list of target components to affect
-    /// </summary>
+    /** The list of target components to affect */
     protected abstract List<T> TargetComponents { get; }
 
     private void Start()
@@ -62,50 +57,39 @@ public abstract class Fadable<T> : MonoBehaviour, IFadable
         HandleFade(ref _fadingOut, 0f, fadeOutTime);
     }
 
-    /// <summary>
-    ///     Fades this in over the given fade time (to alpha = 1)
-    /// </summary>
+    /** Fades this in over the given fade time (to alpha = 1) */
     public void FadeIn()
     {
         _fadingIn = true;
         _fadingOut = false;
     }
 
-    /// <summary>
-    ///     Fades this out over the given fade time (to alpha = 0)
-    /// </summary>
+    /** Fades this out over the given fade time (to alpha = 0) */
     public void FadeOut()
     {
         _fadingIn = false;
         _fadingOut = true;
     }
 
-    /// <summary>
-    ///     Instantly sets this alpha to 1
-    /// </summary>
+    /** Instantly sets this alpha to 1 */
     public void CutIn()
     {
         foreach (var component in _components) SetAlpha(component, 1f);
     }
 
-    /// <summary>
-    ///     Instantly sets this alpha to 0
-    /// </summary>
+    /** Instantly sets this alpha to 0 */
     public void CutOut()
     {
         foreach (var component in _components) SetAlpha(component, 0f);
     }
 
-    /// <summary>
-    ///     Returns the alpha value of a given component
-    /// </summary>
+    /** Returns the alpha value of a given component */
     protected abstract float GetAlpha(T component);
 
-    /// <summary>
-    ///     Sets the alpha value of a given component
-    /// </summary>
+    /** Sets the alpha value of a given component */
     protected abstract void SetAlpha(T component, float value);
 
+    /** Actually does the fading */
     private void HandleFade(ref bool isChanging, float target, float time)
     {
         if (!isChanging) return;

@@ -1,29 +1,31 @@
 using System;
-using System.Linq;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-/// <summary>
-/// This is the player character.
-///
-/// The player character instance can always be
-/// accessed with `Player.PlayerInstance`.
-/// </summary>
+/**
+ * This is the player character.
+ * The player character instance can always be
+ * accessed with `Player.PlayerInstance`.
+ */
 public class Player : MonoBehaviour
 {
+    /** The global and unique instance of this Player. */
     public static Player Instance { get; private set; }
 
     public Inventory inventory;
 
-    public UnityEvent<Collectable> onCollectAny;
-    public UnityEvent<InventoryItem> onCollectItem;
+    [Tooltip("Triggered whenever any Collectable is collected")]
+    public UnityEvent<Collectable> onCollect;
 
+    [Tooltip("Triggered whenever an item is unlocked")]
+    public UnityEvent<InventoryItem> onUnlockItem;
+
+    [Tooltip("Text to fade in/out when the interactable is hovered over.")]
     public FadeText interactPopup;
 
+    // Keeps track of what we're overlapping with for when the player later hits the Interact button.
     private Interactable _overlappingInteractable = null;
-    
-    
+
     public Player() {
         if (Instance != null) {
             throw new Exception("There should only ever be one Lil Guy in a scene");
@@ -31,9 +33,10 @@ public class Player : MonoBehaviour
 
         Instance = this;
     }
-    
+
     #region Unity Events
 
+    /** Handles collectables and sets up interactions */
     private void OnTriggerEnter2D(Collider2D other) {
         var collectable = other.gameObject.GetComponent<Collectable>();
         if (collectable != null && collectable.canBeCollected) {
@@ -51,6 +54,7 @@ public class Player : MonoBehaviour
         }
     }
 
+    /** Unsets interactions when we leave them */
     private void OnTriggerExit2D(Collider2D other) {
         var interactable = other.gameObject.GetComponent<Interactable>();
         if (interactable != null) {
@@ -61,11 +65,11 @@ public class Player : MonoBehaviour
             _overlappingInteractable = null;
         }
     }
-    
+
     #endregion
 
     #region Interactables
-    
+
     private void ShowInteractablePrompt() {
         interactPopup.FadeIn();
     }
@@ -74,6 +78,7 @@ public class Player : MonoBehaviour
         interactPopup.FadeOut();
     }
 
+    /** Can be called to trigger an interactable */
     public void TriggerInteractions() {
         if (_overlappingInteractable != null) {
             OnInteract(_overlappingInteractable);
@@ -83,15 +88,14 @@ public class Player : MonoBehaviour
     private void OnInteract(Interactable interactable) {
         interactable.Interact();
     }
-    
+
     #endregion
 }
 
+/** Just some helpers to clean up some code */
 public static class PlayerHelpers
 {
-    public static bool HasItem(this Player p, InventoryItem item) => p.inventory.Contains(item);
+    public static bool HasItem(this Player p, InventoryItem item) => p.inventory.IsItemUnlocked(item);
 
-    public static bool HasItem(this Player p, string id) => p.inventory.Contains(id);
-        
-    public static void PickUp(this Player p, InventoryItem item) => p.inventory.AddItem(item);
+    public static bool HasItem(this Player p, string id) => p.inventory.IsItemUnlocked(id);
 }
