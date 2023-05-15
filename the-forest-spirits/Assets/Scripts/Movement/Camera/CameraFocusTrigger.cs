@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public enum CameraFocusTriggerType
@@ -44,6 +41,7 @@ public class CameraFocusTrigger : MonoBehaviour
     private Transform _oldFollower;
     private float _originalOrthoSize;
     private float _targetSize;
+    private Vector3 _originalOffset;
 
     // Used for moving the camera's orthographic size using SmoothDamp
     private float _velocity;
@@ -101,7 +99,9 @@ public class CameraFocusTrigger : MonoBehaviour
         }
 
         _oldFollower = cameraFollow.anchor;
+        _originalOffset = cameraFollow.offset;
         cameraFollow.anchor = area.transform;
+        cameraFollow.offset = Vector3.zero;
 
         float areaAspect = area.Bounds.size.x / area.Bounds.size.y;
         float cameraAspect = 1f * Screen.width / Screen.height;
@@ -125,6 +125,7 @@ public class CameraFocusTrigger : MonoBehaviour
         if (_oldFollower == null) return;
 
         cameraFollow.anchor = _oldFollower;
+        cameraFollow.offset = _originalOffset;
 
         _targetSize = _originalOrthoSize;
     }
