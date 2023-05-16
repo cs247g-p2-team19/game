@@ -6,6 +6,7 @@ public class Jerky : MonoBehaviour
 {
     public float frequency = 0.1f;
     public float magnitude = 0.1f;
+    public bool lockZ = true;
 
     private float _t;
 
@@ -17,6 +18,11 @@ public class Jerky : MonoBehaviour
 
         _t = 0;
 
-        transform.localPosition = Random.onUnitSphere * magnitude;
+        Vector3 jerkPosition = Random.onUnitSphere * magnitude;
+        if (lockZ) {
+            jerkPosition.z = 0;
+        }
+        
+        transform.localPosition = jerkPosition;
     }
 }

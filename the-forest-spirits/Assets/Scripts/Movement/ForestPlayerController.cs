@@ -6,8 +6,13 @@ using UnityEngine.InputSystem;
  */
 public class ForestPlayerController : PlayerController
 {
+    private static readonly int Speed = Animator.StringToHash("Speed");
+    private static readonly int InventoryOpen = Animator.StringToHash("InventoryOpen");
+
     [Tooltip("The controls")]
     public InputActionAsset actions;
+
+    public Animator animator;
 
     [Tooltip("Standard speed of the ghost")]
     public float speed = 5f;
@@ -24,7 +29,7 @@ public class ForestPlayerController : PlayerController
     private InputAction _interactAction;
     private InputAction _dashAction;
     private InputAction _inventoryAction;
-
+    
     #endregion
 
     
@@ -55,11 +60,13 @@ public class ForestPlayerController : PlayerController
     void Update() {
         if (Lil.Inventory.IsOpen || _stopped) return;
 
-        Vector3 movement = Vector3.right * _moveAction.ReadValue<float>();
+        float direction =  _moveAction.ReadValue<float>();
         bool dashing = _dashAction.IsPressed();
         float moveSpeed = dashing ? dashSpeed : speed;
+        
+        animator.SetFloat(Speed, Mathf.Abs(direction * moveSpeed));
 
-        transform.position += movement * (moveSpeed * Time.deltaTime);
+        transform.position += Vector3.right *  (direction * moveSpeed * Time.deltaTime);
     }
 
     private void OnJump(InputAction.CallbackContext context) {
@@ -80,5 +87,7 @@ public class ForestPlayerController : PlayerController
         Debug.Log("Triggered inventory");
 
         Lil.Inventory.Toggle();
+        
+        animator.SetBool(InventoryOpen, Lil.Inventory.IsOpen);
     }
 }
