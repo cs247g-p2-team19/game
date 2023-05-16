@@ -10,7 +10,16 @@ using UnityEngine.Events;
 public class Player : MonoBehaviour
 {
     /** The global and unique instance of this Player. */
-    public static Player Instance { get; private set; }
+    public static Player Instance {
+        get {
+            if (_instance != null) return _instance;
+            _instance = FindObjectOfType<Player>();
+            return _instance;
+        }
+        
+    }
+
+    private static Player _instance;
 
     public Inventory inventory;
 
@@ -26,15 +35,11 @@ public class Player : MonoBehaviour
     // Keeps track of what we're overlapping with for when the player later hits the Interact button.
     private Interactable _overlappingInteractable = null;
 
-    public Player() {
-        if (Instance != null) {
-            throw new Exception("There should only ever be one Lil Guy in a scene");
-        }
-
-        Instance = this;
-    }
-
     #region Unity Events
+
+    private void OnDestroy() {
+        _instance = null;
+    }
 
     /** Handles collectables and sets up interactions */
     private void OnTriggerEnter2D(Collider2D other) {
