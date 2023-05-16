@@ -93,7 +93,7 @@ Material:
     - _Diffuse: 0.5
     - _DoodleFrameCount: 12
     - _DoodleFrameTime: 0.05
-    - _DoodleIntensity: 0.7
+    - _DoodleIntensity: 4
     - _DstBlend: 0
     - _EnableExternalAlpha: 0
     - _FaceDilate: 0
