@@ -2125,7 +2125,7 @@ MonoBehaviour:
           m_CallState: 2
         - m_Target: {fileID: 1193646033}
           m_TargetAssemblyTypeName: CutsceneDelay, Assembly-CSharp
-          m_MethodName: hitTheDab
+          m_MethodName: callOnDelayEnd
           m_Mode: 4
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -2155,7 +2155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb228036a7f2ba645a627f2e5ee75626, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poggers:
+  onDelayEnd:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 519420033}

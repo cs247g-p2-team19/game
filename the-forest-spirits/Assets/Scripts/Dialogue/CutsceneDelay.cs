@@ -9,10 +9,10 @@ using UnityEngine.Events;
 */
 public class CutsceneDelay : MonoBehaviour
 {
-    public UnityEvent poggers;
-    public void hitTheDab(float timetoWait) {
+    public UnityEvent onDelayEnd;
+    public void callOnDelayEnd(float timetoWait) {
         this.WaitThen(timetoWait, () => {
-            poggers.Invoke();
+            onDelayEnd.Invoke();
         });
     }
 }
