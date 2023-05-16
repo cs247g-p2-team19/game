@@ -7,7 +7,7 @@ public class Door : MonoBehaviour
 
     public bool IsOpen => _animator.GetBool(Open);
 
-    public string targetSceneId;
+    public int targetSceneId;
     
     private Animator _animator;
     private static readonly int Open = Animator.StringToHash("Open");
