@@ -27,8 +27,8 @@ public class ForestPlayerController : PlayerController
 
     #endregion
 
-
-    void Awake() {
+    
+    private void OnEnable() {
         _map = actions.FindActionMap("ForestMovement");
         _moveAction = _map.FindAction("Move");
         _jumpAction = _map.FindAction("Jump");
@@ -39,13 +39,15 @@ public class ForestPlayerController : PlayerController
         _jumpAction.performed += OnJump;
         _interactAction.performed += OnInteract;
         _inventoryAction.performed += OnInventory;
-    }
 
-    private void OnEnable() {
         _map.Enable();
     }
 
     private void OnDisable() {
+        _jumpAction.performed -= OnJump;
+        _interactAction.performed -= OnInteract;
+        _inventoryAction.performed -= OnInventory;
+
         _map.Disable();
     }
 
@@ -74,6 +76,8 @@ public class ForestPlayerController : PlayerController
 
     private void OnInventory(InputAction.CallbackContext context) {
         if (_stopped) return;
+        
+        Debug.Log("Triggered inventory");
 
         Lil.Inventory.Toggle();
     }
