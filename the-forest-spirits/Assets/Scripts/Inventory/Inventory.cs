@@ -21,6 +21,7 @@ public class Inventory : MonoBehaviour
     private void Awake() {
         display.SetActive(true);
         foreach (var spot in GetComponentsInChildren<InventoryItem>()) {
+            spot.Setup();
             Items.Add(spot);
         }
         display.SetActive(false);
