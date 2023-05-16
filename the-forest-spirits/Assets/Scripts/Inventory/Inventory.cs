@@ -1,29 +1,31 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.Events;
 
 /**
  * Manages the items in the inventory.
  */
 public class Inventory : MonoBehaviour
 {
-    public bool IsOpen => display.activeInHierarchy;
+    public bool IsOpen { get; private set; }
 
     public readonly HashSet<InventoryItem> Items = new();
     public readonly HashSet<InventoryItem> UnlockedItems = new();
 
     public GameObject display;
-    
+
+    private Coroutine _showHideRoutine;
+    private Vector3 _scale;
+
     #region Unity Events
 
     private void Awake() {
+        _scale = transform.localScale;
         display.SetActive(true);
         foreach (var spot in GetComponentsInChildren<InventoryItem>()) {
             spot.Setup();
             Items.Add(spot);
         }
+
         display.SetActive(false);
     }
 
@@ -55,12 +57,34 @@ public class Inventory : MonoBehaviour
         else Show();
     }
 
+
     public void Show() {
+        IsOpen = true;
+        if (_showHideRoutine != null) {
+            StopCoroutine(_showHideRoutine);
+        }
+
+        transform.localScale = Vector3.zero;
         display.SetActive(true);
+        var lerpCoro = this.AutoLerp(Vector3.zero, _scale, 0.5f,
+            Utility.EaseOut(Utility.EaseInOut<Vector3>(Vector3.Lerp)), sc => transform.localScale = sc);
+        _showHideRoutine = this.WaitThen(lerpCoro, () => { _showHideRoutine = null; });
     }
 
     public void Hide() {
-        display.SetActive(false);
+        IsOpen = false;
+        if (_showHideRoutine != null) {
+            StopCoroutine(_showHideRoutine);
+        }
+
+        transform.localScale = _scale;
+        display.SetActive(true);
+        var lerpCoro = this.AutoLerp(_scale, Vector3.zero, 0.5f,
+            Utility.EaseOut(Utility.EaseInOut<Vector3>(Vector3.Lerp)), sc => transform.localScale = sc);
+        _showHideRoutine = this.WaitThen(lerpCoro, () => {
+            _showHideRoutine = null;
+            display.SetActive(false);
+        });
     }
 
     #endregion

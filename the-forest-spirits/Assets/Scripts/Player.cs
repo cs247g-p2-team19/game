@@ -118,6 +118,10 @@ public class Player : MonoBehaviour
         audio.PlayOneShot(clip, scaleVolume);
     }
 
+    public void FadeMusicOut() {
+        audio.GetComponent<FadeMusic>().FadeOut();
+    }
+
     #endregion
     
 }

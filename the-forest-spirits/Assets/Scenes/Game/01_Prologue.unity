@@ -469,7 +469,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   triggerType: 0
   area: {fileID: 449786383}
-  cameraFollow: {fileID: 1034628238}
+  focuser: {fileID: 1034628240}
   resizeTime: 0.5
 --- !u!114 &290284922
 MonoBehaviour:
@@ -1007,17 +1007,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20f10d722dd0a4f3ab51ddf0f2eae7fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &812427451 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1474969047593133416, guid: ed8d47900e17746359c424d91e341227, type: 3}
-  m_PrefabInstance: {fileID: 812427449}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 122167289d4345558146540c4aaad528, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &858462458 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2810034676319180439, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
@@ -1050,6 +1039,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: af63fda81aed6418a89134a9d8cd2852, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1034628240 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8166955964837283197, guid: ed8d47900e17746359c424d91e341227, type: 3}
+  m_PrefabInstance: {fileID: 812427449}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64029325e00646918ecd9c46bb09e11a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1150644255
@@ -1092,15 +1092,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: 79459efec17a4d00a321bdcc27bbc385, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4cdcdd0f3fd6f0d479d49ee1ef70a635, type: 2}
+  m_sharedMaterial: {fileID: 8369636593836516890, guid: 4cdcdd0f3fd6f0d479d49ee1ef70a635, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4288436006
+  m_fontColor: {r: 0.1475169, g: 0.33939108, b: 0.6132076, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1182,7 +1182,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 79459efec17a4d00a321bdcc27bbc385, type: 2}
+  - {fileID: 8369636593836516890, guid: 4cdcdd0f3fd6f0d479d49ee1ef70a635, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1775,6 +1775,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: "Ghost\u2122"
       objectReference: {fileID: 0}
+    - target: {fileID: 2810034674861128692, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 1034628240}
     - target: {fileID: 2810034674861128693, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1819,10 +1823,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2810034674861128695, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
-      propertyPath: inventory
-      value: 
-      objectReference: {fileID: 812427451}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
 --- !u!114 &1837345159 stripped

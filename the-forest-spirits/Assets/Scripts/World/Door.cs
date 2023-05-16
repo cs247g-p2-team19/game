@@ -33,6 +33,6 @@ public class Door : MonoBehaviour
     }
 
     public void TransitionScene() {
-        SceneManager.LoadScene(targetSceneId, LoadSceneMode.Single);
+        SceneTransitioner.Instance.Load(targetSceneId);
     }
 }
