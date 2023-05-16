@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -58,6 +59,10 @@ public class InventoryItem : MonoBehaviour
     #endregion
 
     private bool _setupDone = false;
+
+    private void OnDestroy() {
+        _registry.Remove(itemId);
+    }
 
     public void Setup() {
         if (_setupDone) return;
