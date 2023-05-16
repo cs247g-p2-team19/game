@@ -69,8 +69,8 @@ public class Talker : MonoBehaviour
         if (_talking) Teardown();
 
         _currentConversation = startBranch.GetConversation();
-        _currentConversation.onStart.Invoke();
         if (_currentConversation == null) return;
+        _currentConversation.onStart.Invoke();
 
         _talking = true;
         _index = -1;
