@@ -39,7 +39,7 @@ public class Player : MonoBehaviour
     #region Unity Events
 
     private void Start() {
-        var info = FindObjectOfType<SceneInfo>();
+        var info = SceneInfo.Instance;
         if (audio != null) {
             audio.clip = info.backgroundAudio;
             FadeMusic fading = audio.GetComponent<FadeMusic>();
@@ -111,6 +111,15 @@ public class Player : MonoBehaviour
     }
 
     #endregion
+
+    #region Audio
+
+    public void PlaySFX(AudioClip clip, float scaleVolume = 1f) {
+        audio.PlayOneShot(clip, scaleVolume);
+    }
+
+    #endregion
+    
 }
 
 /** Just some helpers to clean up some code */

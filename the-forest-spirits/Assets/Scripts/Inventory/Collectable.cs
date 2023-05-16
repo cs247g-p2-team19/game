@@ -31,6 +31,11 @@ public class Collectable : MonoBehaviour
 
     /** Always collects this item, even if it's set to not be collectable */
     public void Collect() {
+        var sfx = SceneInfo.Instance.onCollectCollectable;
+        if (sfx != null) {
+            Lil.Guy.PlaySFX(sfx);
+        }
+        
         onCollect.Invoke();
         Lil.Guy.onCollect.Invoke(this);
         if (CollectsItem) {

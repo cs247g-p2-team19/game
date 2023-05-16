@@ -17,10 +17,18 @@ public class Door : MonoBehaviour
     }
 
     public void DoorOpen() {
+        var sfx = SceneInfo.Instance.doorOpen;
+        if (sfx != null) {
+            Lil.Guy.PlaySFX(sfx);
+        }
         _animator.SetBool(Open, true);
     }
 
     public void DoorClose() {
+        var sfx = SceneInfo.Instance.doorClosed;
+        if (sfx != null) {
+            Lil.Guy.PlaySFX(sfx);
+        }
         _animator.SetBool(Open, false);
     }
 
