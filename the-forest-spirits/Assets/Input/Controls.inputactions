@@ -53,17 +53,6 @@
             ],
             "bindings": [
                 {
-                    "name": "",
-                    "id": "16a6031d-efe6-4917-a5b2-735182334de3",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard/Mouse",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
                     "name": "WASD",
                     "id": "15f3c22f-b044-4173-835b-700be1ead0d2",
                     "path": "1DAxis",
@@ -166,6 +155,17 @@
                     "name": "",
                     "id": "2f2194e7-ca7b-49dc-b06d-25924c56b5ab",
                     "path": "<Keyboard>/z",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard/Mouse",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1bab9d92-9c8b-46a0-9baa-b1832ffd3e62",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard/Mouse",
