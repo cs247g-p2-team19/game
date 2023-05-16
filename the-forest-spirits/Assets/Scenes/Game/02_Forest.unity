@@ -568,6 +568,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canBeCollected: 1
   itemId: Journal
+  onCollectSound: {fileID: 0}
   onCollect:
     m_PersistentCalls:
       m_Calls:
@@ -4735,7 +4736,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4288717055
-  m_fontColor: {r: 1, g: 0.6273585, b: 0.6273585, a: 1}
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
