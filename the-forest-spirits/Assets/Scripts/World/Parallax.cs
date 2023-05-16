@@ -12,6 +12,9 @@ public class Parallax : MonoBehaviour
     [Range(-4f, 4f)]
     public float parallaxFactor = 0f;
 
+    public bool lockY = true;
+    public bool lockZ = true;
+
     private Vector3 _lastCamPosition;
 
     private void Awake() {
@@ -23,6 +26,15 @@ public class Parallax : MonoBehaviour
         Vector3 curCamPosition = linkedCamera.transform.position;
         Vector3 movement = curCamPosition - _lastCamPosition;
         _lastCamPosition = curCamPosition;
+
+        if (lockY) {
+            movement.y = 0;
+        }
+
+        if (lockZ) {
+            movement.z = 0;
+        }
+        
         transform.position += movement * parallaxFactor;
     }
 }

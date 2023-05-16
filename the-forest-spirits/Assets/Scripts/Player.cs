@@ -16,7 +16,6 @@ public class Player : MonoBehaviour
             _instance = FindObjectOfType<Player>();
             return _instance;
         }
-        
     }
 
     private static Player _instance;
@@ -32,10 +31,26 @@ public class Player : MonoBehaviour
     [Tooltip("Text to fade in/out when the interactable is hovered over.")]
     public FadeText interactPopup;
 
+    public AudioSource audio;
+
     // Keeps track of what we're overlapping with for when the player later hits the Interact button.
     private Interactable _overlappingInteractable = null;
 
     #region Unity Events
+
+    private void Start() {
+        var info = FindObjectOfType<SceneInfo>();
+        if (audio != null) {
+            audio.clip = info.backgroundAudio;
+            FadeMusic fading = audio.GetComponent<FadeMusic>();
+            if (fading != null && fading.playOnFadeIn) {
+                fading.FadeIn();
+            }
+            else {
+                audio.Play();
+            }
+        }
+    }
 
     private void OnDestroy() {
         _instance = null;
@@ -89,7 +104,7 @@ public class Player : MonoBehaviour
             OnInteract(_overlappingInteractable);
         }
     }
-    
+
 
     private void OnInteract(Interactable interactable) {
         interactable.Interact();
