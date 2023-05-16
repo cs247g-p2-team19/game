@@ -1980,6 +1980,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1193646031}
   - component: {fileID: 1193646032}
+  - component: {fileID: 1193646033}
   m_Layer: 0
   m_Name: Begin
   m_TagString: Untagged
@@ -2034,7 +2035,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-    waitTime: 0
+    waitTime: 1.5
   - text: do you know why you are here?
     onStart:
       m_PersistentCalls:
@@ -2090,7 +2091,19 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-    waitTime: 0
+        - m_Target: {fileID: 1193646033}
+          m_TargetAssemblyTypeName: CutsceneDelay, Assembly-CSharp
+          m_MethodName: hitTheDab
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 1.5
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    waitTime: 1.5
   andThen: {fileID: 0}
   onStart:
     m_PersistentCalls:
@@ -2098,6 +2111,33 @@ MonoBehaviour:
   onEnd:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1193646033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1193646030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb228036a7f2ba645a627f2e5ee75626, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poggers:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 519420033}
+        m_TargetAssemblyTypeName: Follow, Assembly-CSharp
+        m_MethodName: SetAnchor
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2005016420}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1230169303
 GameObject:
   m_ObjectHideFlags: 0
@@ -2793,8 +2833,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startMode: 1
-  fadeInTime: 3
-  fadeOutTime: 3
+  fadeInTime: 1.5
+  fadeOutTime: 1.5
 --- !u!114 &1848246307
 MonoBehaviour:
   m_ObjectHideFlags: 0
