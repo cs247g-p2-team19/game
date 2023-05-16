@@ -14,6 +14,9 @@ public class ForestPlayerController : PlayerController
 
     public Animator animator;
 
+    public CameraFocusArea inventoryFocus;
+    public CameraFocuser camera;
+
     [Tooltip("Standard speed of the ghost")]
     public float speed = 5f;
 
@@ -29,10 +32,10 @@ public class ForestPlayerController : PlayerController
     private InputAction _interactAction;
     private InputAction _dashAction;
     private InputAction _inventoryAction;
-    
+
     #endregion
 
-    
+
     private void OnEnable() {
         _map = actions.FindActionMap("ForestMovement");
         _moveAction = _map.FindAction("Move");
@@ -60,13 +63,13 @@ public class ForestPlayerController : PlayerController
     void Update() {
         if (Lil.Inventory.IsOpen || _stopped) return;
 
-        float direction =  _moveAction.ReadValue<float>();
+        float direction = _moveAction.ReadValue<float>();
         bool dashing = _dashAction.IsPressed();
         float moveSpeed = dashing ? dashSpeed : speed;
-        
+
         animator.SetFloat(Speed, Mathf.Abs(direction * moveSpeed));
 
-        transform.position += Vector3.right *  (direction * moveSpeed * Time.deltaTime);
+        transform.position += Vector3.right * (direction * moveSpeed * Time.deltaTime);
     }
 
     private void OnJump(InputAction.CallbackContext context) {
@@ -83,11 +86,18 @@ public class ForestPlayerController : PlayerController
 
     private void OnInventory(InputAction.CallbackContext context) {
         if (_stopped) return;
-        
+
         Debug.Log("Triggered inventory");
 
         Lil.Inventory.Toggle();
-        
+
         animator.SetBool(InventoryOpen, Lil.Inventory.IsOpen);
+
+        if (Lil.Inventory.IsOpen) {
+            camera.Focus(inventoryFocus);
+        }
+        else {
+            camera.Unfocus(inventoryFocus);
+        }
     }
 }

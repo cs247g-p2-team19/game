@@ -84,7 +84,7 @@ Properties {
 	_ColorMask			("Color Mask", Float) = 15
 
 	_DoodleMaxOffset    ("Doodle Max Offset", vector) = (0.005, 0.005, 0, 0)
-	_DoodleFrameTime    ("Doodle Frame Time", Float) = 0.05
+	_DoodleFrameTime    ("Doodle Frame Time", Float) = 0.5
 	_DoodleFrameCount   ("Doodle Frame Count", Int) = 12
 	_DoodleNoiseScale   ("Doodle Noise Scale", vector) = (2, 2, 1, 1)
 }

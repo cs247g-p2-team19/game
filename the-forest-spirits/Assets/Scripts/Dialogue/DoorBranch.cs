@@ -25,9 +25,11 @@ public class DoorBranch : Branch
         bool shouldBeOpen = was == DoorState.Open;
         
         if (door.IsOpen == shouldBeOpen) {
+            if (next == null) return null;
             return next.GetConversation();
         }
 
+        if (fallbackTo == null) return null;
         return fallbackTo.GetConversation();
     }
 }
