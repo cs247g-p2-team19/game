@@ -990,6 +990,10 @@ PrefabInstance:
       propertyPath: offset.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6187911570451958519, guid: ed8d47900e17746359c424d91e341227, type: 3}
+      propertyPath: backgroundAudio
+      value: 
+      objectReference: {fileID: 8300000, guid: 38ffa9c9167794114812052ed6d19902, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed8d47900e17746359c424d91e341227, type: 3}
 --- !u!114 &812427450 stripped
@@ -1014,6 +1018,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 122167289d4345558146540c4aaad528, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &858462458 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2810034676319180439, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
+  m_PrefabInstance: {fileID: 1837345158}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &858462461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 858462458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 411bf77fb6064f5b9aefb10e40e248fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeMode: 0
+  fadeTime: 0.3
+  inVolume: 0.3
+  delayTimeIn: 0
+  outVolume: 0
+  playOnFadeIn: 1
 --- !u!114 &1034628238 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1474969047897440415, guid: ed8d47900e17746359c424d91e341227, type: 3}
