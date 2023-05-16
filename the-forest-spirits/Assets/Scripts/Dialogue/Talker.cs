@@ -46,17 +46,20 @@ public class Talker : MonoBehaviour
             StartConversation();
         }
         else {
-            //call delay based on the value
-            if (_index >= 0) {
-                _currentConversation.dialogue[_index].onEnd.Invoke();
+            //Only run this if the conversation is not CURRENTLY fading out!
+            if (!fading) {
+                if (_index >= 0) {
+                    //if there's an onEnd method, invoke it now -- this will usually be the call to fadeout
+                    _currentConversation.dialogue[_index].onEnd.Invoke();
+                }
+                fading = true;
+                //wait for the amount of time specified in waitTime, then call next -- waittime in this case
+                //is the time you need for the text to fade OUT
+                this.WaitThen(_currentConversation.dialogue[_index].waitTime, () => {
+                    Next();
+                    fading = false;
+                });
             }
-            fading = true;
-            //wait for the amount of time specified in waitTime, then call next -- waittime in this case
-            //is the time you need for the text to fade OUT
-            this.WaitThen(_currentConversation.dialogue[_index].waitTime, () => {
-                Next();
-                fading = false;
-            });
             //Next();
         }
     }
@@ -98,6 +101,7 @@ public class Talker : MonoBehaviour
         // If there's still text to go...
         if ((_index < _currentConversation.dialogue.Length)) {
             onNext.Invoke();
+            
             _currentConversation.dialogue[_index].onStart.Invoke();
 
             textRef.text = _currentConversation.dialogue[_index].text;
