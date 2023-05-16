@@ -22,4 +22,5 @@ public class ConversationPart
     [TextArea] public string text;
     public UnityEvent onStart;
     public UnityEvent onEnd;
+    public float waitTime = 0f;
 }

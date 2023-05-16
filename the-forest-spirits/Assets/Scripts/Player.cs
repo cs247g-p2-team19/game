@@ -84,6 +84,7 @@ public class Player : MonoBehaviour
             OnInteract(_overlappingInteractable);
         }
     }
+    
 
     private void OnInteract(Interactable interactable) {
         interactable.Interact();
