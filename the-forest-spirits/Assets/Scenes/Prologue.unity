@@ -2039,7 +2039,19 @@ MonoBehaviour:
   - text: do you know why you are here?
     onStart:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 1848246306}
+          m_TargetAssemblyTypeName: Fadable`1[[TMPro.TextMeshPro, Unity.TextMeshPro
+          m_MethodName: FadeIn
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
     onEnd:
       m_PersistentCalls:
         m_Calls:
@@ -2056,7 +2068,7 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
     waitTime: 1.5
-  - text: perhaps, you cannot answer those things
+  - text: for now, you cannot answer.
     onStart:
       m_PersistentCalls:
         m_Calls:
