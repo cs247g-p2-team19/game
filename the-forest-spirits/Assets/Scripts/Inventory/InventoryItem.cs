@@ -29,7 +29,8 @@ public class InventoryItem : MonoBehaviour
     [Tooltip("Unique item ID for this item. Can be referenced elsewhere.")]
     public string itemId;
 
-    public string itemName; // Might be unnecessary?
+    public AudioClip onUnlockSound;
+    public AudioClip onUseSound;
 
     [Tooltip("Whether or not the user starts with this item. True if they start without it.")]
     public bool startLocked = true;
@@ -77,15 +78,26 @@ public class InventoryItem : MonoBehaviour
             Lock();
         }
 
-        _button.onClick.AddListener(() => onClick.Invoke(this));
+        _button.onClick.AddListener(OnClick);
     }
 
     private void Awake() {
         Setup();
     }
 
+    private void OnClick() {
+        if (onUseSound != null) {
+            Lil.Guy.PlaySFX(onUseSound);
+        }
+
+        onClick.Invoke(this);
+    }
 
     public void Unlock() {
+        if (onUnlockSound != null) {
+            Lil.Guy.PlaySFX(onUnlockSound);
+        }
+
         gameObject.SetActive(true);
         onUnlock.Invoke(this);
         Lil.Guy.onUnlockItem.Invoke(this);
