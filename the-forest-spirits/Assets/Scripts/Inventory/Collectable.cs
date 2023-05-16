@@ -20,6 +20,8 @@ public class Collectable : MonoBehaviour
     [Tooltip("Optional; if specified, the item that collecting this unlocks.")]
     public string itemId;
 
+    public AudioClip onCollectSound;
+
     [Tooltip("Triggered when this Collectable is collected")]
     public UnityEvent onCollect;
 
@@ -31,9 +33,11 @@ public class Collectable : MonoBehaviour
 
     /** Always collects this item, even if it's set to not be collectable */
     public void Collect() {
-        var sfx = SceneInfo.Instance.onCollectCollectable;
-        if (sfx != null) {
-            Lil.Guy.PlaySFX(sfx);
+        var defaultCollectSound = SceneInfo.Instance.defaultOnCollectCollectable;
+        if (onCollectSound != null) {
+            Lil.Guy.PlaySFX(onCollectSound);
+        } else if (defaultCollectSound != null) {
+            Lil.Guy.PlaySFX(defaultCollectSound);
         }
         
         onCollect.Invoke();

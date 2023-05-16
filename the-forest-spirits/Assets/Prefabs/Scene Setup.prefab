@@ -206,7 +206,7 @@ MonoBehaviour:
   backgroundAudio: {fileID: 0}
   doorOpen: {fileID: 8300000, guid: 77c1b14d1fb7a4d80a0a5898224a7369, type: 3}
   doorClosed: {fileID: 8300000, guid: 50d9603440a1c4f7a8774ca442689dfe, type: 3}
-  onCollectCollectable: {fileID: 8300000, guid: 678d3d94310f446d781514f840d96b2c, type: 3}
+  defaultOnCollectCollectable: {fileID: 8300000, guid: 678d3d94310f446d781514f840d96b2c, type: 3}
 --- !u!114 &70684704455975155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -220,6 +220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   imageFader: {fileID: 8880342073052598195}
+  pauseTime: 1
 --- !u!1 &1474969047897440387
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,5 +9,5 @@ public class SceneInfo : MonoBehaviour
     public AudioClip doorOpen;
     public AudioClip doorClosed;
 
-    public AudioClip onCollectCollectable;
+    public AudioClip defaultOnCollectCollectable;
 }

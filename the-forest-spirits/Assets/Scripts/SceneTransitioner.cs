@@ -8,6 +8,7 @@ public class SceneTransitioner : MonoBehaviour
 {
     public static SceneTransitioner Instance => FindObjectOfType<SceneTransitioner>();
     public FadeImage imageFader;
+    public float pauseTime = 1f;
 
     private bool _isLoading = false;
 
@@ -19,6 +20,6 @@ public class SceneTransitioner : MonoBehaviour
         Lil.Guy.FadeMusicOut();
         var ready = SceneManager.LoadSceneAsync(idx, LoadSceneMode.Single);
         ready.allowSceneActivation = false;
-        this.WaitThen(imageFader.fadeInTime + 0.1f, () => { ready.allowSceneActivation = true; });
+        this.WaitThen(imageFader.fadeInTime + pauseTime, () => { ready.allowSceneActivation = true; });
     }
 }
