@@ -42,6 +42,10 @@ public class CameraFocuser : MonoBehaviour
     public void Focus(CameraFocusArea area, float time = 0.5f) {
         var next = new AreaStackElement(area, time);
 
+        if (_areaStack.Count == 0) {
+            _setup.OldFollower = followRef.anchor;
+        }
+
         _areaStack.Add(next);
         FocusInternal(next, next.Time);
     }
