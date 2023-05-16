@@ -28,18 +28,19 @@ public class CameraFocuser : MonoBehaviour
     // Used for moving the camera's orthographic size using SmoothDamp
     private Coroutine _resizeCoroutine;
 
+    private void OnEnable() {
+        _setup = new OriginalSetup(
+            followRef.anchor,
+            cameraRef.orthographicSize,
+            followRef.offset
+        );
+    }
+
     #region Public Methods
 
     /** Focus on the given CameraFocusArea, transitioning to it with the given time */
     public void Focus(CameraFocusArea area, float time = 0.5f) {
         var next = new AreaStackElement(area, time);
-        if (_areaStack.Count == 0) {
-            _setup = new OriginalSetup(
-                followRef.anchor,
-                cameraRef.orthographicSize,
-                followRef.offset
-            );
-        }
 
         _areaStack.Add(next);
         FocusInternal(next, next.Time);
