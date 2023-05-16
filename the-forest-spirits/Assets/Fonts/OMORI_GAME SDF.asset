@@ -2705,8 +2705,8 @@ Material:
     - _ColorMask: 15
     - _CullMode: 0
     - _Diffuse: 0.5
-    - _DoodleFrameCount: 24
-    - _DoodleFrameTime: 0.25
+    - _DoodleFrameCount: 10
+    - _DoodleFrameTime: 0.1
     - _DoodleIntensity: 0.7
     - _FaceDilate: 0
     - _FaceUVSpeedX: 0

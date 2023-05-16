@@ -21,6 +21,7 @@ public class Talker : MonoBehaviour
 
     public UnityEvent onEnd;
     public UnityEvent onNext;
+    private bool fading;
 
     #endregion
 
@@ -45,7 +46,18 @@ public class Talker : MonoBehaviour
             StartConversation();
         }
         else {
-            Next();
+            //call delay based on the value
+            if (_index >= 0) {
+                _currentConversation.dialogue[_index].onEnd.Invoke();
+            }
+            fading = true;
+            //wait for the amount of time specified in waitTime, then call next -- waittime in this case
+            //is the time you need for the text to fade OUT
+            this.WaitThen(_currentConversation.dialogue[_index].waitTime, () => {
+                Next();
+                fading = false;
+            });
+            //Next();
         }
     }
 
@@ -80,10 +92,6 @@ public class Talker : MonoBehaviour
     }
 
     private void Next() {
-        // Invoke the last dialogue line's onEnd event
-        if (_index >= 0) {
-            _currentConversation.dialogue[_index].onEnd.Invoke();
-        }
 
         _index++;
 
