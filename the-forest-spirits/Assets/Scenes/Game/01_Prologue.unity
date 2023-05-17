@@ -1035,6 +1035,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20f10d722dd0a4f3ab51ddf0f2eae7fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &861745349 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5034073753244998902, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
+  m_PrefabInstance: {fileID: 1837345158}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1034628238 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1474969047897440415, guid: ed8d47900e17746359c424d91e341227, type: 3}
@@ -1889,6 +1894,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5112743404321826105, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
+      propertyPath: cursorAnim
+      value: 
+      objectReference: {fileID: 861745349}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
 --- !u!114 &1837345159 stripped

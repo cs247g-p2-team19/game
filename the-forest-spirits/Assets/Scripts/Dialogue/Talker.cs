@@ -149,4 +149,18 @@ public class Talker : MonoBehaviour, IClickable
 
         return true;
     }
+
+    public bool IsClickable(Vector2 screenPos, Camera cam, out Sprite customSprite) {
+        customSprite = null;
+        if (!_talking || _currentConversation == null) {
+            return false;
+        }
+
+        int linkIndex = TMP_TextUtilities.FindIntersectingLink(textRef, screenPos, cam);
+        if (linkIndex == -1) {
+            return false;
+        }
+
+        return true;
+    }
 }

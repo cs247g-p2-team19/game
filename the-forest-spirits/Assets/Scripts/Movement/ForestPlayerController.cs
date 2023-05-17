@@ -6,6 +6,7 @@ using UnityEngine.Serialization;
 /**
  * Implements all the main movement of the player.
  */
+[RequireComponent(typeof(MouseManager))]
 public class ForestPlayerController : PlayerController
 {
     private static readonly int Speed = Animator.StringToHash("Speed");
@@ -23,6 +24,9 @@ public class ForestPlayerController : PlayerController
 
     [AutoDefault(MainCamera = true), ReadOnly]
     public Camera mainCamera;
+
+    [AutoDefault, ReadOnly]
+    public MouseManager mouseManager;
 
     [Tooltip("Standard speed of the ghost")]
     public float speed = 5f;
@@ -76,6 +80,9 @@ public class ForestPlayerController : PlayerController
 
     /** Movement happens here */
     void Update() {
+        mouseManager.UpdateMouse(_pointerLocation.ReadValue<Vector2>(), _interactAction.IsPressed());
+        
+
         if (Lil.Inventory.IsOpen || _stopped) return;
 
         float direction = _moveAction.ReadValue<float>();

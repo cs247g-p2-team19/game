@@ -12,7 +12,7 @@ public class Interactable : AutoMonoBehaviour
     public UnityEvent<Interactable> onInteract;
     
     [AutoDefault]
-    public Collider2D collider;
+    public new Collider2D collider;
 
 
     public void Interact() {
