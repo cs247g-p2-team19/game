@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 
 /**
@@ -9,16 +10,14 @@ using UnityEngine;
  * the editor. Does nothing by itself.
  */
 [RequireComponent(typeof(RectTransform))]
-public class CameraFocusArea : MonoBehaviour
+public class CameraFocusArea : AutoMonoBehaviour
 {
-    public Bounds Bounds => _rect.GetWorldBounds();
+    public Bounds Bounds => rect.GetWorldBounds();
 
 
-    private RectTransform _rect;
+    [AutoDefault, ReadOnly]
+    public RectTransform rect;
 
-    private void Awake() {
-        _rect = GetComponent<RectTransform>();
-    }
 
     private void OnDrawGizmos() {
         var gizBounds = GetComponent<RectTransform>().GetWorldBounds();

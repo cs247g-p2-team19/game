@@ -1,7 +1,7 @@
 using UnityEngine;
 
 /** Template for all PlayerControllers. */
-public abstract class PlayerController : MonoBehaviour
+public abstract class PlayerController : AutoMonoBehaviour
 {
     /** True if the player shouldn't be able to move around. */
     protected bool _stopped = false;

@@ -7,18 +7,18 @@ using UnityEngine;
  * from object/followers etc.
  */
 [RequireComponent(typeof(Camera)), RequireComponent(typeof(Follow))]
-public class CameraFocuser : MonoBehaviour
+public class CameraFocuser : AutoMonoBehaviour
 {
     // Smoothing function used for transitioning the orthographic size
     private static readonly Utility.LerpFn<float> _lerp = Utility.EaseOut<float>(Mathf.SmoothStep);
-
-    [Header("Required")]
+    
+    public BoundedCamera boundsRef;
+    
+    [AutoDefault, ReadOnly]
     public Follow followRef;
 
+    [AutoDefault,  ReadOnly]
     public Camera cameraRef;
-
-    [Header("Optional")]
-    public BoundedCamera boundsRef;
 
 
     // Used for restoring camera state

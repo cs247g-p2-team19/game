@@ -1,27 +1,25 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 [RequireComponent(typeof(Animator))]
-public class Door : MonoBehaviour
+public class Door : AutoMonoBehaviour
 {
 
-    public bool IsOpen => _animator.GetBool(Open);
+    public bool IsOpen => animator.GetBool(Open);
 
     public int targetSceneId;
     
-    private Animator _animator;
+    [AutoDefault, ReadOnly]
+    public Animator animator;
     private static readonly int Open = Animator.StringToHash("Open");
-
-    private void Awake() {
-        _animator = GetComponent<Animator>();
-    }
-
+    
     public void DoorOpen() {
         var sfx = SceneInfo.Instance.doorOpen;
         if (sfx != null) {
             Lil.Guy.PlaySFX(sfx);
         }
-        _animator.SetBool(Open, true);
+        animator.SetBool(Open, true);
     }
 
     public void DoorClose() {
@@ -29,7 +27,7 @@ public class Door : MonoBehaviour
         if (sfx != null) {
             Lil.Guy.PlaySFX(sfx);
         }
-        _animator.SetBool(Open, false);
+        animator.SetBool(Open, false);
     }
 
     public void TransitionScene() {
