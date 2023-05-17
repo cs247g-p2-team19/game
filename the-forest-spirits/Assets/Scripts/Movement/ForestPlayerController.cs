@@ -42,7 +42,8 @@ public class ForestPlayerController : PlayerController
         _jumpAction = _map.FindAction("Jump");
         _interactAction = _map.FindAction("Interact");
         _dashAction = _map.FindAction("Dash");
-        _inventoryAction = _map.FindAction("Open Inventory");
+        _inventoryAction = _map.FindAction("Inventory");
+        _pointerLocation = _map.FindAction("PointerLocation");
 
         _jumpAction.performed += OnJump;
         _interactAction.performed += OnInteract;
@@ -81,6 +82,19 @@ public class ForestPlayerController : PlayerController
     private void OnInteract(InputAction.CallbackContext context) {
         if (Lil.Inventory.IsOpen) return;
 
+        Vector2 cameraPos = _pointerLocation.ReadValue<Vector2>();
+        Ray toCast = mainCamera.ScreenPointToRay(cameraPos);
+        var hit = Physics2D.Raycast(toCast.origin, toCast.direction, Mathf.Infinity, LayerMask.GetMask("Clickables"));
+        IClickable clickable = null;
+
+        if (hit.collider != null) {
+            clickable = hit.collider.GetComponentInParent<IClickable>();
+        }
+
+        if (clickable != null && clickable.OnClick(cameraPos, mainCamera)) {
+            return;
+        }
+
         Lil.Guy.TriggerInteractions();
     }
 
@@ -94,10 +108,14 @@ public class ForestPlayerController : PlayerController
         animator.SetBool(InventoryOpen, Lil.Inventory.IsOpen);
 
         if (Lil.Inventory.IsOpen) {
-            camera.Focus(inventoryFocus);
+            cameraFocus.Focus(inventoryFocus);
         }
         else {
-            camera.Unfocus(inventoryFocus);
+            cameraFocus.Unfocus(inventoryFocus);
         }
+    }
+
+    public void Lmao() {
+        Debug.Log("Pog");
     }
 }

@@ -6,7 +6,7 @@ using UnityEngine.Events;
  * Represents a GameObject that can have dialogue.
  * References conversations and branches written in the editor.
  */
-public class Talker : MonoBehaviour
+public class Talker : MonoBehaviour, IClickable
 {
     #region Unity fields
 
@@ -37,7 +37,7 @@ public class Talker : MonoBehaviour
     private Conversation _currentConversation;
 
     #endregion
-    
+
     #region Public methods
 
     /** Call this method to start or progress a conversation */
@@ -52,6 +52,7 @@ public class Talker : MonoBehaviour
                     //if there's an onEnd method, invoke it now -- this will usually be the call to fadeout
                     _currentConversation.dialogue[_index].onEnd.Invoke();
                 }
+
                 fading = true;
                 //wait for the amount of time specified in waitTime, then call next -- waittime in this case
                 //is the time you need for the text to fade OUT
@@ -95,13 +96,12 @@ public class Talker : MonoBehaviour
     }
 
     private void Next() {
-
         _index++;
 
         // If there's still text to go...
         if ((_index < _currentConversation.dialogue.Length)) {
             onNext.Invoke();
-            
+
             _currentConversation.dialogue[_index].onStart.Invoke();
 
             textRef.text = _currentConversation.dialogue[_index].text;
@@ -131,4 +131,22 @@ public class Talker : MonoBehaviour
     }
 
     #endregion
+
+    public bool OnClick(Vector2 screenPos, Camera cam) {
+        if (!_talking || _currentConversation == null) {
+            return false;
+        }
+
+        int linkIndex = TMP_TextUtilities.FindIntersectingLink(textRef, screenPos, cam);
+        if (linkIndex == -1) {
+            return false;
+        }
+
+        var info = textRef.textInfo.linkInfo[linkIndex];
+        string linkId = info.GetLinkID();
+
+        _currentConversation.dialogue[_index].TriggerLink(linkId);
+
+        return true;
+    }
 }
