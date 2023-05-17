@@ -60,17 +60,16 @@ jobs:
           targetPlatform: WebGL
           projectPath: ./the-forest-spirits
 
+      # Output
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Build
+          path: build
+
       # Deploy
       - run: |-
           npm install -g vercel
-          vercel login --token ${{ secrets.JONA_VERCEL_TOKEN }}
           cd build
           cp -r ../.vercel-for-build ./.vercel
           mv ./.vercel/config.json ./vercel.json
-          vercel
-      # Output
-      #- uses: actions/upload-artifact@v2
-      #  with:
-      #    name: Build
-      #    path: build
-
+          vercel deploy --token ${{ secrets.JONA_VERCEL_TOKEN }}
