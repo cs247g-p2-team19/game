@@ -70,6 +70,6 @@ jobs:
       - run: |-
           npm install -g vercel
           cd build
-          cp -r ../.vercel-for-build ./.vercel
-          mv ./.vercel/config.json ./vercel.json
+          sudo cp -r ../.vercel-for-build ./.vercel
+          sudo mv ./.vercel/config.json ./vercel.json
           vercel deploy --token ${{ secrets.JONA_VERCEL_TOKEN }}
