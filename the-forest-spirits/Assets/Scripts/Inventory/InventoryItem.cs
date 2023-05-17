@@ -11,7 +11,7 @@ using UnityEngine.UI;
  * (or Unlock is called on this InventoryItem).
  */
 [RequireComponent(typeof(Button))]
-public class InventoryItem : MonoBehaviour
+public class InventoryItem : AutoMonoBehaviour
 {
     #region Registry
 
@@ -45,18 +45,8 @@ public class InventoryItem : MonoBehaviour
 
     #region Button access
 
-    private Button _button {
-        get {
-            if (_wasCached) return _cachedButton;
-            _wasCached = true;
-            _cachedButton = GetComponent<Button>();
-            return _cachedButton;
-        }
-    }
-
-    private Button _cachedButton;
-    private bool _wasCached;
-
+    [AutoDefault, ReadOnly]
+    public Button button;
     #endregion
 
     private bool _setupDone = false;
@@ -78,7 +68,7 @@ public class InventoryItem : MonoBehaviour
             Lock();
         }
 
-        _button.onClick.AddListener(OnClick);
+        button.onClick.AddListener(OnClick);
     }
 
     private void Awake() {

@@ -599,7 +599,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemId: Key
-  itemName: Key
+  onUnlockSound: {fileID: 0}
+  onUseSound: {fileID: 0}
   startLocked: 1
   onUnlock:
     m_PersistentCalls:
@@ -607,6 +608,7 @@ MonoBehaviour:
   onClick:
     m_PersistentCalls:
       m_Calls: []
+  button: {fileID: 679182454}
 --- !u!1 &1060998766
 GameObject:
   m_ObjectHideFlags: 0
@@ -1370,7 +1372,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemId: Journal
-  itemName: Journal
+  onUnlockSound: {fileID: 0}
+  onUseSound: {fileID: 0}
   startLocked: 1
   onUnlock:
     m_PersistentCalls:
@@ -1390,6 +1393,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+  button: {fileID: 4527397675600128218}
 --- !u!1 &1741476733650435923
 GameObject:
   m_ObjectHideFlags: 0
@@ -1806,7 +1810,7 @@ GameObject:
   - component: {fileID: 2810034674861128688}
   m_Layer: 0
   m_Name: "Ghost\u2122"
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1847,7 +1851,8 @@ MonoBehaviour:
   actions: {fileID: -944628639613478452, guid: ebb836e0cbbd14efca11b6ef6a8e1255, type: 3}
   animator: {fileID: 3336404277269054495}
   inventoryFocus: {fileID: 7710174620800045370}
-  camera: {fileID: 0}
+  cameraFocus: {fileID: 0}
+  mainCamera: {fileID: 0}
   speed: 5
   dashSpeed: 10
 --- !u!114 &2810034674861128695
@@ -1945,6 +1950,7 @@ MonoBehaviour:
   by: {fileID: 0}
   boundX: 1
   boundY: 0
+  collider: {fileID: 2810034674861128694}
 --- !u!1 &2810034676319180439
 GameObject:
   m_ObjectHideFlags: 0
@@ -1956,6 +1962,7 @@ GameObject:
   - component: {fileID: 2810034676319180436}
   - component: {fileID: 2810034676319180437}
   - component: {fileID: 1419870896}
+  - component: {fileID: 15363648299638313}
   m_Layer: 0
   m_Name: AudioSource
   m_TagString: Untagged
@@ -2092,6 +2099,26 @@ MonoBehaviour:
   delayTimeIn: 1
   outVolume: 0
   playOnFadeIn: 1
+  source: {fileID: 2810034676319180437}
+--- !u!114 &15363648299638313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2810034676319180439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 411bf77fb6064f5b9aefb10e40e248fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeMode: 0
+  fadeTime: 0.3
+  inVolume: 0.3
+  delayTimeIn: 0
+  outVolume: 0
+  playOnFadeIn: 1
+  source: {fileID: 2810034676319180437}
 --- !u!1 &3519345971122115761
 GameObject:
   m_ObjectHideFlags: 0
@@ -2141,6 +2168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07bf47d9f943a4e678a8546b18c2dc3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rect: {fileID: 3815354117242107655}
 --- !u!1 &3793897787013889437
 GameObject:
   m_ObjectHideFlags: 0

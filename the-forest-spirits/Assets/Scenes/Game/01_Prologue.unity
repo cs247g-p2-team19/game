@@ -175,6 +175,7 @@ MonoBehaviour:
     onEnd:
       m_PersistentCalls:
         m_Calls: []
+    linkResponders: []
     waitTime: 0
   - text: why?
     onStart:
@@ -183,6 +184,7 @@ MonoBehaviour:
     onEnd:
       m_PersistentCalls:
         m_Calls: []
+    linkResponders: []
     waitTime: 0
   andThen: {fileID: 0}
   onStart:
@@ -395,6 +397,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  collider: {fileID: 290284918}
 --- !u!61 &290284918
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -455,6 +458,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetSceneId: 1
+  animator: {fileID: 290284919}
 --- !u!114 &290284921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -526,6 +530,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07bf47d9f943a4e678a8546b18c2dc3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rect: {fileID: 449786384}
 --- !u!224 &449786384
 RectTransform:
   m_ObjectHideFlags: 0
@@ -598,6 +603,7 @@ MonoBehaviour:
     onEnd:
       m_PersistentCalls:
         m_Calls: []
+    linkResponders: []
     waitTime: 0
   - text: you don't even know why you want this.
     onStart:
@@ -606,6 +612,7 @@ MonoBehaviour:
     onEnd:
       m_PersistentCalls:
         m_Calls: []
+    linkResponders: []
     waitTime: 0
   - text: are you sure you want to continue?
     onStart:
@@ -614,6 +621,7 @@ MonoBehaviour:
     onEnd:
       m_PersistentCalls:
         m_Calls: []
+    linkResponders: []
     waitTime: 0
   andThen: {fileID: 0}
   onStart:
@@ -667,13 +675,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-  - text: who are you.
+  - text: who are <link="A"><b>you</b></link>.
     onStart:
       m_PersistentCalls:
         m_Calls: []
     onEnd:
       m_PersistentCalls:
         m_Calls: []
+    linkResponders:
+    - linkId: A
+      onLink:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 1837345159}
+            m_TargetAssemblyTypeName: ForestPlayerController, Assembly-CSharp
+            m_MethodName: Lmao
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
     waitTime: 0
   - text: why are you here?
     onStart:
@@ -682,6 +707,7 @@ MonoBehaviour:
     onEnd:
       m_PersistentCalls:
         m_Calls: []
+    linkResponders: []
     waitTime: 0
   - text: go away.
     onStart:
@@ -690,6 +716,7 @@ MonoBehaviour:
     onEnd:
       m_PersistentCalls:
         m_Calls: []
+    linkResponders: []
     waitTime: 0
   andThen: {fileID: 0}
   onStart:
@@ -866,6 +893,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  collider: {fileID: 642321059}
 --- !u!1 &781348370
 GameObject:
   m_ObjectHideFlags: 0
@@ -1007,29 +1035,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20f10d722dd0a4f3ab51ddf0f2eae7fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &858462458 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2810034676319180439, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
-  m_PrefabInstance: {fileID: 1837345158}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &858462461
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 858462458}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 411bf77fb6064f5b9aefb10e40e248fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fadeMode: 0
-  fadeTime: 0.3
-  inVolume: 0.3
-  delayTimeIn: 0
-  outVolume: 0
-  playOnFadeIn: 1
 --- !u!114 &1034628238 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1474969047897440415, guid: ed8d47900e17746359c424d91e341227, type: 3}
@@ -1052,6 +1057,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64029325e00646918ecd9c46bb09e11a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!20 &1147445686 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 1474969047897440413, guid: ed8d47900e17746359c424d91e341227, type: 3}
+  m_PrefabInstance: {fileID: 812427449}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1150644255
 GameObject:
   m_ObjectHideFlags: 0
@@ -1063,7 +1073,9 @@ GameObject:
   - component: {fileID: 1150644258}
   - component: {fileID: 1150644257}
   - component: {fileID: 1150644256}
-  m_Layer: 0
+  - component: {fileID: 1150644260}
+  - component: {fileID: 1150644259}
+  m_Layer: 3
   m_Name: TextHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1224,6 +1236,46 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 10.1}
   m_SizeDelta: {x: 20, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1150644259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1150644255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2981fb3e179a4930878daf33e69cb677, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rect: {fileID: 1150644258}
+  collider: {fileID: 1150644260}
+--- !u!61 &1150644260
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1150644255}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 20, y: 5}
+  m_EdgeRadius: 0
 --- !u!1 &1193646030
 GameObject:
   m_ObjectHideFlags: 0
@@ -1289,6 +1341,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+    linkResponders: []
     waitTime: 1.5
   - text: do you know why you are here?
     onStart:
@@ -1321,6 +1374,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+    linkResponders: []
     waitTime: 1.5
   - text: for now, you cannot answer.
     onStart:
@@ -1377,6 +1431,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+    linkResponders: []
     waitTime: 1.5
   andThen: {fileID: 0}
   onStart:
@@ -1640,6 +1695,7 @@ MonoBehaviour:
     onEnd:
       m_PersistentCalls:
         m_Calls: []
+    linkResponders: []
     waitTime: 0
   - text: if you must, i understand.
     onStart:
@@ -1648,6 +1704,7 @@ MonoBehaviour:
     onEnd:
       m_PersistentCalls:
         m_Calls: []
+    linkResponders: []
     waitTime: 0
   - text: please be careful.
     onStart:
@@ -1668,6 +1725,7 @@ MonoBehaviour:
     onEnd:
       m_PersistentCalls:
         m_Calls: []
+    linkResponders: []
     waitTime: 0
   andThen: {fileID: 0}
   onStart:
@@ -1771,6 +1829,10 @@ PrefabInstance:
       propertyPath: by
       value: 
       objectReference: {fileID: 812427450}
+    - target: {fileID: 2810034674861128688, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
+      propertyPath: collider
+      value: 
+      objectReference: {fileID: 1837345160}
     - target: {fileID: 2810034674861128691, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
       propertyPath: m_Name
       value: "Ghost\u2122"
@@ -1779,6 +1841,10 @@ PrefabInstance:
       propertyPath: camera
       value: 
       objectReference: {fileID: 1034628240}
+    - target: {fileID: 2810034674861128692, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 1147445686}
     - target: {fileID: 2810034674861128693, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1836,6 +1902,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4332c3259ac548119cd59ba7ee7ecfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!61 &1837345160 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 2810034674861128694, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
+  m_PrefabInstance: {fileID: 1837345158}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1837345164 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2810034674861128693, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}

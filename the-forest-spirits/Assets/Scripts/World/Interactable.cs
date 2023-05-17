@@ -6,16 +6,14 @@ using UnityEngine.Events;
  * that the player may Interact with
  */
 [RequireComponent(typeof(Collider2D))]
-public class Interactable : MonoBehaviour
+public class Interactable : AutoMonoBehaviour
 {
     public bool isCurrentlyInteractable = true;
     public UnityEvent<Interactable> onInteract;
     
-    private Collider2D _collider;
+    [AutoDefault]
+    public Collider2D collider;
 
-    private void Awake() {
-        _collider = GetComponent<Collider2D>();
-    }
 
     public void Interact() {
         onInteract.Invoke(this);

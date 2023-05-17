@@ -1,5 +1,7 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 /**
  * Implements all the main movement of the player.
@@ -15,7 +17,12 @@ public class ForestPlayerController : PlayerController
     public Animator animator;
 
     public CameraFocusArea inventoryFocus;
-    public CameraFocuser camera;
+
+    [ReadOnly]
+    public CameraFocuser cameraFocus;
+
+    [AutoDefault(MainCamera = true), ReadOnly]
+    public Camera mainCamera;
 
     [Tooltip("Standard speed of the ghost")]
     public float speed = 5f;
@@ -33,8 +40,15 @@ public class ForestPlayerController : PlayerController
     private InputAction _dashAction;
     private InputAction _inventoryAction;
 
+    private InputAction _pointerLocation;
+
     #endregion
 
+    protected override void OnValidate() {
+        base.OnValidate();
+        if (!cameraFocus.IsUnityNull() || mainCamera.IsUnityNull()) return;
+        cameraFocus = mainCamera.GetComponent<CameraFocuser>();
+    }
 
     private void OnEnable() {
         _map = actions.FindActionMap("ForestMovement");

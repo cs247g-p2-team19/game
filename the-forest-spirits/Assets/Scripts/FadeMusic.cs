@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public enum FadeMode
 {
@@ -8,7 +9,7 @@ public enum FadeMode
 }
 
 [RequireComponent(typeof(AudioSource))]
-public class FadeMusic : MonoBehaviour
+public class FadeMusic : AutoMonoBehaviour
 {
     public FadeMode fadeMode;
 
@@ -24,23 +25,14 @@ public class FadeMusic : MonoBehaviour
 
     public bool playOnFadeIn = true;
 
-    private AudioSource _source {
-        get {
-            if (_wasCached) return _cachedSource;
-            _wasCached = true;
-            _cachedSource = GetComponent<AudioSource>();
-            return _cachedSource;
-        }
-    }
-
-    private bool _wasCached;
-    private AudioSource _cachedSource;
+    [AutoDefault, ReadOnly]
+    public AudioSource source;
 
     private Coroutine _coroutine;
 
     private void Start() {
         if (fadeMode == FadeMode.OnStart) {
-            _source.volume = outVolume;
+            source.volume = outVolume;
             FadeIn();
         }
     }
@@ -50,19 +42,19 @@ public class FadeMusic : MonoBehaviour
             StopCoroutine(_coroutine);
         }
 
-        if (playOnFadeIn && !_source.isPlaying && _source.clip != null) {
-            _source.Play();
+        if (playOnFadeIn && !source.isPlaying && source.clip != null) {
+            source.Play();
         }
 
         if (delayTimeIn != 0f) {
             this.WaitThen(delayTimeIn, () => {
-                _coroutine = this.AutoLerp(_source.volume, inVolume, fadeTime, Mathf.Lerp,
-                    value => _source.volume = value);
+                _coroutine = this.AutoLerp(source.volume, inVolume, fadeTime, Mathf.Lerp,
+                    value => source.volume = value);
             });
         }
         else {
-            _coroutine = this.AutoLerp(_source.volume, inVolume, fadeTime, Mathf.Lerp,
-                value => _source.volume = value);
+            _coroutine = this.AutoLerp(source.volume, inVolume, fadeTime, Mathf.Lerp,
+                value => source.volume = value);
         }
     }
 
@@ -71,6 +63,6 @@ public class FadeMusic : MonoBehaviour
             StopCoroutine(_coroutine);
         }
 
-        _coroutine = this.AutoLerp(_source.volume, outVolume, fadeTime, Mathf.Lerp, value => _source.volume = value);
+        _coroutine = this.AutoLerp(source.volume, outVolume, fadeTime, Mathf.Lerp, value => source.volume = value);
     }
 }

@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
     [Tooltip("Text to fade in/out when the interactable is hovered over.")]
     public FadeText interactPopup;
 
-    public AudioSource audio;
+    public new AudioSource audio;
 
     // Keeps track of what we're overlapping with for when the player later hits the Interact button.
     private Interactable _overlappingInteractable = null;

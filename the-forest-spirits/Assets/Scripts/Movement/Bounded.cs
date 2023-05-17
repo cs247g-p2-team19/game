@@ -6,7 +6,7 @@ using UnityEngine;
  * logic to get the left/right and up/down extents
  * so that the object always stays in bounds.
  */
-public class Bounded : MonoBehaviour
+public class Bounded : AutoMonoBehaviour
 {
 
     [Tooltip("The Boundary we're bounded by")]
