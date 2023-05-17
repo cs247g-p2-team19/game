@@ -1035,11 +1035,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20f10d722dd0a4f3ab51ddf0f2eae7fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!95 &861745349 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5034073753244998902, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
-  m_PrefabInstance: {fileID: 1837345158}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1034628238 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1474969047897440415, guid: ed8d47900e17746359c424d91e341227, type: 3}
@@ -1062,11 +1057,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64029325e00646918ecd9c46bb09e11a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!20 &1147445686 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 1474969047897440413, guid: ed8d47900e17746359c424d91e341227, type: 3}
-  m_PrefabInstance: {fileID: 812427449}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1150644255
 GameObject:
   m_ObjectHideFlags: 0
@@ -1834,22 +1824,10 @@ PrefabInstance:
       propertyPath: by
       value: 
       objectReference: {fileID: 812427450}
-    - target: {fileID: 2810034674861128688, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
-      propertyPath: collider
-      value: 
-      objectReference: {fileID: 1837345160}
     - target: {fileID: 2810034674861128691, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
       propertyPath: m_Name
       value: "Ghost\u2122"
       objectReference: {fileID: 0}
-    - target: {fileID: 2810034674861128692, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
-      propertyPath: camera
-      value: 
-      objectReference: {fileID: 1034628240}
-    - target: {fileID: 2810034674861128692, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
-      propertyPath: mainCamera
-      value: 
-      objectReference: {fileID: 1147445686}
     - target: {fileID: 2810034674861128693, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1894,10 +1872,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5112743404321826105, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
-      propertyPath: cursorAnim
-      value: 
-      objectReference: {fileID: 861745349}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
 --- !u!114 &1837345159 stripped
@@ -1911,11 +1885,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4332c3259ac548119cd59ba7ee7ecfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!61 &1837345160 stripped
-BoxCollider2D:
-  m_CorrespondingSourceObject: {fileID: 2810034674861128694, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
-  m_PrefabInstance: {fileID: 1837345158}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1837345164 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2810034674861128693, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
