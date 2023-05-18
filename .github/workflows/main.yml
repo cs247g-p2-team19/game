@@ -12,7 +12,7 @@ permissions:
 # This allows a subsequently queued workflow run to interrupt previous runs
 concurrency:
   group: 'build'
-  cancel-in-progress: false
+  cancel-in-progress: true
   
 jobs:
   build:
@@ -44,7 +44,7 @@ jobs:
       # Cache
       - uses: actions/cache@v2
         with:
-          path: Library
+          path: the-forest-spirits/Library
           key: Library-${{ hashFiles('the-forest-spirits/Assets/**', 'the-forest-spirits/Packages/**', 'the-forest-spirits/ProjectSettings/**') }}
           restore-keys: |
             Library-
