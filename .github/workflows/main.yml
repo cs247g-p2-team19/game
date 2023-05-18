@@ -16,7 +16,7 @@ concurrency:
   
 jobs:
   build:
-    name: Build my project ✨
+    name: 'Build and deploy'
     runs-on: ubuntu-latest
     if: "contains(github.event.head_commit.message, '[deploy]') || github.event_name == 'workflow_dispatch'"
     steps:
@@ -67,9 +67,19 @@ jobs:
           path: build
 
       # Deploy
-      - run: |-
+      - name: Deploy to Dev
+        if: "!contains(github.event.head_commit.message, '[prod]') && github.event_name != 'workflow_dispatch'"
+        run: |-
           npm install -g vercel
-          cd build
-          sudo cp -r ../.vercel-for-build ./.vercel
+          cd build/WebGL/WebGL
+          sudo cp -r ../../../.vercel-for-build ./.vercel
           sudo mv ./.vercel/config.json ./vercel.json
           vercel deploy --token ${{ secrets.JONA_VERCEL_TOKEN }}
+      - name: Deploy to Prod
+        if: "contains(github.event.head_commit.message, '[prod]') || github.event_name == 'workflow_dispatch'"
+        run: |-
+          npm install -g vercel
+          cd build/WebGL/WebGL
+          sudo cp -r ../../../.vercel-for-build ./.vercel
+          sudo mv ./.vercel/config.json ./vercel.json
+          vercel deploy --token ${{ secrets.JONA_VERCEL_TOKEN }} --prod
