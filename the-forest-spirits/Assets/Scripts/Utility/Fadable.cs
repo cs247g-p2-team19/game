@@ -6,7 +6,7 @@ using UnityEngine;
  * This class can be concretely implemented to work with pretty
  * much anything.
  */
-public abstract class Fadable<T> : MonoBehaviour, IFadable
+public abstract class Fadable<T> : AutoMonoBehaviour, IFadable
 {
     public enum FadeStartMode
     {

@@ -9,7 +9,7 @@ public enum Facing
 /**
  * Automatically flips this sprite around Paper Mario-style when it changes directions.
  */
-public class MovementFlipper : MonoBehaviour
+public class MovementFlipper : AutoMonoBehaviour
 {
     [Tooltip("The way this sprite is initially facing")]
     public Facing initialFacing = Facing.Right;

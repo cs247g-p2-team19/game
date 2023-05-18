@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoodleTextEffect : MonoBehaviour
+public class DoodleTextEffect : AutoMonoBehaviour
 {
     public Material mat;
     public Vector4 DoodleMaxOffset;

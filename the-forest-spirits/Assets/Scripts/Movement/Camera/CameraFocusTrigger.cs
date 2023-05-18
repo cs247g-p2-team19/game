@@ -15,7 +15,7 @@ public enum CameraFocusTriggerType
  * to cause the camera to snap to a given [CameraFocusArea].
  * Can also be invoked manually when the [triggerType] is None.
  */
-public class CameraFocusTrigger : MonoBehaviour
+public class CameraFocusTrigger : AutoMonoBehaviour
 {
     #region Unity-exposed public fields
 

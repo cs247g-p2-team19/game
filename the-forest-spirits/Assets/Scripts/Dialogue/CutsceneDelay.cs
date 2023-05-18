@@ -7,7 +7,7 @@ using UnityEngine.Events;
 * I don't know if it's entirely necessary but hehe xd whatever
 *
 */
-public class CutsceneDelay : MonoBehaviour
+public class CutsceneDelay : AutoMonoBehaviour
 {
     public UnityEvent onDelayEnd;
     public void callOnDelayEnd(float timetoWait) {

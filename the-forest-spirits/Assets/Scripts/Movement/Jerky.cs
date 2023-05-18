@@ -2,7 +2,7 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 
 /** Alternative to Floaty: Jerky! Shakes randomly every _t seconds */
-public class Jerky : MonoBehaviour
+public class Jerky : AutoMonoBehaviour
 {
     public float frequency = 0.1f;
     public float magnitude = 0.1f;
