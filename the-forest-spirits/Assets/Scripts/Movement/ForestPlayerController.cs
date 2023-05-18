@@ -137,8 +137,4 @@ public class ForestPlayerController : PlayerController
             cameraFocus.Unfocus(inventoryFocus);
         }
     }
-
-    public void Lmao() {
-        Debug.Log("Pog");
-    }
 }
