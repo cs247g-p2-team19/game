@@ -21,4 +21,13 @@ public class SceneTransitioner : AutoMonoBehaviour
         ready.allowSceneActivation = false;
         this.WaitThen(imageFader.fadeInTime + pauseTime, () => { ready.allowSceneActivation = true; });
     }
+
+    public void LoadFromPath(string scenePath) {
+        _isLoading = true;
+        imageFader.FadeIn();
+        Lil.Guy.FadeMusicOut();
+        var ready = SceneManager.LoadSceneAsync(scenePath, LoadSceneMode.Single);
+        ready.allowSceneActivation = false;
+        this.WaitThen(imageFader.fadeInTime + pauseTime, () => { ready.allowSceneActivation = true; });
+    }
 }

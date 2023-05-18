@@ -56,7 +56,7 @@ public class InventoryItem : AutoMonoBehaviour, IMouseEventReceiver
         if (_setupDone) return;
 
         _setupDone = true;
-        Debug.Assert(!_registry.ContainsKey(itemId), "Multiple items with the same ID detected!");
+        Debug.Assert(!_registry.ContainsKey(itemId), "Multiple items with the same ID" + itemId + " detected!");
         Debug.Assert(itemId != "", "Item ID may not be blank!");
 
         _registry[itemId] = this;
