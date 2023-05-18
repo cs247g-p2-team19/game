@@ -1380,7 +1380,7 @@ MonoBehaviour:
   - text: 'who are you?
 
 
-      <link="continue"><color=#000044><i><u>silence</u></i></color></link>'
+      <link="continue"><color=#00000088><i><u>silence</u></i></color></link>'
     stopUntilForced: 1
     onStart:
       m_PersistentCalls:
@@ -1410,7 +1410,7 @@ MonoBehaviour:
   - text: 'do you know why you are here?
 
 
-      <link="continue"><color=#000044><i><u>silence</u></i></color></link>'
+      <link="continue"><color=#00000088><i><u>silence</u></i></color></link>'
     stopUntilForced: 1
     onStart:
       m_PersistentCalls:
