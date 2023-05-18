@@ -4,7 +4,9 @@ using UnityEngine;
 [RequireComponent(typeof(ForestPlayerController))]
 public class MouseManager : AutoMonoBehaviour
 {
+    [Required]
     public RectTransform cursor;
+    [Required]
     public Animator cursorAnim;
 
     [AutoDefaultMainCamera, ReadOnly]

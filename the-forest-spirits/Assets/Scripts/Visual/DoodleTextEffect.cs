@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DoodleTextEffect : AutoMonoBehaviour
 {
+    [Required]
     public Material mat;
     public Vector4 DoodleMaxOffset;
     public float DoodleFrameTime;

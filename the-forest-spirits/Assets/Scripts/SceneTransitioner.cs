@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class SceneTransitioner : AutoMonoBehaviour
 {
     public static SceneTransitioner Instance => FindObjectOfType<SceneTransitioner>();
+    [AutoDefaultInChildren, Required]
     public FadeImage imageFader;
     public float pauseTime = 1f;
 

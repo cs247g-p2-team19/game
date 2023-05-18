@@ -9,7 +9,7 @@ using UnityEngine;
 public class Bounded : AutoMonoBehaviour
 {
 
-    [Tooltip("The Boundary we're bounded by")]
+    [Tooltip("The Boundary we're bounded by"), Required]
     public Boundary by;
     
 

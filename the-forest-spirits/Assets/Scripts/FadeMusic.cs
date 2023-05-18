@@ -11,7 +11,7 @@ public enum FadeMode
 [RequireComponent(typeof(AudioSource))]
 public class FadeMusic : AutoMonoBehaviour
 {
-    public FadeMode fadeMode;
+    public FadeMode fadeMode = FadeMode.OnStart;
 
     public float fadeTime = 1f;
 

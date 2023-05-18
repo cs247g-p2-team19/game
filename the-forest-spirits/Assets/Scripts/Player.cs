@@ -20,6 +20,7 @@ public class Player : AutoMonoBehaviour
 
     private static Player _instance;
 
+    [AutoDefaultInChildren, Required]
     public Inventory inventory;
 
     [Tooltip("Triggered whenever any Collectable is collected")]
@@ -29,8 +30,10 @@ public class Player : AutoMonoBehaviour
     public UnityEvent<InventoryItem> onUnlockItem;
 
     [Tooltip("Text to fade in/out when the interactable is hovered over.")]
+    [AutoDefaultInChildren, Required]
     public FadeText interactPopup;
 
+    [AutoDefaultInChildren, Required]
     public new AudioSource audio;
 
     // Keeps track of what we're overlapping with for when the player later hits the Interact button.
