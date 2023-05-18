@@ -114,7 +114,7 @@ public class ForestPlayerController : PlayerController
             clickable = hit.collider.GetComponentInParent<IClickable>();
         }
 
-        if (clickable != null && clickable.OnClick(cameraPos, mainCamera)) {
+        if (clickable != null && clickable.OnMouseClick(cameraPos, mainCamera)) {
             return;
         }
 
