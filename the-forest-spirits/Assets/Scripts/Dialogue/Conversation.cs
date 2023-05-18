@@ -27,7 +27,7 @@ public class Conversation : Branch
 [Serializable]
 public class ConversationPart
 {
-    [TextArea]
+    [TextArea(5, 10)]
     public string text;
 
     [Tooltip("Makes it so that interactions DON'T move to the next line until forced by a script or link")]
