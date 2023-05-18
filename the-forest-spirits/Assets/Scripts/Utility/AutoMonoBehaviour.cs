@@ -17,7 +17,7 @@ public abstract class AutoMonoBehaviour : MonoBehaviour
                 attributes.Any(attr => attr is IAutoAttribute auto && auto.Apply(this, field));
             bool required = attributes.Any(attr => attr is RequiredAttribute);
 
-            if (!applied && required) {
+            if (!applied && required && isActiveAndEnabled) {
                 Debug.LogWarning(
                     $@"<b><color=""red"">Warning!</color></b> Field <b>{field.Name} ({field.FieldType.Name})</b> in {name}'s {GetType().Name} component is marked as required, but is missing!",
                     this);

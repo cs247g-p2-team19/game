@@ -6,6 +6,7 @@ using UnityEngine;
  */
 public class Parallax : AutoMonoBehaviour
 {
+    [AutoDefaultMainCamera, Required]
     public Camera linkedCamera;
     
     [Tooltip("Negative if closer to the camera, positive if behind")]

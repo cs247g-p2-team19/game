@@ -12,11 +12,13 @@ public class ForestPlayerController : PlayerController
     private static readonly int Speed = Animator.StringToHash("Speed");
     private static readonly int InventoryOpen = Animator.StringToHash("InventoryOpen");
 
-    [Tooltip("The controls")]
+    [Tooltip("The controls"), Required]
     public InputActionAsset actions;
 
+    [Required]
     public Animator animator;
 
+    [Required]
     public CameraFocusArea inventoryFocus;
 
     [ReadOnly]

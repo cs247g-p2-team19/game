@@ -8,7 +8,7 @@ public class Follow : AutoMonoBehaviour
 {
     #region Unity-editable public fields
 
-    [Tooltip("The transform this will be anchored to")]
+    [Tooltip("The transform this will be anchored to"), Required]
     public Transform anchor;
 
     [Tooltip("If specified, we will make sure that we don't move outside of the boundaries specified.")]

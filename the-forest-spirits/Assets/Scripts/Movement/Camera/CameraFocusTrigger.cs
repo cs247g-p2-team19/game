@@ -21,10 +21,10 @@ public class CameraFocusTrigger : AutoMonoBehaviour
 
     public CameraFocusTriggerType triggerType = CameraFocusTriggerType.FocusWhileWithin;
 
-    [Tooltip("The area to focus on")]
+    [Tooltip("The area to focus on"), Required]
     public CameraFocusArea area;
 
-    [Tooltip("The camera follower to snap")]
+    [Tooltip("The camera follower to snap"), Required]
     public CameraFocuser focuser;
 
     [Range(0.01f, 1f)]
