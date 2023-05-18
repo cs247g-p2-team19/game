@@ -8324,6 +8324,7 @@ GameObject:
   - component: {fileID: 1907201252}
   - component: {fileID: 1907201251}
   - component: {fileID: 1907201250}
+  - component: {fileID: 1907201258}
   m_Layer: 0
   m_Name: Hidden Door
   m_TagString: Untagged
@@ -8537,6 +8538,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1907201258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1907201249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bca1a63b6edde46a1b0e3545a8df6cbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeToFade: 1.4
 --- !u!1 &1917838424
 GameObject:
   m_ObjectHideFlags: 0
