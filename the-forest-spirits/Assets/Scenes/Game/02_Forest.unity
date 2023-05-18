@@ -2417,107 +2417,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 155811925, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
-      propertyPath: m_fontSize
-      value: 1.28
-      objectReference: {fileID: 0}
-    - target: {fileID: 155811925, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
-      propertyPath: m_margin.y
-      value: -0.24997705
-      objectReference: {fileID: 0}
-    - target: {fileID: 155811925, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
-      propertyPath: m_margin.z
-      value: -0.4715893
-      objectReference: {fileID: 0}
-    - target: {fileID: 155811925, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
-      propertyPath: m_fontStyle
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 155811925, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
-      propertyPath: m_fontColor.b
-      value: 0.016540373
-      objectReference: {fileID: 0}
-    - target: {fileID: 155811925, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
-      propertyPath: m_fontColor.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 155811925, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
-      propertyPath: m_fontColor.r
-      value: 0.122641504
-      objectReference: {fileID: 0}
-    - target: {fileID: 155811925, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
-      propertyPath: m_fontSizeBase
-      value: 1.28
-      objectReference: {fileID: 0}
-    - target: {fileID: 155811925, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
-      propertyPath: m_fontColor32.rgba
-      value: 4278452255
-      objectReference: {fileID: 0}
-    - target: {fileID: 418523417, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
-      propertyPath: m_Transition
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 418523417, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 418523417, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 418523417, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 418523417, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 551262021}
-    - target: {fileID: 418523417, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
-      value: 
-      objectReference: {fileID: 1804738914}
-    - target: {fileID: 418523417, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 418523417, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: set_enabled
-      objectReference: {fileID: 0}
-    - target: {fileID: 418523417, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: SetActive
-      objectReference: {fileID: 0}
-    - target: {fileID: 418523417, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: UnityEngine.Behaviour, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 418523417, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 418523417, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 418523417, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 419710235, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1265605276, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
-      propertyPath: m_PresetInfoIsWorld
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2055039745, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
-      propertyPath: m_text
-      value: "4/27\n\nhello? where did you go? i miss you... everything is worse
-        now. i wish i could go back i wish i just had a  \n\n\nto solve all my problems..."
-      objectReference: {fileID: 0}
     - target: {fileID: 2810034674861128688, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
       propertyPath: by
       value: 
@@ -2526,10 +2425,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: "Ghost\u2122"
       objectReference: {fileID: 0}
-    - target: {fileID: 2810034674861128692, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
-      propertyPath: camera
-      value: 
-      objectReference: {fileID: 1659491089}
     - target: {fileID: 2810034674861128693, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -2585,75 +2480,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2810034674861128693, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
   m_PrefabInstance: {fileID: 551262015}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &551262017 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 155811925, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
-  m_PrefabInstance: {fileID: 551262015}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &551262018 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 418523415, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
   m_PrefabInstance: {fileID: 551262015}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &551262019
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 551262018}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69f7e9dede456ef4fb9a40cfb1dba1b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onHover:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 551262017}
-        m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
-        m_MethodName: set_fontSize
-        m_Mode: 4
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 1.6
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onHoverExit:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 551262017}
-        m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
-        m_MethodName: set_fontSize
-        m_Mode: 4
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 1.28
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &551262021 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 418523417, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
-  m_PrefabInstance: {fileID: 551262015}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 551262018}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &606001567
 GameObject:
   m_ObjectHideFlags: 0
@@ -4331,70 +4162,70 @@ MonoBehaviour:
     onStart:
       m_PersistentCalls:
         m_Calls: []
+    linkResponders: []
     onEnd:
       m_PersistentCalls:
         m_Calls: []
-    linkResponders: []
     waitTime: 0
   - text: a spirit.
     stopUntilForced: 0
     onStart:
       m_PersistentCalls:
         m_Calls: []
+    linkResponders: []
     onEnd:
       m_PersistentCalls:
         m_Calls: []
-    linkResponders: []
     waitTime: 0
   - text: trying to get through a door.
     stopUntilForced: 0
     onStart:
       m_PersistentCalls:
         m_Calls: []
+    linkResponders: []
     onEnd:
       m_PersistentCalls:
         m_Calls: []
-    linkResponders: []
     waitTime: 0
   - text: classic.
     stopUntilForced: 0
     onStart:
       m_PersistentCalls:
         m_Calls: []
+    linkResponders: []
     onEnd:
       m_PersistentCalls:
         m_Calls: []
-    linkResponders: []
     waitTime: 0
   - text: life as a door is pretty boring, so you know what?
     stopUntilForced: 0
     onStart:
       m_PersistentCalls:
         m_Calls: []
+    linkResponders: []
     onEnd:
       m_PersistentCalls:
         m_Calls: []
-    linkResponders: []
     waitTime: 0
   - text: reciprocate. give me something.
     stopUntilForced: 0
     onStart:
       m_PersistentCalls:
         m_Calls: []
+    linkResponders: []
     onEnd:
       m_PersistentCalls:
         m_Calls: []
-    linkResponders: []
     waitTime: 0
   - text: maybe i'll let you through.
     stopUntilForced: 0
     onStart:
       m_PersistentCalls:
         m_Calls: []
+    linkResponders: []
     onEnd:
       m_PersistentCalls:
         m_Calls: []
-    linkResponders: []
     waitTime: 0
   andThen: {fileID: 0}
   onStart:
@@ -4730,7 +4561,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1152509800}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 83.1, y: 0.411816, z: -3}
+  m_LocalPosition: {x: 85.3, y: 0.411816, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6895,11 +6726,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1804738914 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 419710235, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
-  m_PrefabInstance: {fileID: 551262015}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1808257982
 GameObject:
   m_ObjectHideFlags: 0
@@ -6950,10 +6776,10 @@ MonoBehaviour:
     onStart:
       m_PersistentCalls:
         m_Calls: []
+    linkResponders: []
     onEnd:
       m_PersistentCalls:
         m_Calls: []
-    linkResponders: []
     waitTime: 0
   andThen: {fileID: 0}
   onStart:
@@ -7163,30 +6989,30 @@ MonoBehaviour:
     onStart:
       m_PersistentCalls:
         m_Calls: []
+    linkResponders: []
     onEnd:
       m_PersistentCalls:
         m_Calls: []
-    linkResponders: []
     waitTime: 0
   - text: seriously?
     stopUntilForced: 0
     onStart:
       m_PersistentCalls:
         m_Calls: []
+    linkResponders: []
     onEnd:
       m_PersistentCalls:
         m_Calls: []
-    linkResponders: []
     waitTime: 0
   - text: "clich\xE9 and a bit boring, but gold is a rarity here."
     stopUntilForced: 0
     onStart:
       m_PersistentCalls:
         m_Calls: []
+    linkResponders: []
     onEnd:
       m_PersistentCalls:
         m_Calls: []
-    linkResponders: []
     waitTime: 0
   - text: fine, take your exit. but that key is mine.
     stopUntilForced: 0
@@ -7229,10 +7055,10 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+    linkResponders: []
     onEnd:
       m_PersistentCalls:
         m_Calls: []
-    linkResponders: []
     waitTime: 0
   andThen: {fileID: 0}
   onStart:

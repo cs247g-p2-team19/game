@@ -75,8 +75,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190335
-  m_fontColor: {r: 1, g: 0, b: 0, a: 1}
+    rgba: 4278452255
+  m_fontColor: {r: 0.122641504, g: 0, b: 0.016540373, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -99,7 +99,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -129,7 +129,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0.014793754, y: -0.008434415, z: 0.01149559, w: 0.024988055}
+  m_margin: {x: 0.014793754, y: -0.24997705, z: -0.4715893, w: 0.024988055}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -147,7 +147,10 @@ GameObject:
   - component: {fileID: 418523419}
   - component: {fileID: 418523418}
   - component: {fileID: 418523417}
-  m_Layer: 0
+  - component: {fileID: 5001556768588341728}
+  - component: {fileID: 1612973553008380987}
+  - component: {fileID: 54897550946947126}
+  m_Layer: 3
   m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -232,7 +235,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 0
+  m_Transition: 2
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -269,6 +272,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 418523417}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 419710235}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -281,6 +296,95 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!61 &5001556768588341728
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 418523415}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!114 &1612973553008380987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 418523415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e285a7ef75d414382851bf08df0a11d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isClickable: 1
+  onHover:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 155811925}
+        m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
+        m_MethodName: set_fontSize
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 1.6
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onHoverExit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 155811925}
+        m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
+        m_MethodName: set_fontSize
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 1.28
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onMouseUp:
+    m_PersistentCalls:
+      m_Calls: []
+  onMouseDown:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &54897550946947126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 418523415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2981fb3e179a4930878daf33e69cb677, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rect: {fileID: 418523416}
+  collider: {fileID: 5001556768588341728}
 --- !u!1 &419710235
 GameObject:
   m_ObjectHideFlags: 0
@@ -1021,8 +1125,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "4/27\n\nthis is a poggers test note.... a test note indeed... man that
-    door is a bit tough... maybe what you need is a \n\n\nto solve your problems"
+  m_text: "4/27\n\nhello? where did you go? i miss you... everything is worse now.
+    i wish i could go back i wish i just had a  \n\n\nto solve all my problems..."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4cdcdd0f3fd6f0d479d49ee1ef70a635, type: 2}
   m_sharedMaterial: {fileID: 8369636593836516890, guid: 4cdcdd0f3fd6f0d479d49ee1ef70a635, type: 2}
@@ -1981,7 +2085,6 @@ GameObject:
   - component: {fileID: 2810034676319180436}
   - component: {fileID: 2810034676319180437}
   - component: {fileID: 1419870896}
-  - component: {fileID: 15363648299638313}
   m_Layer: 0
   m_Name: AudioSource
   m_TagString: Untagged
@@ -2112,28 +2215,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 411bf77fb6064f5b9aefb10e40e248fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeMode: 1
+  fadeMode: 0
   fadeTime: 2
   inVolume: 0.327
-  delayTimeIn: 1
-  outVolume: 0
-  playOnFadeIn: 1
-  source: {fileID: 2810034676319180437}
---- !u!114 &15363648299638313
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2810034676319180439}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 411bf77fb6064f5b9aefb10e40e248fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fadeMode: 0
-  fadeTime: 0.3
-  inVolume: 0.3
   delayTimeIn: 0
   outVolume: 0
   playOnFadeIn: 1
@@ -2765,7 +2849,7 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
-  m_UseSpriteMesh: 0
+  m_UseSpriteMesh: 1
   m_PixelsPerUnitMultiplier: 1
 --- !u!95 &5034073753244998902
 Animator:

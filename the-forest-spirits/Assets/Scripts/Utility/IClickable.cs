@@ -2,14 +2,22 @@ using UnityEngine;
 
 public interface IClickable
 {
-    
-    public bool IsMouseInteractableAt(Vector2 screenPos, Camera cam, out AnimatorOverrideController customAnimator);
+    public bool IsMouseInteractableAt(Vector2 screenPos, Camera cam) {
+        return true;
+    }
 
-    public bool OnMouseClick(Vector2 screenPos, Camera cam) {
+    public bool OnPointerDown(Vector2 screenPos, Camera cam) {
+        return false;
+    }
+    
+    public bool OnPointerUp(Vector2 screenPos, Camera cam) {
         return false;
     }
 
+    public AnimatorOverrideController GetCustomAnimation() {
+        return null;
+    }
 
-    public void OnMouseEnter(Vector2 screenPos, Camera cam) { }
-    public void OnMouseExit(Vector2 screenPos, Camera cam) { }
+    public void OnPointerEnter(Vector2 screenPos, Camera cam) { }
+    public void OnPointerExit(Vector2 screenPos, Camera cam) { }
 }
