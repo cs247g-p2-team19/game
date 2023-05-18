@@ -144,7 +144,7 @@ public class Talker : AutoMonoBehaviour, IClickable
 
     #endregion
 
-    public bool OnClick(Vector2 screenPos, Camera cam) {
+    public bool OnMouseClick(Vector2 screenPos, Camera cam) {
         if (!_talking || _currentConversation == null) {
             return false;
         }
@@ -162,7 +162,7 @@ public class Talker : AutoMonoBehaviour, IClickable
         return true;
     }
 
-    public bool IsClickable(Vector2 screenPos, Camera cam, out AnimatorOverrideController customSprite) {
+    public bool IsMouseInteractableAt(Vector2 screenPos, Camera cam, out AnimatorOverrideController customSprite) {
         customSprite = null;
         if (!_talking || _currentConversation == null) {
             return false;

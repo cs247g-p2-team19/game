@@ -40,6 +40,8 @@ public class MouseManager : AutoMonoBehaviour
         }
     }
 
+    private IClickable _currentClickable = null;
+
     public void UpdateMouse(Vector2 screenPos, bool isDown) {
         cursor.position = screenPos;
 
@@ -52,7 +54,7 @@ public class MouseManager : AutoMonoBehaviour
         }
 
         AnimatorOverrideController overrideController = null;
-        bool isHovering = clickable != null && clickable.IsClickable(screenPos, mainCamera, out overrideController);
+        bool isHovering = clickable != null && clickable.IsMouseInteractableAt(screenPos, mainCamera, out overrideController);
 
         if (isHovering && overrideController != null) {
             cursorAnim.runtimeAnimatorController = overrideController;
@@ -61,7 +63,20 @@ public class MouseManager : AutoMonoBehaviour
             cursorAnim.runtimeAnimatorController = _originalController;
         }
 
+        UpdateClickable(isHovering ? clickable : null, screenPos);
+
         cursorAnim.SetBool(MouseDown, isDown);
         cursorAnim.SetBool(IsHovering, isHovering);
+    }
+
+    private void UpdateClickable(IClickable newClickable, Vector2 screenPos) {
+        if (!_currentClickable.IsUnityNull()) {
+            _currentClickable.OnMouseExit(screenPos, mainCamera);
+        }
+
+        _currentClickable = newClickable;
+        if (!_currentClickable.IsUnityNull()) {
+            _currentClickable.OnMouseEnter(screenPos, mainCamera);
+        }
     }
 }
