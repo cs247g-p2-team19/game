@@ -1380,7 +1380,7 @@ MonoBehaviour:
   - text: 'who are you?
 
 
-      <link="continue"><color=#00000088><i><u>silence</u></i></color></link>'
+      <link="continue"><color=#00000070><i><u>silence</u></i></color></link>'
     stopUntilForced: 1
     onStart:
       m_PersistentCalls:
@@ -1410,7 +1410,7 @@ MonoBehaviour:
   - text: 'do you know why you are here?
 
 
-      <link="continue"><color=#00000088><i><u>silence</u></i></color></link>'
+      <link="continue"><color=#00000070><i><u>silence</u></i></color></link>'
     stopUntilForced: 1
     onStart:
       m_PersistentCalls:
@@ -1449,7 +1449,7 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
     waitTime: 1.5
-  - text: <link="continue"><color=#00000088><u>you do not know</u></color></link>
+  - text: <link="continue"><color=#00000070><u>you do not know</u></color></link>
     stopUntilForced: 1
     onStart:
       m_PersistentCalls:
