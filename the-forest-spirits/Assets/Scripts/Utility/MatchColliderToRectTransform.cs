@@ -1,5 +1,10 @@
 using UnityEngine;
 
+/**
+ * Matches the size of the given BoxCollider2D to the size of
+ * the associated RectTransform. This is especially helpful
+ * for adding MouseEvents to UI!
+ */
 [RequireComponent(typeof(RectTransform)), RequireComponent(typeof(BoxCollider2D))]
 [ExecuteAlways]
 public class MatchColliderToRectTransform : AutoMonoBehaviour

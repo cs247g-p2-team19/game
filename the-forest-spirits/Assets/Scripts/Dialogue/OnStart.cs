@@ -1,16 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.Events;
 
+/**
+ * Invokes the given callback when this script wakes up.
+ */
 public class OnStart : AutoMonoBehaviour
 {
-    // Start is called before the first frame update
     public UnityEvent callback;
-    void Start()
-    {
+
+    void Start() {
         callback.Invoke();
     }
-
-    // Update is called once per frame
 }

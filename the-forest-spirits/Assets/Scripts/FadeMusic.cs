@@ -8,6 +8,9 @@ public enum FadeMode
     OnScript
 }
 
+/**
+ * Fades music in our out slowly, optionally at the beginning when the scene loads.
+ */
 [RequireComponent(typeof(AudioSource))]
 public class FadeMusic : AutoMonoBehaviour
 {

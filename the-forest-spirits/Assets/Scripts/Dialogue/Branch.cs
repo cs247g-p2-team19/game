@@ -1,5 +1,3 @@
-using UnityEngine;
-
 /**
  * Represents a direction that a piece of
  * dialogue can go!

@@ -108,13 +108,13 @@ public class ForestPlayerController : PlayerController
         Vector2 cameraPos = _pointerLocation.ReadValue<Vector2>();
         Ray toCast = mainCamera.ScreenPointToRay(cameraPos);
         var hit = Physics2D.Raycast(toCast.origin, toCast.direction, Mathf.Infinity, LayerMask.GetMask("Clickables"));
-        IClickable clickable = null;
+        IMouseEventReceiver mouseEventReceiver = null;
 
         if (hit.collider != null) {
-            clickable = hit.collider.GetComponentInParent<IClickable>();
+            mouseEventReceiver = hit.collider.GetComponentInParent<IMouseEventReceiver>();
         }
 
-        if (clickable != null && clickable.OnPointerDown(cameraPos, mainCamera)) {
+        if (mouseEventReceiver != null && mouseEventReceiver.OnPointerDown(cameraPos, mainCamera)) {
             return;
         }
 
