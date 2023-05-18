@@ -23,6 +23,8 @@ public class ConversationPart
     [TextArea]
     public string text;
 
+    public bool stopUntilForced = false;
+    
     public UnityEvent onStart;
     public UnityEvent onEnd;
     public LinkResponder[] linkResponders;

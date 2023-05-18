@@ -22,7 +22,7 @@ public class ForestPlayerController : PlayerController
     [ReadOnly]
     public CameraFocuser cameraFocus;
 
-    [AutoDefault(MainCamera = true), ReadOnly]
+    [AutoDefaultMainCamera, ReadOnly]
     public Camera mainCamera;
 
     [AutoDefault, ReadOnly]

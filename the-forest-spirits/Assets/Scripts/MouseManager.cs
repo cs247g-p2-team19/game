@@ -1,20 +1,13 @@
-using System;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.UI;
 
 [RequireComponent(typeof(ForestPlayerController))]
 public class MouseManager : AutoMonoBehaviour
 {
     public RectTransform cursor;
-    public Image cursorImage;
+    public Animator cursorAnim;
 
-    public Sprite idleSprite;
-    public Sprite defaultHoverSprite;
-    public Sprite clickSprite;
-
-    [AutoDefault(MainCamera = true), ReadOnly]
+    [AutoDefaultMainCamera, ReadOnly]
     public Camera mainCamera;
 
     [AutoDefault, ReadOnly]
@@ -23,7 +16,10 @@ public class MouseManager : AutoMonoBehaviour
     private static readonly int MouseDown = Animator.StringToHash("MouseDown");
     private static readonly int IsHovering = Animator.StringToHash("IsHovering");
 
+    private RuntimeAnimatorController _originalController;
+
     private void OnEnable() {
+        _originalController = cursorAnim.runtimeAnimatorController;
         Cursor.visible = false;
     }
 
@@ -33,19 +29,17 @@ public class MouseManager : AutoMonoBehaviour
 
     protected override void OnValidate() {
         base.OnValidate();
-        if (cursorImage.IsUnityNull() && !cursor.IsUnityNull()) {
-            cursorImage = cursor.GetComponent<Image>();
+        if (cursorAnim.IsUnityNull() && !cursor.IsUnityNull()) {
+            cursorAnim = cursor.GetComponent<Animator>();
         }
 
-        if (cursor.IsUnityNull() && !cursorImage.IsUnityNull()) {
-            cursor = cursorImage.GetComponent<RectTransform>();
+        if (cursor.IsUnityNull() && !cursorAnim.IsUnityNull()) {
+            cursor = cursorAnim.GetComponent<RectTransform>();
         }
     }
 
     public void UpdateMouse(Vector2 screenPos, bool isDown) {
         cursor.position = screenPos;
-
-        Sprite nextSprite = idleSprite;
 
         Ray toCast = mainCamera.ScreenPointToRay(screenPos);
         var hit = Physics2D.Raycast(toCast.origin, toCast.direction, Mathf.Infinity, LayerMask.GetMask("Clickables"));
@@ -55,10 +49,17 @@ public class MouseManager : AutoMonoBehaviour
             clickable = hit.collider.GetComponentInParent<IClickable>();
         }
 
-        if (clickable != null && clickable.IsClickable(screenPos, mainCamera, out _)) {
-            nextSprite = isDown ? clickSprite : defaultHoverSprite;
+        AnimatorOverrideController overrideController = null;
+        bool isHovering = clickable != null && clickable.IsClickable(screenPos, mainCamera, out overrideController);
+
+        if (isHovering && overrideController != null) {
+            cursorAnim.runtimeAnimatorController = overrideController;
+        }
+        else {
+            cursorAnim.runtimeAnimatorController = _originalController;
         }
 
-        cursorImage.sprite = nextSprite;
+        cursorAnim.SetBool(MouseDown, isDown);
+        cursorAnim.SetBool(IsHovering, isHovering);
     }
 }

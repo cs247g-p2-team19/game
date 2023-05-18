@@ -11,6 +11,7 @@ public class Talker : MonoBehaviour, IClickable
     #region Unity fields
 
     [Tooltip("Where the text will show up")]
+    [AutoDefaultInChildren]
     public TextMeshPro textRef;
 
     [Tooltip("Where new conversations will start")]
@@ -34,6 +35,9 @@ public class Talker : MonoBehaviour, IClickable
     private bool _talking = false;
 
     [SerializeField, ReadOnly]
+    private bool _stopped = false;
+
+    [SerializeField, ReadOnly]
     private Conversation _currentConversation;
 
     #endregion
@@ -42,6 +46,12 @@ public class Talker : MonoBehaviour, IClickable
 
     /** Call this method to start or progress a conversation */
     public void OnInteract() {
+        if (_stopped) return;
+        ForceNext();
+    }
+
+    public void ForceNext() {
+        _stopped = false;
         if (!_talking) {
             StartConversation();
         }
@@ -61,7 +71,6 @@ public class Talker : MonoBehaviour, IClickable
                     fading = false;
                 });
             }
-            //Next();
         }
     }
 
@@ -100,11 +109,14 @@ public class Talker : MonoBehaviour, IClickable
 
         // If there's still text to go...
         if ((_index < _currentConversation.dialogue.Length)) {
+            var next = _currentConversation.dialogue[_index];
             onNext.Invoke();
 
-            _currentConversation.dialogue[_index].onStart.Invoke();
+            next.onStart.Invoke();
 
-            textRef.text = _currentConversation.dialogue[_index].text;
+            textRef.text = next.text;
+            _stopped = next.stopUntilForced;
+
             return;
         }
 
@@ -150,7 +162,7 @@ public class Talker : MonoBehaviour, IClickable
         return true;
     }
 
-    public bool IsClickable(Vector2 screenPos, Camera cam, out Sprite customSprite) {
+    public bool IsClickable(Vector2 screenPos, Camera cam, out AnimatorOverrideController customSprite) {
         customSprite = null;
         if (!_talking || _currentConversation == null) {
             return false;

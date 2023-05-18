@@ -1967,10 +1967,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cursor: {fileID: 1778601751392990027}
-  cursorImage: {fileID: 7934124493653047891}
-  idleSprite: {fileID: 21300000, guid: 764e9a5a1769e4018bb1acc1db63bcb8, type: 3}
-  defaultHoverSprite: {fileID: 21300000, guid: 1a5fc49f972db4e87a937f44c301cab9, type: 3}
-  clickSprite: {fileID: 21300000, guid: 2c0ab3f5d496e4f6ba85d065d7ff632c, type: 3}
+  cursorAnim: {fileID: 5034073753244998902}
   mainCamera: {fileID: 0}
   controller: {fileID: 2810034674861128692}
 --- !u!1 &2810034676319180439
@@ -2780,7 +2777,7 @@ Animator:
   m_GameObject: {fileID: 6637076585585211689}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f057dc8b55160491993c031c5fdc806c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

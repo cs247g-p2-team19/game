@@ -10,32 +10,46 @@ public abstract class AutoMonoBehaviour : MonoBehaviour
             if (!value.IsUnityNull()) continue;
 
             foreach (object attribute in field.GetCustomAttributes(true)) {
-                if (attribute is not AutoDefaultAttribute attr) continue;
-
-                if (attr.Tag != null) {
-                    object found = GameObject.FindGameObjectWithTag(attr.Tag).GetComponent(field.FieldType);
-                    if (!found.IsUnityNull()) {
-                        field.SetValue(this, found);
-                        break;
-                    }
+                if (attribute is AutoDefaultAttribute) {
+                    object component = GetComponent(field.FieldType);
+                    if (component.IsUnityNull()) continue;
+                    field.SetValue(this, component);
+                    break;
                 }
 
-                if (attr.Type != null) {
-                    object found = FindObjectOfType(attr.Type);
-                    if (!found.IsUnityNull()) {
-                        field.SetValue(this, found);
-                        break;
-                    }
+                if (attribute is AutoDefaultTagAttribute tagAttr) {
+                    object found = GameObject.FindGameObjectWithTag(tagAttr.Tag).GetComponent(field.FieldType);
+                    if (found.IsUnityNull()) continue;
+                    
+                    field.SetValue(this, found);
+                    break;
                 }
 
-                if (attr.MainCamera && field.FieldType == typeof(Camera)) {
+                if (attribute is AutoDefaultWithTypeAttribute typeAttr) {
+                    object found = FindObjectOfType(typeAttr.Type);
+                    if (found.IsUnityNull()) continue;
+                    field.SetValue(this, found);
+                    break;
+                }
+
+                if (attribute is AutoDefaultMainCameraAttribute) {
+                    if (field.FieldType != typeof(Camera)) continue;
                     field.SetValue(this, Camera.main);
                     break;
                 }
 
-                object component = GetComponent(field.FieldType);
-                if (!component.IsUnityNull()) {
+                if (attribute is AutoDefaultInParentsAttribute) {
+                    object component = GetComponentInParent(field.FieldType);
+                    if (component.IsUnityNull()) continue;
                     field.SetValue(this, component);
+                    break;
+                }
+
+                if (attribute is AutoDefaultInChildrenAttribute) {
+                    object component = GetComponentInChildren(field.FieldType);
+                    if (component.IsUnityNull()) continue;
+                    field.SetValue(this, component);
+                    break;
                 }
             }
         }
@@ -45,7 +59,36 @@ public abstract class AutoMonoBehaviour : MonoBehaviour
 [AttributeUsage(AttributeTargets.Field)]
 public class AutoDefaultAttribute : Attribute
 {
-    public string Tag = null;
-    public Type Type = null;
-    public bool MainCamera = false;
+}
+
+[AttributeUsage(AttributeTargets.Field)]
+public class AutoDefaultMainCameraAttribute : Attribute
+{
+}
+
+[AttributeUsage(AttributeTargets.Field)]
+public class AutoDefaultTagAttribute : Attribute
+{
+    public string Tag { get; private set; }
+    public AutoDefaultTagAttribute(string tag) {
+        Tag = tag;
+    }
+}
+[AttributeUsage(AttributeTargets.Field)]
+public class AutoDefaultWithTypeAttribute : Attribute
+{
+    public Type Type { get; private set; }
+    public AutoDefaultWithTypeAttribute(Type type) {
+        Type = type;
+    }
+}
+
+[AttributeUsage(AttributeTargets.Field)]
+public class AutoDefaultInParentsAttribute : Attribute
+{
+}
+
+[AttributeUsage(AttributeTargets.Field)]
+public class AutoDefaultInChildrenAttribute : Attribute
+{
 }
