@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -6,6 +8,7 @@ public class MouseManager : AutoMonoBehaviour
 {
     [Required]
     public RectTransform cursor;
+
     [Required]
     public Animator cursorAnim;
 
@@ -19,6 +22,7 @@ public class MouseManager : AutoMonoBehaviour
     private static readonly int IsHovering = Animator.StringToHash("IsHovering");
 
     private RuntimeAnimatorController _originalController;
+    private bool _pointerIsDown = false;
 
     private void OnEnable() {
         _originalController = cursorAnim.runtimeAnimatorController;
@@ -40,43 +44,81 @@ public class MouseManager : AutoMonoBehaviour
         }
     }
 
-    private IClickable _currentClickable = null;
+    private readonly HashSet<IClickable> _currentHovers = new();
+    private readonly RaycastHit2D[] _resultsBuf = new RaycastHit2D[20];
+
+    private List<IClickable> GetValidClickables(Vector2 screenPos) {
+        List<IClickable> clickables = new();
+
+        Ray toCast = mainCamera.ScreenPointToRay(screenPos);
+        var size = Physics2D.RaycastNonAlloc(toCast.origin, toCast.direction, _resultsBuf, Mathf.Infinity);
+
+        for (int i = 0; i < size; i++) {
+            Collider2D collider = _resultsBuf[i].collider;
+            foreach (var clickable in collider.GetComponentsInParent<IClickable>()) {
+                bool validHover = clickable.IsMouseInteractableAt(screenPos, mainCamera);
+                if (!validHover) continue;
+                clickables.Add(clickable);
+            }
+        }
+
+        return clickables;
+    }
 
     public void UpdateMouse(Vector2 screenPos, bool isDown) {
         cursor.position = screenPos;
 
-        Ray toCast = mainCamera.ScreenPointToRay(screenPos);
-        var hit = Physics2D.Raycast(toCast.origin, toCast.direction, Mathf.Infinity, LayerMask.GetMask("Clickables"));
-        IClickable clickable = null;
+        var validClickables = GetValidClickables(screenPos);
+        UpdateHovers(validClickables, screenPos);
 
-        if (hit.collider != null) {
-            clickable = hit.collider.GetComponentInParent<IClickable>();
+        var overrideController = validClickables.Count == 0 ? null : validClickables[0].GetCustomAnimation();
+        if (isDown && !_pointerIsDown) {
+            DoMouseDown(validClickables, screenPos);
+        }
+        else if (!isDown && _pointerIsDown) {
+            DoMouseUp(validClickables, screenPos);
         }
 
-        AnimatorOverrideController overrideController = null;
-        bool isHovering = clickable != null && clickable.IsMouseInteractableAt(screenPos, mainCamera, out overrideController);
+        _pointerIsDown = isDown;
 
-        if (isHovering && overrideController != null) {
-            cursorAnim.runtimeAnimatorController = overrideController;
-        }
-        else {
-            cursorAnim.runtimeAnimatorController = _originalController;
-        }
-
-        UpdateClickable(isHovering ? clickable : null, screenPos);
-
+        cursorAnim.runtimeAnimatorController = overrideController == null ? _originalController : overrideController;
         cursorAnim.SetBool(MouseDown, isDown);
-        cursorAnim.SetBool(IsHovering, isHovering);
+        cursorAnim.SetBool(IsHovering, validClickables.Count > 0);
     }
 
-    private void UpdateClickable(IClickable newClickable, Vector2 screenPos) {
-        if (!_currentClickable.IsUnityNull()) {
-            _currentClickable.OnMouseExit(screenPos, mainCamera);
+    private bool DoMouseDown(List<IClickable> clickables, Vector2 screenPos) {
+        foreach (IClickable clickable in clickables) {
+            if (clickable.OnPointerDown(screenPos, mainCamera)) {
+                return true;
+            }
         }
 
-        _currentClickable = newClickable;
-        if (!_currentClickable.IsUnityNull()) {
-            _currentClickable.OnMouseEnter(screenPos, mainCamera);
+        return false;
+    }
+
+    private bool DoMouseUp(List<IClickable> clickables, Vector2 screenPos) {
+        foreach (IClickable clickable in clickables) {
+            if (clickable.OnPointerUp(screenPos, mainCamera)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private void UpdateHovers(List<IClickable> clickablesOver, Vector2 screenPos) {
+        HashSet<IClickable> toRemove = new();
+        foreach (IClickable clickable in _currentHovers) {
+            if (clickablesOver.Contains(clickable)) continue;
+            toRemove.Add(clickable);
+            clickable.OnPointerExit(screenPos, mainCamera);
+        }
+
+        _currentHovers.RemoveWhere((x) => toRemove.Contains(x));
+
+        foreach (IClickable clickable in clickablesOver) {
+            if (!_currentHovers.Add(clickable)) continue;
+            clickable.OnPointerEnter(screenPos, mainCamera);
         }
     }
 }
