@@ -1,8 +1,7 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.UI;
+using UnityEngine.Serialization;
 
 /**
  * Defines an item that can later be picked up.
@@ -10,8 +9,10 @@ using UnityEngine.UI;
  * will be activated when an associated Collectable is picked up
  * (or Unlock is called on this InventoryItem).
  */
-[RequireComponent(typeof(Button))]
-public class InventoryItem : AutoMonoBehaviour
+[RequireComponent(typeof(BoxCollider2D))]
+[RequireComponent(typeof(MatchColliderToRectTransform))]
+[RequireComponent(typeof(RectTransform))]
+public class InventoryItem : AutoMonoBehaviour, IMouseEventReceiver
 {
     #region Registry
 
@@ -38,15 +39,10 @@ public class InventoryItem : AutoMonoBehaviour
     [Header("Events")]
     public UnityEvent<InventoryItem> onUnlock;
 
-    [Tooltip("Invoked when this is clicked in the inventory.")]
-    public UnityEvent<InventoryItem> onClick;
+    [FormerlySerializedAs("onClick")]
+    [Tooltip("Invoked when this is used in the inventory.")]
+    public UnityEvent<InventoryItem> onUse;
 
-    #endregion
-
-    #region Button access
-
-    [AutoDefault, ReadOnly]
-    public Button button;
     #endregion
 
     private bool _setupDone = false;
@@ -55,6 +51,7 @@ public class InventoryItem : AutoMonoBehaviour
         _registry.Remove(itemId);
     }
 
+    /** Sets up and registers this InventoryItem */
     public void Setup() {
         if (_setupDone) return;
 
@@ -67,20 +64,23 @@ public class InventoryItem : AutoMonoBehaviour
         if (startLocked) {
             Lock();
         }
-
-        button.onClick.AddListener(OnClick);
     }
 
     private void Awake() {
         Setup();
     }
 
-    private void OnClick() {
+    public bool OnPointerUp(Vector2 _, Camera __) {
         if (onUseSound != null) {
             Lil.Guy.PlaySFX(onUseSound);
         }
 
-        onClick.Invoke(this);
+        onUse.Invoke(this);
+        return true;
+    }
+
+    public bool IsMouseInteractableAt(Vector2 screenPos, Camera cam) {
+        return onUse.GetPersistentEventCount() > 0;
     }
 
     public void Unlock() {
@@ -96,6 +96,4 @@ public class InventoryItem : AutoMonoBehaviour
     public void Lock() {
         gameObject.SetActive(false);
     }
-
-    // TODO on click
 }

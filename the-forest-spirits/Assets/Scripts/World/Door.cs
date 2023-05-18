@@ -1,13 +1,14 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 
+/**
+ * Represents a Door that may open or close.
+ */
 [RequireComponent(typeof(Animator))]
 public class Door : AutoMonoBehaviour
 {
-
     public bool IsOpen => animator.GetBool(Open);
 
+    /** The Scene Index to load when TransitionScene is called */
     public int targetSceneId;
     
     [AutoDefault, ReadOnly]

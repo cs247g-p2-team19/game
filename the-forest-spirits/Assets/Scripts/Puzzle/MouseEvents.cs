@@ -1,9 +1,11 @@
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.Events;
 
+/**
+ * Exposes the various Clickable mouse events as UnityEvents!
+ */
 [RequireComponent(typeof(Collider2D))]
-public class MouseEvents : AutoMonoBehaviour, IClickable
+public class MouseEvents : AutoMonoBehaviour, IMouseEventReceiver
 {
     public bool isClickable = true;
 

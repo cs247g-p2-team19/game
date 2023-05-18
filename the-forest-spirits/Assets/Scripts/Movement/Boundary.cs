@@ -1,11 +1,8 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// Defines a boundary that Bounded objects must stay within.
-/// </summary>
+/**
+ * Defines a boundary that Bounded objects must stay within.
+ */
 [RequireComponent(typeof(RectTransform))]
 public class Boundary : AutoMonoBehaviour
 {

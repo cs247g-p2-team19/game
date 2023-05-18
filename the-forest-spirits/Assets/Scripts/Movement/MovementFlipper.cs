@@ -6,6 +6,12 @@ public enum Facing
     Right
 }
 
+public enum FlipMode
+{
+    Instant,
+    Rotate
+}
+
 /**
  * Automatically flips this sprite around Paper Mario-style when it changes directions.
  */
@@ -13,6 +19,9 @@ public class MovementFlipper : AutoMonoBehaviour
 {
     [Tooltip("The way this sprite is initially facing")]
     public Facing initialFacing = Facing.Right;
+
+    public FlipMode flipMode = FlipMode.Rotate;
+
     [Tooltip("How long a flip takes to finish")]
     public float flipTime = 0.4f;
 
@@ -55,8 +64,14 @@ public class MovementFlipper : AutoMonoBehaviour
         Quaternion target = Quaternion.Euler(_initialRotation.x,
             _initialRotation.y + (_facing == initialFacing ? 0 : 180), _initialRotation.y);
 
-        _currentFlip = this.AutoLerp(transform.rotation, target, flipTime, Utility.EaseInOut<Quaternion>(Quaternion.Lerp),
-            rotation => { transform.rotation = rotation; });
-        this.WaitThen(_currentFlip, () => _currentFlip = null);
+        if (flipMode == FlipMode.Rotate) {
+            _currentFlip = this.AutoLerp(transform.rotation, target, flipTime,
+                Utility.EaseInOut<Quaternion>(Quaternion.Lerp),
+                rotation => { transform.rotation = rotation; });
+            this.WaitThen(_currentFlip, () => _currentFlip = null);
+        }
+        else {
+            transform.rotation = target;
+        }
     }
 }

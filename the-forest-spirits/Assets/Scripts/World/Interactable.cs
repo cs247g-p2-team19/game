@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 /**
  * Defines a component with a trigger-mode Collider2D
- * that the player may Interact with
+ * that the player may interact with.
  */
 [RequireComponent(typeof(Collider2D))]
 public class Interactable : AutoMonoBehaviour

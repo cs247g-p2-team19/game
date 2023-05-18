@@ -7,7 +7,7 @@ using UnityEngine.Events;
  * Represents a GameObject that can have dialogue.
  * References conversations and branches written in the editor.
  */
-public class Talker : AutoMonoBehaviour, IClickable
+public class Talker : AutoMonoBehaviour, IMouseEventReceiver
 {
     #region Unity fields
 
@@ -45,13 +45,17 @@ public class Talker : AutoMonoBehaviour, IClickable
 
     #region Public methods
 
-    /** Call this method to start or progress a conversation */
+    /** Call this method when the player interacts with the talking object */
     public void OnInteract() {
         if (_stopped) return;
-        ForceNext();
+        Next();
     }
 
-    public void ForceNext() {
+    /**
+     * Starts a new conversation, or moves to the next line of dialogue.
+     * Ignores being "stopped" by a ConversationPart marked as "stop until forced"
+     */
+    public void Next() {
         _stopped = false;
         if (!_talking) {
             StartConversation();
@@ -68,19 +72,32 @@ public class Talker : AutoMonoBehaviour, IClickable
                 //wait for the amount of time specified in waitTime, then call next -- waittime in this case
                 //is the time you need for the text to fade OUT
                 this.WaitThen(_currentConversation.dialogue[_index].waitTime, () => {
-                    Next();
+                    NextInternal();
                     fading = false;
                 });
             }
         }
     }
 
-    /** Starts a conversation from scratch */
-    public void StartConversation() {
-        StartConversation(startBranch);
+    public void GoTo(Branch branch) {
+        if (_talking) {
+            NextInternal(branch);
+        }
+        else {
+            StartConversationInternal(branch);
+        }
     }
 
-    private void StartConversation(Branch toBranch) {
+    /** Starts a conversation from scratch */
+    public void StartConversation() {
+        StartConversationInternal(startBranch);
+    }
+
+    #endregion
+
+    #region Private helper functions
+
+    private void StartConversationInternal(Branch toBranch) {
         if (_talking) Teardown();
         if (toBranch == null) return;
 
@@ -91,12 +108,8 @@ public class Talker : AutoMonoBehaviour, IClickable
         _talking = true;
         _index = -1;
         Setup();
-        Next();
+        NextInternal();
     }
-
-    #endregion
-
-    #region Private helper functions
 
     private void Setup() {
         onStart.Invoke();
@@ -110,7 +123,7 @@ public class Talker : AutoMonoBehaviour, IClickable
         textRef.text = "";
     }
 
-    private void Next(Branch overrideBranch = null) {
+    private void NextInternal(Branch overrideBranch = null) {
         _index++;
 
         // If there's still text to go...
@@ -125,7 +138,7 @@ public class Talker : AutoMonoBehaviour, IClickable
             foreach (var linkResponder in next.linkResponders.Where(lr => lr.thenContinue)) {
                 UnityAction<string> action = null;
                 action = _ => {
-                    ForceNext();
+                    Next();
                     linkResponder.onLink.RemoveListener(action);
                 };
 
@@ -161,11 +174,14 @@ public class Talker : AutoMonoBehaviour, IClickable
         // Otherwise continue to the beginning of the next conversation.
         _index = -1;
         _currentConversation.onStart.Invoke();
-        Next();
+        NextInternal();
     }
 
     #endregion
 
+    #region Mouse Events
+
+    /** Triggers links when clicked */
     public bool OnPointerUp(Vector2 screenPos, Camera cam) {
         if (!_talking || _currentConversation == null) {
             return false;
@@ -184,25 +200,16 @@ public class Talker : AutoMonoBehaviour, IClickable
         return true;
     }
 
+    /** Shows the "clickable" cursor only if we're hovering over a link */
     public bool IsMouseInteractableAt(Vector2 screenPos, Camera cam) {
         if (!_talking || _currentConversation == null) {
             return false;
         }
 
         int linkIndex = TMP_TextUtilities.FindIntersectingLink(textRef, screenPos, cam);
-        if (linkIndex == -1) {
-            return false;
-        }
-
-        return true;
+        
+        return linkIndex != -1;
     }
 
-    public void GoTo(Branch branch) {
-        if (_talking) {
-            Next(branch);
-        }
-        else {
-            StartConversation(branch);
-        }
-    }
+    #endregion
 }
