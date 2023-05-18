@@ -4,7 +4,7 @@ using UnityEngine;
 /**
  * Manages the items in the inventory.
  */
-public class Inventory : MonoBehaviour
+public class Inventory : AutoMonoBehaviour
 {
     public bool IsOpen { get; private set; }
 

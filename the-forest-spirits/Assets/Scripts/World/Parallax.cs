@@ -4,7 +4,7 @@ using UnityEngine;
  * Takes this GameObject and allows it to move with respect
  * to a linked camera depending on the Parallax Factor.
  */
-public class Parallax : MonoBehaviour
+public class Parallax : AutoMonoBehaviour
 {
     public Camera linkedCamera;
     

@@ -6,7 +6,7 @@ using UnityEngine.Events;
  * Defines an object that can be collected.
  * It should be given a name in the Unity editor.
  */
-public class Collectable : MonoBehaviour
+public class Collectable : AutoMonoBehaviour
 {
     /** true if this Collectable is attached to an item */
     public bool CollectsItem => itemId != "";

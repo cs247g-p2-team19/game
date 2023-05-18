@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 /** Orchestrates leaving a scene and going to another scene. */
-public class SceneTransitioner : MonoBehaviour
+public class SceneTransitioner : AutoMonoBehaviour
 {
     public static SceneTransitioner Instance => FindObjectOfType<SceneTransitioner>();
     public FadeImage imageFader;

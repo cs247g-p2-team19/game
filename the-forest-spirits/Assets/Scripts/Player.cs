@@ -7,7 +7,7 @@ using UnityEngine.Events;
  * The player character instance can always be
  * accessed with `Player.PlayerInstance`.
  */
-public class Player : MonoBehaviour
+public class Player : AutoMonoBehaviour
 {
     /** The global and unique instance of this Player. */
     public static Player Instance {

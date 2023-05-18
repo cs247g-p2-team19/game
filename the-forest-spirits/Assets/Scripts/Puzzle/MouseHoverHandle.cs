@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
 
- public class MouseHoverHandle : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+ public class MouseHoverHandle : AutoMonoBehaviour, IPointerEnterHandler, IPointerExitHandler
  {
      private bool mouse_over = false;
      public UnityEvent onHover;

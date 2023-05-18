@@ -6,12 +6,12 @@ using UnityEngine.Events;
  * Represents a GameObject that can have dialogue.
  * References conversations and branches written in the editor.
  */
-public class Talker : MonoBehaviour, IClickable
+public class Talker : AutoMonoBehaviour, IClickable
 {
     #region Unity fields
 
     [Tooltip("Where the text will show up")]
-    [AutoDefaultInChildren]
+    [AutoDefaultInChildren, Required]
     public TextMeshPro textRef;
 
     [Tooltip("Where new conversations will start")]

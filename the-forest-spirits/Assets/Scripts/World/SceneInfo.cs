@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SceneInfo : MonoBehaviour
+public class SceneInfo : AutoMonoBehaviour
 {
     public static SceneInfo Instance => FindObjectOfType<SceneInfo>();
     

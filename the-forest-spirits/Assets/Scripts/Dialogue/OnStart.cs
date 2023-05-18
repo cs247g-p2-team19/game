@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class OnStart : MonoBehaviour
+public class OnStart : AutoMonoBehaviour
 {
     // Start is called before the first frame update
     public UnityEvent callback;

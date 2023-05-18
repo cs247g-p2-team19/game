@@ -4,7 +4,7 @@ using UnityEngine.Serialization;
 /**
  * Smoothly follow another GameObject
  */
-public class Follow : MonoBehaviour
+public class Follow : AutoMonoBehaviour
 {
     #region Unity-editable public fields
 

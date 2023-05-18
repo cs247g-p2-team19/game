@@ -3,7 +3,7 @@ using UnityEngine;
 /**
  * Gently floats this game object up and down.
  */
-public class Floaty : MonoBehaviour
+public class Floaty : AutoMonoBehaviour
 {
     public float frequency = 4f;
     public float magnitude = 0.1f;

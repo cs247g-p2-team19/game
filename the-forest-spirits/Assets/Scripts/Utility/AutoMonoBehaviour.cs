@@ -1,6 +1,9 @@
 using System;
+using System.Linq;
+using System.Reflection;
 using Unity.VisualScripting;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 public abstract class AutoMonoBehaviour : MonoBehaviour
 {
@@ -9,86 +12,103 @@ public abstract class AutoMonoBehaviour : MonoBehaviour
             object value = field.GetValue(this);
             if (!value.IsUnityNull()) continue;
 
-            foreach (object attribute in field.GetCustomAttributes(true)) {
-                if (attribute is AutoDefaultAttribute) {
-                    object component = GetComponent(field.FieldType);
-                    if (component.IsUnityNull()) continue;
-                    field.SetValue(this, component);
-                    break;
-                }
+            var attributes = field.GetCustomAttributes(true);
+            bool applied =
+                attributes.Any(attr => attr is IAutoAttribute auto && auto.Apply(this, field));
+            bool required = attributes.Any(attr => attr is RequiredAttribute);
 
-                if (attribute is AutoDefaultTagAttribute tagAttr) {
-                    object found = GameObject.FindGameObjectWithTag(tagAttr.Tag).GetComponent(field.FieldType);
-                    if (found.IsUnityNull()) continue;
-                    
-                    field.SetValue(this, found);
-                    break;
-                }
-
-                if (attribute is AutoDefaultWithTypeAttribute typeAttr) {
-                    object found = FindObjectOfType(typeAttr.Type);
-                    if (found.IsUnityNull()) continue;
-                    field.SetValue(this, found);
-                    break;
-                }
-
-                if (attribute is AutoDefaultMainCameraAttribute) {
-                    if (field.FieldType != typeof(Camera)) continue;
-                    field.SetValue(this, Camera.main);
-                    break;
-                }
-
-                if (attribute is AutoDefaultInParentsAttribute) {
-                    object component = GetComponentInParent(field.FieldType);
-                    if (component.IsUnityNull()) continue;
-                    field.SetValue(this, component);
-                    break;
-                }
-
-                if (attribute is AutoDefaultInChildrenAttribute) {
-                    object component = GetComponentInChildren(field.FieldType);
-                    if (component.IsUnityNull()) continue;
-                    field.SetValue(this, component);
-                    break;
-                }
+            if (!applied && required) {
+                Debug.LogWarning(
+                    $@"<b><color=""red"">Warning!</color></b> Field <b>{field.Name} ({field.FieldType.Name})</b> in {name}'s {GetType().Name} component is marked as required, but is missing!",
+                    this);
             }
         }
     }
 }
 
 [AttributeUsage(AttributeTargets.Field)]
-public class AutoDefaultAttribute : Attribute
+public class RequiredAttribute : Attribute
+{ }
+
+public interface IAutoAttribute
 {
+    public bool Apply(Component target, FieldInfo field);
 }
 
 [AttributeUsage(AttributeTargets.Field)]
-public class AutoDefaultMainCameraAttribute : Attribute
+public class AutoDefaultAttribute : Attribute, IAutoAttribute
 {
+    public bool Apply(Component target, FieldInfo field) {
+        object component = target.GetComponent(field.FieldType);
+        if (component.IsUnityNull()) return false;
+        field.SetValue(target, component);
+        return true;
+    }
 }
 
 [AttributeUsage(AttributeTargets.Field)]
-public class AutoDefaultTagAttribute : Attribute
+public class AutoDefaultMainCameraAttribute : Attribute, IAutoAttribute
+{
+    public bool Apply(Component target, FieldInfo field) {
+        if (field.FieldType != typeof(Camera)) return false;
+        field.SetValue(target, Camera.main);
+        return true;
+    }
+}
+
+[AttributeUsage(AttributeTargets.Field)]
+public class AutoDefaultTagAttribute : Attribute, IAutoAttribute
 {
     public string Tag { get; private set; }
+
     public AutoDefaultTagAttribute(string tag) {
         Tag = tag;
     }
-}
-[AttributeUsage(AttributeTargets.Field)]
-public class AutoDefaultWithTypeAttribute : Attribute
-{
-    public Type Type { get; private set; }
-    public AutoDefaultWithTypeAttribute(Type type) {
-        Type = type;
+
+    public bool Apply(Component target, FieldInfo field) {
+        object found = GameObject.FindGameObjectWithTag(Tag).GetComponent(field.FieldType);
+        if (found.IsUnityNull()) return false;
+
+        field.SetValue(target, found);
+        return true;
     }
 }
 
 [AttributeUsage(AttributeTargets.Field)]
-public class AutoDefaultInParentsAttribute : Attribute
+public class AutoDefaultWithTypeAttribute : Attribute, IAutoAttribute
 {
+    public Type Type { get; private set; }
+
+    public AutoDefaultWithTypeAttribute(Type type) {
+        Type = type;
+    }
+
+    public bool Apply(Component target, FieldInfo field) {
+        object found = Object.FindObjectOfType(Type);
+        if (found.IsUnityNull()) return false;
+        field.SetValue(target, found);
+        return true;
+    }
 }
 
 [AttributeUsage(AttributeTargets.Field)]
-public class AutoDefaultInChildrenAttribute : Attribute
+public class AutoDefaultInParentsAttribute : Attribute, IAutoAttribute
 {
+    public bool Apply(Component target, FieldInfo field) {
+        object component = target.GetComponentInParent(field.FieldType);
+        if (component.IsUnityNull()) return false;
+        field.SetValue(target, component);
+        return true;
+    }
+}
+
+[AttributeUsage(AttributeTargets.Field)]
+public class AutoDefaultInChildrenAttribute : Attribute, IAutoAttribute
+{
+    public bool Apply(Component target, FieldInfo field) {
+        object component = target.GetComponentInChildren(field.FieldType);
+        if (component.IsUnityNull()) return false;
+        field.SetValue(target, component);
+        return true;
+    }
 }
