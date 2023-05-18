@@ -26,8 +26,8 @@ public class ConversationPart
     public bool stopUntilForced = false;
     
     public UnityEvent onStart;
-    public UnityEvent onEnd;
     public LinkResponder[] linkResponders;
+    public UnityEvent onEnd;
     public float waitTime = 0f;
 
     public void TriggerLink(string id) {
@@ -40,5 +40,6 @@ public class ConversationPart
 public class LinkResponder
 {
     public string linkId;
+    public bool thenContinue = true;
     public UnityEvent<string> onLink;
 }

@@ -173,20 +173,20 @@ MonoBehaviour:
     onStart:
       m_PersistentCalls:
         m_Calls: []
+    linkResponders: []
     onEnd:
       m_PersistentCalls:
         m_Calls: []
-    linkResponders: []
     waitTime: 0
   - text: why?
     stopUntilForced: 0
     onStart:
       m_PersistentCalls:
         m_Calls: []
+    linkResponders: []
     onEnd:
       m_PersistentCalls:
         m_Calls: []
-    linkResponders: []
     waitTime: 0
   andThen: {fileID: 0}
   onStart:
@@ -272,8 +272,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 150800370}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.2465, y: 6.1988, z: 0}
-  m_LocalScale: {x: 49.1394, y: 14.431231, z: 1}
+  m_LocalPosition: {x: 0.2465, y: 8.9945, z: 0}
+  m_LocalScale: {x: 75.04569, y: 20.023333, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -604,30 +604,30 @@ MonoBehaviour:
     onStart:
       m_PersistentCalls:
         m_Calls: []
+    linkResponders: []
     onEnd:
       m_PersistentCalls:
         m_Calls: []
-    linkResponders: []
     waitTime: 0
   - text: you don't even know why you want this.
     stopUntilForced: 0
     onStart:
       m_PersistentCalls:
         m_Calls: []
+    linkResponders: []
     onEnd:
       m_PersistentCalls:
         m_Calls: []
-    linkResponders: []
     waitTime: 0
   - text: are you sure you want to continue?
     stopUntilForced: 0
     onStart:
       m_PersistentCalls:
         m_Calls: []
+    linkResponders: []
     onEnd:
       m_PersistentCalls:
         m_Calls: []
-    linkResponders: []
     waitTime: 0
   andThen: {fileID: 0}
   onStart:
@@ -686,11 +686,9 @@ MonoBehaviour:
     onStart:
       m_PersistentCalls:
         m_Calls: []
-    onEnd:
-      m_PersistentCalls:
-        m_Calls: []
     linkResponders:
     - linkId: A
+      thenContinue: 1
       onLink:
         m_PersistentCalls:
           m_Calls:
@@ -706,26 +704,29 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
+    onEnd:
+      m_PersistentCalls:
+        m_Calls: []
     waitTime: 0
   - text: why are you here?
     stopUntilForced: 0
     onStart:
       m_PersistentCalls:
         m_Calls: []
+    linkResponders: []
     onEnd:
       m_PersistentCalls:
         m_Calls: []
-    linkResponders: []
     waitTime: 0
   - text: go away.
     stopUntilForced: 0
     onStart:
       m_PersistentCalls:
         m_Calls: []
+    linkResponders: []
     onEnd:
       m_PersistentCalls:
         m_Calls: []
-    linkResponders: []
     waitTime: 0
   andThen: {fileID: 0}
   onStart:
@@ -871,7 +872,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2808050586585667199, guid: bc6ce15c2814645ccab16358323e82ca, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2808050586585667199, guid: bc6ce15c2814645ccab16358323e82ca, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -986,7 +987,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 642321055}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -20, y: 8, z: -1}
+  m_LocalPosition: {x: -15, y: 8, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1065,6 +1066,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: Talker, Assembly-CSharp
         m_MethodName: StartConversation
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1034628242}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1291,6 +1304,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64029325e00646918ecd9c46bb09e11a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1034628242 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1474969047897440414, guid: ed8d47900e17746359c424d91e341227, type: 3}
+  m_PrefabInstance: {fileID: 812427449}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4b9f3c135ed84de89e5ccf7d51aa3f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1150644256 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2808050586585667197, guid: bc6ce15c2814645ccab16358323e82ca, type: 3}
@@ -1353,17 +1377,47 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-  - text: who are <link="A"><color="red"><u>you</u></color></link>?
+  - text: 'who are you?
+
+
+      <link="continue"><color=#000044><i><u>silence</u></i></color></link>'
     stopUntilForced: 1
     onStart:
       m_PersistentCalls:
         m_Calls: []
+    linkResponders:
+    - linkId: continue
+      thenContinue: 1
+      onLink:
+        m_PersistentCalls:
+          m_Calls: []
     onEnd:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 624053953}
           m_TargetAssemblyTypeName: Fadable`1[[TMPro.TextMeshPro, Unity.TextMeshPro
           m_MethodName: FadeOut
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    waitTime: 1.5
+  - text: 'do you know why you are here?
+
+
+      <link="continue"><color=#000044><i><u>silence</u></i></color></link>'
+    stopUntilForced: 1
+    onStart:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 624053953}
+          m_TargetAssemblyTypeName: Fadable`1[[TMPro.TextMeshPro, Unity.TextMeshPro
+          m_MethodName: FadeIn
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1374,40 +1428,11 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
     linkResponders:
-    - linkId: A
+    - linkId: continue
+      thenContinue: 1
       onLink:
         m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 642321057}
-            m_TargetAssemblyTypeName: Talker, Assembly-CSharp
-            m_MethodName: ForceNext
-            m_Mode: 1
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-    waitTime: 1.5
-  - text: do you know why you are here?
-    stopUntilForced: 0
-    onStart:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 624053953}
-          m_TargetAssemblyTypeName: Fadable`1[[TMPro.TextMeshPro, Unity.TextMeshPro
-          m_MethodName: FadeIn
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+          m_Calls: []
     onEnd:
       m_PersistentCalls:
         m_Calls:
@@ -1423,10 +1448,9 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-    linkResponders: []
     waitTime: 1.5
-  - text: for now, you cannot answer.
-    stopUntilForced: 0
+  - text: <link="continue"><color=#00000088><u>you do not know</u></color></link>
+    stopUntilForced: 1
     onStart:
       m_PersistentCalls:
         m_Calls:
@@ -1442,6 +1466,12 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+    linkResponders:
+    - linkId: continue
+      thenContinue: 1
+      onLink:
+        m_PersistentCalls:
+          m_Calls: []
     onEnd:
       m_PersistentCalls:
         m_Calls:
@@ -1481,7 +1511,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-    linkResponders: []
     waitTime: 1.5
   andThen: {fileID: 0}
   onStart:
@@ -1516,6 +1545,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1034628242}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!1 &1261049146
 GameObject:
@@ -1595,7 +1636,7 @@ Transform:
   m_GameObject: {fileID: 1261049146}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -1.07, z: -1}
-  m_LocalScale: {x: 4.8639, y: 1, z: 1}
+  m_LocalScale: {x: 5.8143063, y: 1.1954, z: 1.1954}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1743,20 +1784,20 @@ MonoBehaviour:
     onStart:
       m_PersistentCalls:
         m_Calls: []
+    linkResponders: []
     onEnd:
       m_PersistentCalls:
         m_Calls: []
-    linkResponders: []
     waitTime: 0
   - text: if you must, i understand.
     stopUntilForced: 0
     onStart:
       m_PersistentCalls:
         m_Calls: []
+    linkResponders: []
     onEnd:
       m_PersistentCalls:
         m_Calls: []
-    linkResponders: []
     waitTime: 0
   - text: please be careful.
     stopUntilForced: 0
@@ -1775,10 +1816,10 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+    linkResponders: []
     onEnd:
       m_PersistentCalls:
         m_Calls: []
-    linkResponders: []
     waitTime: 0
   andThen: {fileID: 0}
   onStart:
@@ -1864,8 +1905,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1835128410}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.34, y: -8.23, z: 0}
-  m_LocalScale: {x: 49.1394, y: 14.431231, z: 1}
+  m_LocalPosition: {x: 0.3893, y: -8.23, z: 0}
+  m_LocalScale: {x: 75.04569, y: 14.431231, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1929,6 +1970,14 @@ PrefabInstance:
     - target: {fileID: 2810034674861128693, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7934124493653047891, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7934124493653047891, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
+      propertyPath: m_UseSpriteMesh
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}

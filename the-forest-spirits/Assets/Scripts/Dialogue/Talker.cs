@@ -1,3 +1,4 @@
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -76,9 +77,14 @@ public class Talker : AutoMonoBehaviour, IClickable
 
     /** Starts a conversation from scratch */
     public void StartConversation() {
-        if (_talking) Teardown();
+        StartConversation(startBranch);
+    }
 
-        _currentConversation = startBranch.GetConversation();
+    private void StartConversation(Branch toBranch) {
+        if (_talking) Teardown();
+        if (toBranch == null) return;
+
+        _currentConversation = toBranch.GetConversation();
         if (_currentConversation == null) return;
         _currentConversation.onStart.Invoke();
 
@@ -104,11 +110,11 @@ public class Talker : AutoMonoBehaviour, IClickable
         textRef.text = "";
     }
 
-    private void Next() {
+    private void Next(Branch overrideBranch = null) {
         _index++;
 
         // If there's still text to go...
-        if ((_index < _currentConversation.dialogue.Length)) {
+        if ((_index < _currentConversation.dialogue.Length) && overrideBranch == null) {
             var next = _currentConversation.dialogue[_index];
             onNext.Invoke();
 
@@ -116,6 +122,15 @@ public class Talker : AutoMonoBehaviour, IClickable
 
             textRef.text = next.text;
             _stopped = next.stopUntilForced;
+            foreach (var linkResponder in next.linkResponders.Where(lr => lr.thenContinue)) {
+                UnityAction<string> action = null;
+                action = _ => {
+                    ForceNext();
+                    linkResponder.onLink.RemoveListener(action);
+                };
+
+                linkResponder.onLink.AddListener(action);
+            }
 
             return;
         }
@@ -123,14 +138,21 @@ public class Talker : AutoMonoBehaviour, IClickable
         // Otherwise, try to move to the next Branch (or finish)
         _currentConversation.onEnd.Invoke();
 
-        // If there's nowhere to go, stop.
-        if (_currentConversation.andThen == null) {
+        Branch nextBranch = overrideBranch;
+
+        if (nextBranch == null) {
+            nextBranch = _currentConversation.andThen;
+        }
+
+        if (nextBranch == null) {
+            // If there's nowhere to go, stop.
             Teardown();
             return;
         }
 
+        _currentConversation = nextBranch.GetConversation();
+
         // If the next branch leads nowhere, stop.
-        _currentConversation = _currentConversation.andThen.GetConversation();
         if (_currentConversation == null) {
             Teardown();
             return;
@@ -174,5 +196,14 @@ public class Talker : AutoMonoBehaviour, IClickable
         }
 
         return true;
+    }
+
+    public void GoTo(Branch branch) {
+        if (_talking) {
+            Next(branch);
+        }
+        else {
+            StartConversation(branch);
+        }
     }
 }
