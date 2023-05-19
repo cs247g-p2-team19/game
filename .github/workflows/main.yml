@@ -1,4 +1,4 @@
-name: 'Build & Deploy WebGL'
+name: 'Build & Deploy Game'
 
 on:
   workflow_dispatch:
