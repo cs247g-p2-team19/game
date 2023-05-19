@@ -18,6 +18,9 @@ jobs:
   build:
     name: 'Build and deploy'
     runs-on: ubuntu-latest
+    environment:
+        name: "${{ (contains(github.event.head_commit.message, '[prod]') || github.event_name == 'workflow_dispatch') && 'Production' || 'Development' }}"
+        url: "${{ steps.deploy.outputs.url }}"
     if: "contains(github.event.head_commit.message, '[deploy]') || github.event_name == 'workflow_dispatch'"
     steps:
       # Checkout (without LFS)
@@ -67,19 +70,13 @@ jobs:
           path: build
 
       # Deploy
-      - name: Deploy to Dev
-        if: "!contains(github.event.head_commit.message, '[prod]') && github.event_name != 'workflow_dispatch'"
+      - name: Deploy
+        id: deploy
         run: |-
           npm install -g vercel
           cd build/WebGL/WebGL
           sudo cp -r ../../../.vercel-for-build ./.vercel
           sudo mv ./.vercel/config.json ./vercel.json
-          vercel deploy --token ${{ secrets.JONA_VERCEL_TOKEN }}
-      - name: Deploy to Prod
-        if: "contains(github.event.head_commit.message, '[prod]') || github.event_name == 'workflow_dispatch'"
-        run: |-
-          npm install -g vercel
-          cd build/WebGL/WebGL
-          sudo cp -r ../../../.vercel-for-build ./.vercel
-          sudo mv ./.vercel/config.json ./vercel.json
-          vercel deploy --token ${{ secrets.JONA_VERCEL_TOKEN }} --prod
+          vercel deploy --token ${{ secrets.JONA_VERCEL_TOKEN }} ${{ (contains(github.event.head_commit.message, '[prod]') && github.event_name != 'workflow_dispatch') && '--prod' || '' }} | tee ${{ runner.temp }}/_OUT_URL.txt
+          echo "url=$(cat ${{ runner.temp }}/_OUT_URL.txt)" >> "$GITHUB_OUTPUT"
+          rm ${{ runner.temp }}/_OUT_URL.txt
