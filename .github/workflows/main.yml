@@ -11,32 +11,21 @@ permissions:
 
 # This allows a subsequently queued workflow run to interrupt previous runs
 concurrency:
-  group: 'build'
+  group: 'multibuild'
   cancel-in-progress: true
   
 jobs:
-  build:
-    name: 'Build and deploy'
+  build-wgl:
+    name: 'Build and deploy WebGL'
+    timeout-minutes: 45
     runs-on: [self-hosted, linux]
     environment:
         name: "${{ (contains(github.event.head_commit.message, '[prod]') || github.event_name == 'workflow_dispatch') && 'Production' || 'Development' }}"
         url: "${{ steps.deploy.outputs.url }}"
-    if: "contains(github.event.head_commit.message, '[deploy]') || github.event_name == 'workflow_dispatch'"
     steps:
       # Checkout (without LFS)
       - name: Checkout repository
         uses: actions/checkout@v2
-
-      # Git LFS
-      - name: Create LFS file list
-        run: git lfs ls-files -l | cut -d' ' -f1 | sort > .lfs-assets-id
-
-      - name: Restore LFS cache
-        uses: actions/cache@v2
-        id: lfs-cache
-        with:
-          path: .git/lfs
-          key: ${{ runner.os }}-lfs-${{ hashFiles('.lfs-assets-id') }}
 
       - name: Git LFS Pull
         run: |
@@ -48,9 +37,9 @@ jobs:
       - uses: actions/cache@v2
         with:
           path: the-forest-spirits/Library
-          key: Library-${{ hashFiles('the-forest-spirits/Assets/**', 'the-forest-spirits/Packages/**', 'the-forest-spirits/ProjectSettings/**') }}
+          key: Library-wgl-${{ hashFiles('the-forest-spirits/Assets/**', 'the-forest-spirits/Packages/**', 'the-forest-spirits/ProjectSettings/**') }}
           restore-keys: |
-            Library-
+            Library-wgl-
 
       # Build
       - name: Build project
@@ -66,8 +55,8 @@ jobs:
       # Output
       - uses: actions/upload-artifact@v2
         with:
-          name: Build
-          path: build
+          name: Build-WebGL
+          path: build/WebGL
 
       # Deploy
       - name: Deploy
@@ -80,3 +69,81 @@ jobs:
           vercel deploy --token ${{ secrets.JONA_VERCEL_TOKEN }} ${{ (contains(github.event.head_commit.message, '[prod]') && github.event_name != 'workflow_dispatch') && '--prod' || '' }} | tee ${{ runner.temp }}/_OUT_URL.txt
           echo "url=$(cat ${{ runner.temp }}/_OUT_URL.txt)" >> "$GITHUB_OUTPUT"
           rm ${{ runner.temp }}/_OUT_URL.txt
+  build-macos:
+    name: 'Build and upload MacOS'
+    timeout-minutes: 45
+    runs-on: [self-hosted, macos]
+    steps:
+      # Checkout (without LFS)
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Git LFS Pull
+        run: |
+          git lfs pull
+          git add .
+          git reset --hard
+
+      # Cache
+      - uses: actions/cache@v2
+        with:
+          path: the-forest-spirits/Library
+          key: Library-macos-${{ hashFiles('the-forest-spirits/Assets/**', 'the-forest-spirits/Packages/**', 'the-forest-spirits/ProjectSettings/**') }}
+          restore-keys: |
+            Library-macos-
+
+      # Build
+      - name: Build project
+        uses: game-ci/unity-builder@v2
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          targetPlatform: StandaloneOSX
+          projectPath: ./the-forest-spirits
+
+      # Output
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Build-OSX
+          path: build/StandaloneOSX
+  build-windows:
+    name: 'Build and upload Windows'
+    timeout-minutes: 45
+    runs-on: [self-hosted, linux]
+    steps:
+      # Checkout (without LFS)
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Git LFS Pull
+        run: |
+          git lfs pull
+          git add .
+          git reset --hard
+
+      # Cache
+      - uses: actions/cache@v2
+        with:
+          path: the-forest-spirits/Library
+          key: Library-win-${{ hashFiles('the-forest-spirits/Assets/**', 'the-forest-spirits/Packages/**', 'the-forest-spirits/ProjectSettings/**') }}
+          restore-keys: |
+            Library-win-
+
+      # Build
+      - name: Build project
+        uses: game-ci/unity-builder@v2
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          targetPlatform: StandaloneWindows64
+          projectPath: ./the-forest-spirits
+
+      # Output
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Build-StandaloneWindows64
+          path: build/StandaloneWindows64
