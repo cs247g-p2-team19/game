@@ -12,6 +12,8 @@ public class ForestPlayerController : PlayerController
     private static readonly int Speed = Animator.StringToHash("Speed");
     private static readonly int InventoryOpen = Animator.StringToHash("InventoryOpen");
 
+    public override Vector2 Velocity { get; protected set; }
+
     [Tooltip("The controls"), Required]
     public InputActionAsset actions;
 
@@ -34,6 +36,8 @@ public class ForestPlayerController : PlayerController
     public float speed = 5f;
 
     public float dashSpeed = 10f;
+
+    private Vector2 _currentVelocity;
 
 
     #region Input Actions & Maps
@@ -90,6 +94,7 @@ public class ForestPlayerController : PlayerController
         float direction = _moveAction.ReadValue<float>();
         bool dashing = _dashAction.IsPressed();
         float moveSpeed = dashing ? dashSpeed : speed;
+        Velocity = new Vector2(moveSpeed, 0);
 
         animator.SetFloat(Speed, Mathf.Abs(direction * moveSpeed));
 
