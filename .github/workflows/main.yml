@@ -34,12 +34,12 @@ jobs:
           git reset --hard
 
       # Cache
-      - uses: actions/cache@v2
+      - name: Local cache for Library
+        id: api-cache-wgl
+        uses: MasterworksIO/action-local-cache@1.0.0
         with:
-          path: the-forest-spirits/Library
-          key: Library-wgl-${{ hashFiles('the-forest-spirits/Assets/**', 'the-forest-spirits/Packages/**', 'the-forest-spirits/ProjectSettings/**') }}
-          restore-keys: |
-            Library-wgl-
+          path: './the-forest-spirits/Library/'
+          key: 'Library-wgl'
 
       # Build
       - name: Build project
@@ -86,12 +86,12 @@ jobs:
           git reset --hard
 
       # Cache
-      - uses: actions/cache@v2
+      - name: Local cache for Library
+        id: api-cache-macos
+        uses: MasterworksIO/action-local-cache@1.0.0
         with:
-          path: the-forest-spirits/Library
-          key: Library-macos-${{ hashFiles('the-forest-spirits/Assets/**', 'the-forest-spirits/Packages/**', 'the-forest-spirits/ProjectSettings/**') }}
-          restore-keys: |
-            Library-macos-
+          path: './the-forest-spirits/Library/'
+          key: 'Library-macos'
 
       # Build
       - name: Build project
@@ -126,12 +126,12 @@ jobs:
           git reset --hard
 
       # Cache
-      - uses: actions/cache@v2
+      - name: Local cache for Library
+        id: api-cache-win
+        uses: MasterworksIO/action-local-cache@1.0.0
         with:
-          path: the-forest-spirits/Library
-          key: Library-win-${{ hashFiles('the-forest-spirits/Assets/**', 'the-forest-spirits/Packages/**', 'the-forest-spirits/ProjectSettings/**') }}
-          restore-keys: |
-            Library-win-
+          path: './the-forest-spirits/Library/'
+          key: 'Library-win'
 
       # Build
       - name: Build project
@@ -149,3 +149,43 @@ jobs:
         with:
           name: Build-StandaloneWindows64
           path: build/StandaloneWindows64
+  build-linux:
+    if: false
+    name: 'Build and upload Linux'
+    timeout-minutes: 45
+    runs-on: [self-hosted, linux]
+    steps:
+      # Checkout (without LFS)
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Git LFS Pull
+        run: |
+          git lfs pull
+          git add .
+          git reset --hard
+
+      # Cache
+      - name: Local cache for Library
+        id: api-cache-linx
+        uses: MasterworksIO/action-local-cache@1.0.0
+        with:
+          path: './the-forest-spirits/Library/'
+          key: 'Library-linx'
+
+      # Build
+      - name: Build project
+        uses: game-ci/unity-builder@v2
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          targetPlatform: StandaloneLinux64
+          projectPath: ./the-forest-spirits
+
+      # Output
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Build-StandaloneLinux64
+          path: build/StandaloneLinux64
