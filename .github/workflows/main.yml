@@ -53,10 +53,11 @@ jobs:
           projectPath: ./the-forest-spirits
 
       # Output
-      - uses: actions/upload-artifact@v2
-        with:
-          name: Build-WebGL
-          path: build/WebGL
+      - name: Upload Build
+        run: |-
+          cd build/WebGL
+          tar -czvf ../Build-WebGL.tar.gz .
+          curl -X PUT --user admin:${{ secrets.DUFS_PASS }} --digest --data-binary @../Build-WebGL.tar.gz https://${{ secrets.DUFS_URL }}/the-forest-spirits/$(git rev-parse --short HEAD)-WebGL.tar.gz
 
       # Deploy
       - name: Deploy
@@ -70,7 +71,7 @@ jobs:
           echo "url=$(cat ${{ runner.temp }}/_OUT_URL.txt)" >> "$GITHUB_OUTPUT"
           rm ${{ runner.temp }}/_OUT_URL.txt
   build-macos:
-    if: false
+    needs: [build-wgl]
     name: 'Build and upload MacOS'
     timeout-minutes: 45
     runs-on: [self-hosted, macos]
@@ -105,12 +106,13 @@ jobs:
           projectPath: ./the-forest-spirits
 
       # Output
-      - uses: actions/upload-artifact@v2
-        with:
-          name: Build-OSX
-          path: build/StandaloneOSX
+      - name: Upload Build
+        run: |-
+          cd build/StandaloneOSX
+          tar -czvf ../Build-StandaloneOSX.tar.gz .
+          curl -X PUT --user admin:${{ secrets.DUFS_PASS }} --digest --data-binary @../Build-StandaloneOSX.tar.gz https://${{ secrets.DUFS_URL }}/the-forest-spirits/$(git rev-parse --short HEAD)-StandaloneOSX.tar.gz
   build-windows:
-    if: false
+    needs: [build-wgl]
     name: 'Build and upload Windows'
     timeout-minutes: 45
     runs-on: [self-hosted, linux]
@@ -145,12 +147,13 @@ jobs:
           projectPath: ./the-forest-spirits
 
       # Output
-      - uses: actions/upload-artifact@v2
-        with:
-          name: Build-StandaloneWindows64
-          path: build/StandaloneWindows64
+      - name: Upload Build
+        run: |-
+          cd build/StandaloneWindows64
+          tar -czvf ../Build-StandaloneWindows64.tar.gz .
+          curl -X PUT --user admin:${{ secrets.DUFS_PASS }} --digest --data-binary @../Build-StandaloneWindows64.tar.gz https://${{ secrets.DUFS_URL }}/the-forest-spirits/$(git rev-parse --short HEAD)-StandaloneWindows64.tar.gz
   build-linux:
-    if: false
+    needs: [build-wgl]
     name: 'Build and upload Linux'
     timeout-minutes: 45
     runs-on: [self-hosted, linux]
@@ -185,7 +188,8 @@ jobs:
           projectPath: ./the-forest-spirits
 
       # Output
-      - uses: actions/upload-artifact@v2
-        with:
-          name: Build-StandaloneLinux64
-          path: build/StandaloneLinux64
+      - name: Upload Build
+        run: |-
+          cd build/StandaloneLinux64
+          tar -czvf ../Build-StandaloneLinux64.tar.gz .
+          curl -X PUT --user admin:${{ secrets.DUFS_PASS }} --digest --data-binary @../Build-StandaloneLinux64.tar.gz https://${{ secrets.DUFS_URL }}/the-forest-spirits/$(git rev-parse --short HEAD)-StandaloneLinux64.tar.gz
