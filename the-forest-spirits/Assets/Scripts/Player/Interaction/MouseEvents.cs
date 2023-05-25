@@ -8,11 +8,13 @@ using UnityEngine.Events;
 public class MouseEvents : AutoMonoBehaviour, IMouseEventReceiver
 {
     public bool isClickable = true;
+    public bool isDraggable = false;
 
     public UnityEvent onHover;
     public UnityEvent onHoverExit;
     public UnityEvent onMouseUp;
     public UnityEvent onMouseDown;
+    public UnityEvent<Vector2> onMouseDrag;
 
     public void OnPointerEnter(Vector2 screenPos, Camera cam) {
         onHover.Invoke();
@@ -36,5 +38,18 @@ public class MouseEvents : AutoMonoBehaviour, IMouseEventReceiver
         if (onMouseUp.GetPersistentEventCount() == 0) return false;
         onMouseUp.Invoke();
         return true;
+    }
+
+    public bool OnPointerDrag(Vector2 screenPos, Camera cam) {
+        if (onMouseDrag.GetPersistentEventCount() == 0) return false;
+        if (isDraggable) {
+            Debug.Log("mfw i drag at screenPos");
+            Debug.Log(screenPos);
+            onMouseDrag.Invoke(screenPos);
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 }

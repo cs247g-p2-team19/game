@@ -115,6 +115,8 @@ public class ForestPlayerController : PlayerController
         var hit = Physics2D.Raycast(toCast.origin, toCast.direction, Mathf.Infinity, LayerMask.GetMask("Clickables"));
         IMouseEventReceiver mouseEventReceiver = null;
 
+        //raycast for hit, if the hit object has a collider, set mouseeventreceiver to the colliders mouseeventreceiver
+        //if there's an onpointerdown function, then return
         if (hit.collider != null) {
             mouseEventReceiver = hit.collider.GetComponentInParent<IMouseEventReceiver>();
         }
