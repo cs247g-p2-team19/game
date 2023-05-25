@@ -71,6 +71,9 @@ public class MouseManager : AutoMonoBehaviour
         if (isDown && !_pointerIsDown) {
             DoMouseDown(validClickables, screenPos);
         }
+        else if (isDown && _pointerIsDown) {
+            DoMouseDrag(validClickables, screenPos);
+        }
         else if (!isDown && _pointerIsDown) {
             DoMouseUp(validClickables, screenPos);
         }
@@ -110,6 +113,17 @@ public class MouseManager : AutoMonoBehaviour
     private bool DoMouseDown(List<IMouseEventReceiver> clickables, Vector2 screenPos) {
         foreach (IMouseEventReceiver clickable in clickables) {
             if (clickable.OnPointerDown(screenPos, mainCamera)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+    
+    /** Should trigger OnPointerDrag  */
+    private bool DoMouseDrag(List<IMouseEventReceiver> clickables, Vector2 screenPos) {
+        foreach (IMouseEventReceiver clickable in clickables) {
+            if (clickable.OnPointerDrag(screenPos, mainCamera)) {
                 return true;
             }
         }

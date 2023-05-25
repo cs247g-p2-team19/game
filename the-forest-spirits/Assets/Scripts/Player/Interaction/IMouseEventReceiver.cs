@@ -47,7 +47,14 @@ public interface IMouseEventReceiver
      * where IsMouseInteractableAt returns true.
      */
     public void OnPointerExit(Vector2 screenPos, Camera cam) { }
-    
+
+    /**
+     * This even fire when the cursor is down and drags; return false on default
+     */
+    public bool OnPointerDrag(Vector2 screenPos, Camera cam) {
+     return false; 
+    }
+
     /**
      * Allows mouseovers to override the mouse animations while hovering.
      */
