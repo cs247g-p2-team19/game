@@ -18,15 +18,13 @@ public static class Utility
     public static LerpFn<float> EaseInOutF => EaseInOut<float>(Mathf.Lerp);
 
     /** Coroutine that waits [seconds] seconds and then calls [fn]. */
-    public static IEnumerator WaitThen(float seconds, Thunk fn)
-    {
+    public static IEnumerator WaitThen(float seconds, Thunk fn) {
         yield return new WaitForSeconds(seconds);
         fn();
     }
 
     /** Coroutine that waits for [first] to finish and then calls [fn] */
-    public static IEnumerator WaitThen(Coroutine first, Thunk fn)
-    {
+    public static IEnumerator WaitThen(Coroutine first, Thunk fn) {
         yield return first;
         fn();
     }
@@ -36,11 +34,9 @@ public static class Utility
      * calling [lerp] to do that, and calling [callback] once per frame to apply that value.
      */
     public static IEnumerator Lerp<T>(T from, T to, float totalSeconds, LerpFn<T> lerp,
-        LerpValueCallback<T> callback)
-    {
+        LerpValueCallback<T> callback) {
         var currTime = 0f;
-        while (currTime < totalSeconds)
-        {
+        while (currTime < totalSeconds) {
             currTime += Time.deltaTime;
 
             var value = lerp(from, to, currTime / totalSeconds);
@@ -50,31 +46,27 @@ public static class Utility
     }
 
     /** Wraps a linear-interpolation function so that it eases in instead of linearly interpolates. */
-    public static LerpFn<T> EaseIn<T>(LerpFn<T> fn)
-    {
+    public static LerpFn<T> EaseIn<T>(LerpFn<T> fn) {
         return (from, to, f) => fn(from, to, f * f);
     }
 
     /** Wraps a linear-interpolation function so that it eases out instead of linearly interpolates. */
-    public static LerpFn<T> EaseOut<T>(LerpFn<T> fn)
-    {
+    public static LerpFn<T> EaseOut<T>(LerpFn<T> fn) {
         return (from, to, f) => fn(from, to, 1 - (1 - f) * (1 - f));
     }
 
     /** Wraps a linear-interpolation function so that it eases in and out instead of linearly interpolates. */
-    public static LerpFn<T> EaseInOut<T>(LerpFn<T> fn)
-    {
+    public static LerpFn<T> EaseInOut<T>(LerpFn<T> fn) {
         var easedIn = EaseIn(fn);
         var easedOut = EaseOut(fn);
         return (from, to, f) => fn(easedIn(from, to, f), easedOut(from, to, f), f);
     }
-    
+
     /**     
      * Calculates the distance between world points [a] and [b]
      * on a sphere centered at world point [origin] with radius [r]
      */
-    public static float SphericalDistance(Vector3 origin, Vector3 a, Vector3 b, float r)
-    {
+    public static float SphericalDistance(Vector3 origin, Vector3 a, Vector3 b, float r) {
         return r * Mathf.Acos(Vector3.Dot(a - origin, b - origin) / (r * r));
     }
 }
@@ -88,14 +80,12 @@ public static class UtilityExtensions
     private static readonly Dictionary<GameObject, Vector3> _originalScales = new();
 
     /** Calls the given [fn] after a number of [seconds] */
-    public static Coroutine WaitThen(this MonoBehaviour behaviour, float seconds, Utility.Thunk fn)
-    {
+    public static Coroutine WaitThen(this MonoBehaviour behaviour, float seconds, Utility.Thunk fn) {
         return behaviour.StartCoroutine(Utility.WaitThen(seconds, fn));
     }
 
     /** Calls the given [fn] after the [first] coroutine finishes */
-    public static Coroutine WaitThen(this MonoBehaviour behaviour, Coroutine first, Utility.Thunk fn)
-    {
+    public static Coroutine WaitThen(this MonoBehaviour behaviour, Coroutine first, Utility.Thunk fn) {
         return behaviour.StartCoroutine(Utility.WaitThen(first, fn));
     }
 
@@ -104,8 +94,7 @@ public static class UtilityExtensions
      * [lerp] function and assigning the value using a [callback].
      */
     public static Coroutine AutoLerp<T>(this MonoBehaviour behaviour, T from, T to, float totalSeconds,
-        Utility.LerpFn<T> lerp, Utility.LerpValueCallback<T> callback)
-    {
+        Utility.LerpFn<T> lerp, Utility.LerpValueCallback<T> callback) {
         return behaviour.StartCoroutine(Utility.Lerp(from, to, totalSeconds, lerp, callback));
     }
 
@@ -113,8 +102,7 @@ public static class UtilityExtensions
      * Returns true if the given [worldPosition] is inside this [camera]'s frustum
      * (i.e. if it is in view)
      */
-    public static bool IsInView(this Camera camera, Vector3 worldPosition)
-    {
+    public static bool IsInView(this Camera camera, Vector3 worldPosition) {
         var position = camera.WorldToScreenPoint(worldPosition);
 
         return position.x > 0 && position.y > 0 && position.z > 0
@@ -122,8 +110,7 @@ public static class UtilityExtensions
     }
 
     /** Returns _a_ vector that is orthogonal to this [vector] */
-    public static Vector3 OrthogonalVector(this Vector3 vector)
-    {
+    public static Vector3 OrthogonalVector(this Vector3 vector) {
         var cross = Vector3.Cross(vector, Vector3.up);
         if (cross.magnitude == 0) return Vector3.Cross(vector, Vector3.forward);
 
@@ -139,7 +126,7 @@ public static class UtilityExtensions
         var height = corners[1].y - corners[0].y;
         var center = new Vector3(corners[0].x + width / 2, corners[0].y + height / 2, t.position.z);
         var size = new Vector3(width, height, 0);
-        
+
         return new Bounds(center, size);
     }
 
@@ -148,11 +135,9 @@ public static class UtilityExtensions
      * its local scale to Vector3.zero.
      * Keeps track of previous scales and can restore them, too!
      */
-    public static void SetVisible(this GameObject gameObject, bool visible)
-    {
+    public static void SetVisible(this GameObject gameObject, bool visible) {
         var localScale = gameObject.transform.localScale;
-        switch (visible)
-        {
+        switch (visible) {
             case false when localScale != Vector3.zero:
                 _originalScales[gameObject] = localScale;
                 localScale = Vector3.zero;
@@ -170,32 +155,36 @@ public static class UtilityExtensions
      * Returns true if this [gameObject] is "visible," i.e.
      * has a localScale not equal to zero.
      */
-    public static bool IsVisible(this GameObject gameObject)
-    {
+    public static bool IsVisible(this GameObject gameObject) {
         return gameObject.transform.localScale != Vector3.zero;
     }
-    
+
     /**
      * Returns a world-space boundary that encapsulates all the
      * renderers inside or on the given gameObject
      */
-    public static Bounds? GetWorldBounds(this GameObject gameObject)
-    {
+    public static Bounds? GetWorldBounds(this GameObject gameObject) {
         var boundary = new Bounds();
         var hasBoundary = false;
 
         foreach (var renderer in gameObject.GetComponentsInChildren<Renderer>())
-            if (!hasBoundary)
-            {
+            if (!hasBoundary) {
                 hasBoundary = true;
                 boundary = renderer.bounds;
             }
-            else
-            {
+            else {
                 boundary.Encapsulate(renderer.bounds);
             }
 
         return hasBoundary ? boundary : null;
     }
 
+    public static bool Encapsulates2D(this Bounds bounds, Bounds other) {
+        return bounds.Contains2D(other.max) && bounds.Contains2D(other.min);
+    }
+    
+    public static bool Contains2D(this Bounds bounds, Vector2 other) {
+        Bounds temp = new Bounds(new Vector2(bounds.center.x, bounds.center.y), bounds.size);
+        return temp.Contains(other);
+    }
 }
