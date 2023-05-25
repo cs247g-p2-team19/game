@@ -10,46 +10,45 @@ public class MouseEvents : AutoMonoBehaviour, IMouseEventReceiver
     public bool isClickable = true;
     public bool isDraggable = false;
 
-    public UnityEvent onHover;
-    public UnityEvent onHoverExit;
-    public UnityEvent onMouseUp;
-    public UnityEvent onMouseDown;
+    public UnityEvent<Vector2> onHover;
+    public UnityEvent<Vector2> onHoverExit;
+    public UnityEvent<Vector2> onMouseUp;
+    public UnityEvent<Vector2> onMouseDown;
     public UnityEvent<Vector2> onMouseDrag;
 
     public void OnPointerEnter(Vector2 screenPos, Camera cam) {
-        onHover.Invoke();
+        onHover.Invoke(screenPos);
     }
 
     public void OnPointerExit(Vector2 screenPos, Camera cam) {
-        onHoverExit.Invoke();
+        onHoverExit.Invoke(screenPos);
     }
 
     public bool IsMouseInteractableAt(Vector2 screenPos, Camera cam) {
-        return isClickable;
+        return isClickable || isDraggable;
     }
 
     public bool OnPointerDown(Vector2 screenPos, Camera cam) {
-        if (onMouseDown.GetPersistentEventCount() == 0) return false;
-        onMouseDown.Invoke();
-        return true;
-    }
-    
-    public bool OnPointerUp(Vector2 screenPos, Camera cam) {
-        if (onMouseUp.GetPersistentEventCount() == 0) return false;
-        onMouseUp.Invoke();
+        if (!IsMouseInteractableAt(screenPos, cam)) {
+            return false;
+        }
+
+        if (isClickable) {
+            onMouseDown.Invoke(screenPos);
+        }
+
         return true;
     }
 
-    public bool OnPointerDrag(Vector2 screenPos, Camera cam) {
-        if (onMouseDrag.GetPersistentEventCount() == 0) return false;
-        if (isDraggable) {
-            Debug.Log("mfw i drag at screenPos");
-            Debug.Log(screenPos);
-            onMouseDrag.Invoke(screenPos);
-            return true;
-        }
-        else {
-            return false;
-        }
+    public void OnPointerUp(Vector2 screenPos, Camera cam) {
+        if (!isClickable) return;
+
+        onMouseUp.Invoke(screenPos);
+    }
+
+    public void OnPointerDrag(Vector2 screenPos, Camera cam) {
+        if (!isDraggable) return;
+
+        onMouseDrag.Invoke(screenPos);
     }
 }

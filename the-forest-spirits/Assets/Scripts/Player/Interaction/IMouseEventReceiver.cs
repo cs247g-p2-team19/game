@@ -23,25 +23,23 @@ public interface IMouseEventReceiver
      * By default, always returns false.
      */
     public bool OnPointerDown(Vector2 screenPos, Camera cam) {
-        return false;
+        return true;
     }
-    
+
     /**
      * This event fires when the mouse is released. Returns true
      * if the event was handled, and false otherwise.
      *
      * By default, always returns false.
      */
-    public bool OnPointerUp(Vector2 screenPos, Camera cam) {
-        return false;
-    }
+    public void OnPointerUp(Vector2 screenPos, Camera cam) { }
 
     /**
      * This event fires when the cursor appears over any area
      * where IsMouseInteractableAt returns true.
      */
     public void OnPointerEnter(Vector2 screenPos, Camera cam) { }
-    
+
     /**
      * This event fires when the cursor leaves any area
      * where IsMouseInteractableAt returns true.
@@ -51,14 +49,12 @@ public interface IMouseEventReceiver
     /**
      * This even fire when the cursor is down and drags; return false on default
      */
-    public bool OnPointerDrag(Vector2 screenPos, Camera cam) {
-     return false; 
-    }
+    public void OnPointerDrag(Vector2 screenPos, Camera cam) { }
 
     /**
      * Allows mouseovers to override the mouse animations while hovering.
      */
     public AnimatorOverrideController GetCustomAnimation() {
-     return null;
+        return null;
     }
 }

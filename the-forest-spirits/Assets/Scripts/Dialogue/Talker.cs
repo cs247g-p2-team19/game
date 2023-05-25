@@ -182,14 +182,14 @@ public class Talker : AutoMonoBehaviour, IMouseEventReceiver
     #region Mouse Events
 
     /** Triggers links when clicked */
-    public bool OnPointerUp(Vector2 screenPos, Camera cam) {
+    public void OnPointerUp(Vector2 screenPos, Camera cam) {
         if (!_talking || _currentConversation == null) {
-            return false;
+            return ;
         }
 
         int linkIndex = TMP_TextUtilities.FindIntersectingLink(textRef, screenPos, cam);
         if (linkIndex == -1) {
-            return false;
+            return ;
         }
 
         var info = textRef.textInfo.linkInfo[linkIndex];
@@ -197,7 +197,6 @@ public class Talker : AutoMonoBehaviour, IMouseEventReceiver
 
         _currentConversation.dialogue[_index].TriggerLink(linkId);
 
-        return true;
     }
 
     /** Shows the "clickable" cursor only if we're hovering over a link */
