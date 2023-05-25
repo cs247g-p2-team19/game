@@ -33,6 +33,7 @@ public class MouseManager : AutoMonoBehaviour
 
     // Stores the elements we're currently hovering over so we can trigger their on-hover-leave listeners
     private readonly HashSet<IMouseEventReceiver> _currentHovers = new();
+    private IMouseEventReceiver _lastClicked = null;
     private readonly RaycastHit2D[] _resultsBuf = new RaycastHit2D[20];
 
     #region Unity Events
@@ -72,10 +73,10 @@ public class MouseManager : AutoMonoBehaviour
             DoMouseDown(validClickables, screenPos);
         }
         else if (isDown && _pointerIsDown) {
-            DoMouseDrag(validClickables, screenPos);
+            DoMouseDrag(screenPos);
         }
         else if (!isDown && _pointerIsDown) {
-            DoMouseUp(validClickables, screenPos);
+            DoMouseUp(screenPos);
         }
 
         _pointerIsDown = isDown;
@@ -112,34 +113,32 @@ public class MouseManager : AutoMonoBehaviour
     /** Triggers OnPointerDown on the very first IMouseEventReceiver that handles it */
     private bool DoMouseDown(List<IMouseEventReceiver> clickables, Vector2 screenPos) {
         foreach (IMouseEventReceiver clickable in clickables) {
-            if (clickable.OnPointerDown(screenPos, mainCamera)) {
-                return true;
-            }
+            if (!clickable.OnPointerDown(screenPos, mainCamera)) continue;
+            _lastClicked = clickable;
+            return true;
         }
 
         return false;
     }
     
     /** Should trigger OnPointerDrag  */
-    private bool DoMouseDrag(List<IMouseEventReceiver> clickables, Vector2 screenPos) {
-        foreach (IMouseEventReceiver clickable in clickables) {
-            if (clickable.OnPointerDrag(screenPos, mainCamera)) {
-                return true;
-            }
+    private bool DoMouseDrag(Vector2 screenPos) {
+        if (_lastClicked == null) {
+            return false;
         }
 
-        return false;
+        _lastClicked.OnPointerDrag(screenPos, mainCamera);
+        return true;
     }
 
     /** Triggers OnPointerUp on the very first IMouseEventReceiver that handles it */
-    private bool DoMouseUp(List<IMouseEventReceiver> clickables, Vector2 screenPos) {
-        foreach (IMouseEventReceiver clickable in clickables) {
-            if (clickable.OnPointerUp(screenPos, mainCamera)) {
-                return true;
-            }
+    private bool DoMouseUp(Vector2 screenPos) {
+        if (_lastClicked == null) {
+            return false;
         }
 
-        return false;
+        _lastClicked.OnPointerUp(screenPos, mainCamera);
+        return true;
     }
 
     /** Updates the set of interactables we're hovering over and calls appropriate callbacks */
