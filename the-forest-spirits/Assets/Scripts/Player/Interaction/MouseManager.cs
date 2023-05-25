@@ -138,6 +138,7 @@ public class MouseManager : AutoMonoBehaviour
         }
 
         _lastClicked.OnPointerUp(screenPos, mainCamera);
+        _lastClicked = null;
         return true;
     }
 
