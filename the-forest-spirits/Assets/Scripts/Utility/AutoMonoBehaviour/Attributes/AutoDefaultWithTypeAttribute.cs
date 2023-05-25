@@ -20,6 +20,15 @@ public class AutoDefaultWithTypeAttribute : Attribute, IAutoAttribute
     }
 
     public bool Apply(Component target, FieldInfo field) {
+        if (field.FieldType.IsArray) {
+            Type inner = field.FieldType.GetElementType();
+            Object[] components = Object.FindObjectsOfType(inner);
+            if (components.Length == 0) return false;
+
+            field.SetValue(target, components);
+            return true;
+        }
+
         object found = Object.FindObjectOfType(Type);
         if (found.IsUnityNull()) return false;
         field.SetValue(target, found);
