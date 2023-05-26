@@ -2,61 +2,44 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Stencil : AutoMonoBehaviour
+public class Stencil : InventoryItem, IMouseAttachable
 {
-    public bool IsOverlapping {
-        get {
-            Bounds? overlapping = CombinedBounds;
-            if (!overlapping.HasValue) return false;
+    public string targetWord;
 
-            return UpperLimit.Encapsulates2D(overlapping.Value) && !LowerLimit.Encapsulates2D(overlapping.Value);
+    public GameObject cursorAttachment;
+
+    public GameObject thenSpawn;
+    public GameObject poof;
+
+    public override bool IsMouseInteractableAt(Vector2 screenPos, Camera cam, IMouseAttachable receiver) {
+        return receiver == null;
+    }
+
+    public bool OnTryAttach(MouseManager manager) {
+        GameObject go = manager.SetCursorAttachment(cursorAttachment);
+        go.GetComponentInChildren<TextMeshProUGUI>().text = targetWord;
+
+        return true;
+    }
+
+    public bool OnClickWhileAttached(List<IMouseEventReceiver> others, MouseManager manager) {
+        if (others.OfType<Word>().FirstOrDefault(w => w.CurrentWord.ToLower() == targetWord) is var word &&
+            word != null) {
+            var spawned = (GameObject) Instantiate(poof, transform, instantiateInWorldSpace: true);
+            spawned.GetComponent<Poof>().objectToCreate = thenSpawn;
+            spawned.transform.SetParent(transform.parent, worldPositionStays: true);
+            
+            manager.RemoveCursorAttachment();
+            Destroy(word.gameObject);
+            Destroy(gameObject);
+            return true;
         }
+
+        return false;
     }
-
-    private Bounds? CombinedBounds {
-        get {
-            return targetWords.Aggregate(null, (Bounds? b, Word w) => {
-                if (!b.HasValue) return w.Bounds;
-                b.Value.Encapsulate(w.Bounds);
-                return b;
-            });
-        }
-    }
-    
-    private Bounds UpperLimit => new Bounds(collider.bounds.center, collider.bounds.size * 1.1f);
-    private Bounds LowerLimit => new Bounds(collider.bounds.center, collider.bounds.size * 0.7f);
-
-    private void LateUpdate() {
-        switch (IsOverlapping) {
-            case true when !_wasOverlapping:
-                _wasOverlapping = true;
-                onReachTarget.Invoke(this);
-                break;
-            case false when _wasOverlapping:
-                _wasOverlapping = false;
-                onLeaveTarget.Invoke(this);
-                break;
-        }
-    }
-
-    private void OnDrawGizmosSelected() {
-        Gizmos.color = new Color(0.4f, 0.7f, 0.4f);
-        Gizmos.DrawWireCube(UpperLimit.center, UpperLimit.size);
-        Gizmos.color = new Color(0.7f, 0.4f, 0.4f);
-        Gizmos.DrawWireCube(LowerLimit.center, LowerLimit.size);
-    }
-
-    [Required]
-    public Collider2D collider;
-
-    public Word[] targetWords;
-
-    public UnityEvent<Stencil> onReachTarget;
-    public UnityEvent<Stencil> onLeaveTarget;
-
-    private bool _wasOverlapping;
 }

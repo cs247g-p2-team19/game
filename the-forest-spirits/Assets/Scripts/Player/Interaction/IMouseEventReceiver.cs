@@ -10,10 +10,10 @@ public interface IMouseEventReceiver
      * this lets you implement that. Return true if the object is
      * clickable at the current screenPosition, else false.
      *
-     * By default, always returns true.
+     * By default, returns true iff there's no receiver.
      */
-    public bool IsMouseInteractableAt(Vector2 screenPos, Camera cam) {
-        return true;
+    public bool IsMouseInteractableAt(Vector2 screenPos, Camera cam, IMouseAttachable receiver = null) {
+        return receiver == null;
     }
 
     /**

@@ -24,12 +24,13 @@ public class MouseEvents : AutoMonoBehaviour, IMouseEventReceiver
         onHoverExit.Invoke(screenPos);
     }
 
-    public bool IsMouseInteractableAt(Vector2 screenPos, Camera cam) {
+    public bool IsMouseInteractableAt(Vector2 screenPos, Camera cam, IMouseAttachable receiver) {
         return isClickable || isDraggable;
     }
 
     public bool OnPointerDown(Vector2 screenPos, Camera cam) {
-        if (!IsMouseInteractableAt(screenPos, cam)) {
+        IMouseEventReceiver self = this;
+        if (!self.IsMouseInteractableAt(screenPos, cam)) {
             return false;
         }
 

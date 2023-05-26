@@ -3,7 +3,12 @@ guid: f0de88d3fe78b49d190d74c52be51922
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - onUnlockSound: {instanceID: 0}
+  - onUseSound: {instanceID: 0}
+  - cursorAttachment: {instanceID: 0}
+  - thenSpawn: {instanceID: 0}
+  - poof: {fileID: 4811982815344795881, guid: 075d5aaa3713f4de7ac160ad17578605, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

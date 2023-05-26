@@ -10,6 +10,8 @@ public class MouseManager : AutoMonoBehaviour
 {
     private static readonly int MouseDown = Animator.StringToHash("MouseDown");
     private static readonly int IsHovering = Animator.StringToHash("IsHovering");
+    
+    public IMouseAttachable CurrentAttached { private set; get; }
 
     #region Unity fields
 
@@ -26,6 +28,7 @@ public class MouseManager : AutoMonoBehaviour
     public ForestPlayerController controller;
 
     #endregion
+    
 
     // Since the animation controller can be overridden, this stores the original one
     private RuntimeAnimatorController _originalController;
@@ -69,14 +72,16 @@ public class MouseManager : AutoMonoBehaviour
         UpdateHovers(validClickables, screenPos);
 
         var overrideController = validClickables.Count == 0 ? null : validClickables[0].GetCustomAnimation();
-        if (isDown && !_pointerIsDown) {
-            DoMouseDown(validClickables, screenPos);
-        }
-        else if (isDown && _pointerIsDown) {
-            DoMouseDrag(screenPos);
-        }
-        else if (!isDown && _pointerIsDown) {
-            DoMouseUp(screenPos);
+        switch (isDown) {
+            case true when !_pointerIsDown:
+                DoMouseDown(validClickables, screenPos);
+                break;
+            case true when _pointerIsDown:
+                DoMouseDrag(screenPos);
+                break;
+            case false when _pointerIsDown:
+                DoMouseUp(screenPos);
+                break;
         }
 
         _pointerIsDown = isDown;
@@ -101,7 +106,7 @@ public class MouseManager : AutoMonoBehaviour
         for (int i = 0; i < size; i++) {
             Collider2D collider = _resultsBuf[i].collider;
             foreach (var clickable in collider.GetComponentsInParent<IMouseEventReceiver>()) {
-                bool validHover = clickable.IsMouseInteractableAt(screenPos, mainCamera);
+                bool validHover = clickable.IsMouseInteractableAt(screenPos, mainCamera, CurrentAttached);
                 if (!validHover) continue;
                 clickables.Add(clickable);
             }
@@ -112,9 +117,16 @@ public class MouseManager : AutoMonoBehaviour
 
     /** Triggers OnPointerDown on the very first IMouseEventReceiver that handles it */
     private bool DoMouseDown(List<IMouseEventReceiver> clickables, Vector2 screenPos) {
+        if (CurrentAttached != null) {
+            CurrentAttached.OnClickWhileAttached(clickables, this);
+            return true;
+        }
         foreach (IMouseEventReceiver clickable in clickables) {
             if (!clickable.OnPointerDown(screenPos, mainCamera)) continue;
             _lastClicked = clickable;
+            if (clickable is IMouseAttachable receiver && CurrentAttached == null && receiver.OnTryAttach(this)) {
+                CurrentAttached = receiver;
+            }
             return true;
         }
 
@@ -160,4 +172,26 @@ public class MouseManager : AutoMonoBehaviour
     }
 
     #endregion
+
+    public GameObject SetCursorAttachment(GameObject cursorAttachment) {
+        RemoveCursorAttachment();
+        cursorAttachment = Instantiate(cursorAttachment);
+        RectTransform rt = cursorAttachment.GetComponent<RectTransform>();
+        if (rt == null) {
+            rt = cursorAttachment.AddComponent<RectTransform>();
+        }
+
+        rt.SetParent(cursor, worldPositionStays: true);
+        rt.pivot = new Vector2(1, -1);
+        rt.anchoredPosition = new Vector3(rt.rect.width / 2, -rt.rect.height / 2);
+        cursorAttachment.tag = "Cursor Attachment";
+        return cursorAttachment;
+    }
+
+    public void RemoveCursorAttachment() {
+        GameObject go = GameObject.FindWithTag("Cursor Attachment");
+        if (go != null) {
+            Destroy(go);
+        }
+    }
 }

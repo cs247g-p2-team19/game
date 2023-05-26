@@ -79,8 +79,8 @@ public class InventoryItem : AutoMonoBehaviour, IMouseEventReceiver
         return true;
     }
 
-    public bool IsMouseInteractableAt(Vector2 screenPos, Camera cam) {
-        return onUse.GetPersistentEventCount() > 0;
+    public virtual bool IsMouseInteractableAt(Vector2 screenPos, Camera cam, IMouseAttachable receiver) {
+        return onUse.GetPersistentEventCount() > 0 && receiver == null;
     }
 
     public void Unlock() {
