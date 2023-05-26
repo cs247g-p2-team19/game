@@ -200,8 +200,8 @@ public class Talker : AutoMonoBehaviour, IMouseEventReceiver
     }
 
     /** Shows the "clickable" cursor only if we're hovering over a link */
-    public bool IsMouseInteractableAt(Vector2 screenPos, Camera cam) {
-        if (!_talking || _currentConversation == null) {
+    public bool IsMouseInteractableAt(Vector2 screenPos, Camera cam, IMouseAttachable receiver) {
+        if (!_talking || _currentConversation == null || receiver != null) {
             return false;
         }
 
