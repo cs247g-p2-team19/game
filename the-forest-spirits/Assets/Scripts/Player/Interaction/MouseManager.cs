@@ -182,8 +182,10 @@ public class MouseManager : AutoMonoBehaviour
         }
 
         rt.SetParent(cursor, worldPositionStays: true);
-        rt.pivot = new Vector2(1, -1);
-        rt.anchoredPosition = new Vector3(rt.rect.width / 2, -rt.rect.height / 2);
+        rt.anchorMin = Vector2.right;
+        rt.anchorMin = Vector2.right;
+        rt.pivot = new Vector2(0.5f, 0.5f);
+        rt.anchoredPosition = new Vector3(rt.rect.width / 4, -rt.rect.height / 4);
         cursorAttachment.tag = "Cursor Attachment";
         return cursorAttachment;
     }
