@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 /**
  * Manages the items in the inventory.
@@ -14,8 +15,12 @@ public class Inventory : AutoMonoBehaviour
 
     public GameObject display;
     
-    private List<InventorySpot> Spots => FindObjectsByType<InventorySpot>(FindObjectsInactive.Include, FindObjectsSortMode.None).ToList();
-
+    //private List<InventorySpot> Spots => FindObjectsByType<InventorySpot>(FindObjectsInactive.Include, FindObjectsSortMode.None).ToList();
+    //Recaculating the Spots each time causes some issues -- for now it's easier to just manual drag all the InventorySpots in I think. Will
+    //to find a fix later
+    [FormerlySerializedAs("Spots")]
+    public List<InventorySpot> spots;
+    
     private Coroutine _showHideRoutine;
     private Vector3 _scale;
 
@@ -63,11 +68,13 @@ public class Inventory : AutoMonoBehaviour
             StopCoroutine(_showHideRoutine);
         }
 
+        
         transform.localScale = Vector3.zero;
         display.SetActive(true);
         var lerpCoro = this.AutoLerp(Vector3.zero, _scale, 0.5f,
             Utility.EaseOut(Utility.EaseInOut<Vector3>(Vector3.Lerp)), sc => transform.localScale = sc);
         _showHideRoutine = this.WaitThen(lerpCoro, () => { _showHideRoutine = null; });
+        RenderInventory();
     }
 
     public void Hide() {
@@ -87,11 +94,9 @@ public class Inventory : AutoMonoBehaviour
     }
 
     public void RenderInventory() {
-        Debug.Log("uh");
         for (int i = 0; i < UnlockedItems.Count; i++) {
             InventoryItem item = UnlockedItems[i];
-            Debug.Log(item.itemId);
-            item.transform.position = Spots[i].gameObject.transform.position;
+            item.transform.position = spots[i].gameObject.transform.position;
         }
     }
 
