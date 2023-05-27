@@ -9,13 +9,12 @@ public class Inventory : AutoMonoBehaviour
 {
     public bool IsOpen { get; private set; }
 
-    public List<InventoryItem> Items => FindObjectsOfType<InventoryItem>().ToList();
+    public List<InventoryItem> Items => FindObjectsByType<InventoryItem>(FindObjectsInactive.Include, FindObjectsSortMode.None).ToList();
     public List<InventoryItem> UnlockedItems => Items.Where(item => !item.isLocked).ToList();
 
     public GameObject display;
     
-    [AutoDefaultInChildren]
-    public InventorySpot[] spots;
+    private List<InventorySpot> Spots => FindObjectsByType<InventorySpot>(FindObjectsInactive.Include, FindObjectsSortMode.None).ToList();
 
     private Coroutine _showHideRoutine;
     private Vector3 _scale;
@@ -26,12 +25,13 @@ public class Inventory : AutoMonoBehaviour
         _scale = transform.localScale;
         display.SetActive(true);
         
-        foreach (var item in GetComponentsInChildren<InventoryItem>()) {
+        foreach (var item in FindObjectsByType<InventoryItem>(FindObjectsInactive.Include,FindObjectsSortMode.None)) {
             item.Setup();
             Items.Add(item);
         }
 
         display.SetActive(false);
+        Lil.Inventory.RenderInventory();
     }
 
     #endregion
@@ -84,6 +84,15 @@ public class Inventory : AutoMonoBehaviour
             _showHideRoutine = null;
             display.SetActive(false);
         });
+    }
+
+    public void RenderInventory() {
+        Debug.Log("uh");
+        for (int i = 0; i < UnlockedItems.Count; i++) {
+            InventoryItem item = UnlockedItems[i];
+            Debug.Log(item.itemId);
+            item.transform.position = Spots[i].gameObject.transform.position;
+        }
     }
 
     #endregion
