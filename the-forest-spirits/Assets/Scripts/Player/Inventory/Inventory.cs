@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 /**
@@ -8,10 +9,13 @@ public class Inventory : AutoMonoBehaviour
 {
     public bool IsOpen { get; private set; }
 
-    public readonly HashSet<InventoryItem> Items = new();
-    public readonly HashSet<InventoryItem> UnlockedItems = new();
+    public List<InventoryItem> Items => FindObjectsOfType<InventoryItem>().ToList();
+    public List<InventoryItem> UnlockedItems => Items.Where(item => !item.isLocked).ToList();
 
     public GameObject display;
+    
+    [AutoDefaultInChildren]
+    public InventorySpot[] spots;
 
     private Coroutine _showHideRoutine;
     private Vector3 _scale;
@@ -21,9 +25,10 @@ public class Inventory : AutoMonoBehaviour
     private void Awake() {
         _scale = transform.localScale;
         display.SetActive(true);
-        foreach (var spot in GetComponentsInChildren<InventoryItem>()) {
-            spot.Setup();
-            Items.Add(spot);
+        
+        foreach (var item in GetComponentsInChildren<InventoryItem>()) {
+            item.Setup();
+            Items.Add(item);
         }
 
         display.SetActive(false);
@@ -33,12 +38,6 @@ public class Inventory : AutoMonoBehaviour
 
 
     #region Item Management
-
-    public void Unlock(InventoryItem item) {
-        UnlockedItems.Add(item);
-        item.Unlock();
-    }
-
     public bool IsItemUnlocked(InventoryItem item) {
         return UnlockedItems.Contains(item);
     }
