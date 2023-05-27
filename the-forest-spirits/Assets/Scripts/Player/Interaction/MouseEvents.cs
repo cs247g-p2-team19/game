@@ -52,4 +52,12 @@ public class MouseEvents : AutoMonoBehaviour, IMouseEventReceiver
 
         onMouseDrag.Invoke(screenPos);
     }
+
+    public void SetClickable(bool setter) {
+        isClickable = setter;
+    }
+
+    public void SetDraggable(bool setter) {
+        isDraggable = setter;
+    }
 }

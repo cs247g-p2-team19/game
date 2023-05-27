@@ -11,7 +11,7 @@ public abstract class AutoMonoBehaviour : MonoBehaviour
     protected virtual void OnValidate() {
         foreach (var field in GetType().GetFields()) {
             object value = field.GetValue(this);
-            if (!value.IsUnityNull()) continue;
+            if (!value.IsUnityNull() && !field.GetType().IsArray) continue;
 
             var attributes = field.GetCustomAttributes(true);
             bool applied =

@@ -33,8 +33,9 @@ public class InventoryItem : AutoMonoBehaviour, IMouseEventReceiver
     public AudioClip onUnlockSound;
     public AudioClip onUseSound;
 
+    [FormerlySerializedAs("startLocked")]
     [Tooltip("Whether or not the user starts with this item. True if they start without it.")]
-    public bool startLocked = true;
+    public bool isLocked = true;
 
     [Header("Events")]
     public UnityEvent<InventoryItem> onUnlock;
@@ -46,7 +47,7 @@ public class InventoryItem : AutoMonoBehaviour, IMouseEventReceiver
     #endregion
 
     private bool _setupDone = false;
-
+    
     private void OnDestroy() {
         _registry.Remove(itemId);
     }
@@ -61,7 +62,7 @@ public class InventoryItem : AutoMonoBehaviour, IMouseEventReceiver
 
         _registry[itemId] = this;
 
-        if (startLocked) {
+        if (isLocked) {
             Lock();
         }
     }

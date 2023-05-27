@@ -43,7 +43,7 @@ public class Collectable : AutoMonoBehaviour
         onCollect.Invoke();
         Lil.Guy.onCollect.Invoke(this);
         if (CollectsItem) {
-            Lil.Inventory.Unlock(Item);
+            Item.Unlock();
         }
         Destroy(gameObject);
     }

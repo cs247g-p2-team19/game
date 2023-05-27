@@ -14,8 +14,11 @@ public class AutoDefaultInChildrenAttribute : Attribute, IAutoAttribute
         if (field.FieldType.IsArray) {
             Component[] components = target.GetComponentsInChildren(field.FieldType.GetElementType());
             if (components.Length == 0) return false;
+
+            Array componentsTyped = Array.CreateInstance(field.FieldType.GetElementType(), components.Length);
+            Array.Copy(components, componentsTyped, components.Length);
             
-            field.SetValue(target, components);
+            field.SetValue(target, componentsTyped);
             return true;
         }
         
