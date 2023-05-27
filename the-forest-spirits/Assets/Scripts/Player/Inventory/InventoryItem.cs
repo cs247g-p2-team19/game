@@ -59,6 +59,7 @@ public class InventoryItem : AutoMonoBehaviour, IMouseEventReceiver
         _setupDone = true;
         Debug.Assert(!_registry.ContainsKey(itemId), "Multiple items with the same ID" + itemId + " detected!");
         Debug.Assert(itemId != "", "Item ID may not be blank!");
+        Debug.Log("mfw I am getting setup" + itemId);
 
         _registry[itemId] = this;
 
@@ -92,9 +93,13 @@ public class InventoryItem : AutoMonoBehaviour, IMouseEventReceiver
         gameObject.SetActive(true);
         onUnlock.Invoke(this);
         Lil.Guy.onUnlockItem.Invoke(this);
+        this.isLocked = false;
+        Lil.Inventory.RenderInventory();
     }
 
     public void Lock() {
         gameObject.SetActive(false);
+        Lil.Inventory.RenderInventory();
+        this.isLocked = true;
     }
 }

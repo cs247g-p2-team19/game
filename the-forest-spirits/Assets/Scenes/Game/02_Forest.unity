@@ -584,6 +584,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &144709450 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 679182453, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
+  m_PrefabInstance: {fileID: 551262015}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f653e9ebcf1840728a679f1fa4296d27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &176607750
 GameObject:
   m_ObjectHideFlags: 0
@@ -2513,6 +2524,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: "Ghost\u2122"
       objectReference: {fileID: 0}
+    - target: {fileID: 2810034674861128692, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 1659491085}
+    - target: {fileID: 2810034674861128692, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
+      propertyPath: cameraFocus
+      value: 
+      objectReference: {fileID: 1659491089}
     - target: {fileID: 2810034674861128693, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -2557,22 +2576,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5112743404321826105, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 1659491085}
     - target: {fileID: 8146837320323577551, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1659491085}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
---- !u!4 &551262016 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2810034674861128693, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
-  m_PrefabInstance: {fileID: 551262015}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &551262018 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 418523415, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
-  m_PrefabInstance: {fileID: 551262015}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &606001567
 GameObject:
   m_ObjectHideFlags: 0
@@ -2977,17 +2990,6 @@ MonoBehaviour:
   parallaxFactor: 0.4
   lockY: 1
   lockZ: 1
---- !u!114 &679182453 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 679182453, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
-  m_PrefabInstance: {fileID: 551262015}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f653e9ebcf1840728a679f1fa4296d27, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &718000730
 GameObject:
   m_ObjectHideFlags: 0
@@ -4200,6 +4202,11 @@ MonoBehaviour:
   parallaxFactor: 0.5
   lockY: 1
   lockZ: 1
+--- !u!1 &942259752 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 418523415, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
+  m_PrefabInstance: {fileID: 551262015}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &958864840
 GameObject:
   m_ObjectHideFlags: 0
@@ -6473,7 +6480,7 @@ PrefabInstance:
     - target: {fileID: 1474969047897440415, guid: ed8d47900e17746359c424d91e341227, type: 3}
       propertyPath: anchor
       value: 
-      objectReference: {fileID: 551262016}
+      objectReference: {fileID: 2810034675395538122}
     - target: {fileID: 1474969048569328416, guid: ed8d47900e17746359c424d91e341227, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -7119,7 +7126,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 679182453}
+        - m_Target: {fileID: 144709450}
           m_TargetAssemblyTypeName: InventoryItem, Assembly-CSharp
           m_MethodName: Lock
           m_Mode: 1
@@ -7131,7 +7138,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 551262018}
+        - m_Target: {fileID: 942259752}
           m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_MethodName: SetActive
           m_Mode: 6
@@ -7874,3 +7881,8 @@ MonoBehaviour:
   parallaxFactor: 0.1
   lockY: 1
   lockZ: 1
+--- !u!4 &2810034675395538122 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2810034674861128693, guid: 4ad92be3259e245dbbd708441400fed0, type: 3}
+  m_PrefabInstance: {fileID: 551262015}
+  m_PrefabAsset: {fileID: 0}
