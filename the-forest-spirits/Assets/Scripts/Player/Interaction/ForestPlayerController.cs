@@ -110,29 +110,12 @@ public class ForestPlayerController : PlayerController
     private void OnInteract(InputAction.CallbackContext context) {
         if (Lil.Inventory.IsOpen) return;
 
-        Vector2 cameraPos = _pointerLocation.ReadValue<Vector2>();
-        Ray toCast = mainCamera.ScreenPointToRay(cameraPos);
-        var hit = Physics2D.Raycast(toCast.origin, toCast.direction, Mathf.Infinity, LayerMask.GetMask("Clickables"));
-        IMouseEventReceiver mouseEventReceiver = null;
-
-        //raycast for hit, if the hit object has a collider, set mouseeventreceiver to the colliders mouseeventreceiver
-        //if there's an onpointerdown function, then return
-        if (hit.collider != null) {
-            mouseEventReceiver = hit.collider.GetComponentInParent<IMouseEventReceiver>();
-        }
-
-        if (mouseEventReceiver != null && mouseEventReceiver.OnPointerDown(cameraPos, mainCamera)) {
-            return;
-        }
-
         Lil.Guy.TriggerInteractions();
     }
 
     private void OnInventory(InputAction.CallbackContext context) {
         if (_stopped) return;
-
-        Debug.Log("Triggered inventory");
-
+        
         Lil.Inventory.Toggle();
 
         animator.SetBool(InventoryOpen, Lil.Inventory.IsOpen);
