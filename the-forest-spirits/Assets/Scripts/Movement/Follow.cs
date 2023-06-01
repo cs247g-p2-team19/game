@@ -85,6 +85,10 @@ public class Follow : AutoMonoBehaviour
         anchor = newAnchor;
     }
 
+    public void SetOffset(Vector3 newOffset) {
+        offset = newOffset;
+    }
+
     #endregion
 
     #region Private helper functions

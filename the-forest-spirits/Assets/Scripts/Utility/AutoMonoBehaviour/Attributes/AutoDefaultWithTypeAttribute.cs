@@ -13,23 +13,8 @@ using Object = UnityEngine.Object;
 [AttributeUsage(AttributeTargets.Field)]
 public class AutoDefaultWithTypeAttribute : Attribute, IAutoAttribute
 {
-    public Type Type { get; private set; }
-
-    public AutoDefaultWithTypeAttribute(Type type) {
-        Type = type;
-    }
-
     public bool Apply(Component target, FieldInfo field) {
-        if (field.FieldType.IsArray) {
-            Type inner = field.FieldType.GetElementType();
-            Object[] components = Object.FindObjectsOfType(inner);
-            if (components.Length == 0) return false;
-
-            field.SetValue(target, components);
-            return true;
-        }
-
-        object found = Object.FindObjectOfType(Type);
+        object found = Object.FindObjectOfType(field.FieldType);
         if (found.IsUnityNull()) return false;
         field.SetValue(target, found);
         return true;

@@ -6,15 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/work room.unity
+    path: Assets/Scenes/Game/01_Prologue01_WorkRoom.unity
     guid: 0852a636b50ac4542942ce4b81eb01fd
   - enabled: 1
-    path: Assets/Scenes/Game/01_Prologue.unity
-    guid: 63eb961735cdf47b2aefe23caaca45db
-  - enabled: 1
-    path: Assets/Scenes/Game/02_Forest.unity
-    guid: 17b3a76b0f1804c628e6d0390a68502a
-  - enabled: 1
-    path: Assets/Scenes/Game/XX_Teaser.unity
-    guid: 854b2dd7231e344fbbd4d0ff5d9c7600
+    path: Assets/Scenes/Game/02_Prologue02_GhostCity.unity
+    guid: ecda97e04fb204a5ca22c3c4e9dfcc57
   m_configObjects: {}
