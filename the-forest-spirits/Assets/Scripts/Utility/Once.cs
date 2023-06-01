@@ -5,6 +5,8 @@ public class Once : AutoMonoBehaviour
 {
     public UnityEvent onTrigger;
 
+    public float delay = 0f;
+
     [Header("Debug")]
     [SerializeField, ReadOnly]
     private bool _didTrigger;
@@ -13,6 +15,13 @@ public class Once : AutoMonoBehaviour
         if (_didTrigger) return;
 
         _didTrigger = true;
-        onTrigger.Invoke();
+        if (delay == 0) {
+            onTrigger.Invoke();
+        }
+        else {
+            this.WaitThen(delay, () => {
+                onTrigger.Invoke();
+            });
+        }
     }
 }
