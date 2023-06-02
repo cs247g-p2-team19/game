@@ -21,7 +21,6 @@ public class KeepPaperAway : AutoMonoBehaviour
         _t += Time.deltaTime;
         if (transform.position.x - player.transform.position.x < distanceThreshold) {
             _moveAwayT = 0.5f;
-            Debug.Log("CLOSE!!");
         }
 
         float isDown = Math.Abs(transform.position.y - ground.transform.position.y) < 0.25 ? 0f : 1f;
