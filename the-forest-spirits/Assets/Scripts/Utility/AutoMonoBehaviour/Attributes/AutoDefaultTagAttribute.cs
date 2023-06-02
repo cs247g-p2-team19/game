@@ -18,16 +18,6 @@ public class AutoDefaultTagAttribute : Attribute, IAutoAttribute
     }
 
     public bool Apply(Component target, FieldInfo field) {
-        if (field.FieldType.IsArray) {
-            Type inner = field.FieldType.GetElementType();
-            Component[] components = GameObject.FindGameObjectsWithTag(Tag).SelectMany((go) => go.GetComponents(inner))
-                .ToArray();
-            if (components.Length == 0) return false;
-
-            field.SetValue(target, components);
-            return true;
-        }
-
         object found = GameObject.FindGameObjectWithTag(Tag).GetComponent(field.FieldType);
         if (found.IsUnityNull()) return false;
 

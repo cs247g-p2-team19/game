@@ -11,17 +11,6 @@ using UnityEngine;
 public class AutoDefaultInChildrenAttribute : Attribute, IAutoAttribute
 {
     public bool Apply(Component target, FieldInfo field) {
-        if (field.FieldType.IsArray) {
-            Component[] components = target.GetComponentsInChildren(field.FieldType.GetElementType());
-            if (components.Length == 0) return false;
-
-            Array componentsTyped = Array.CreateInstance(field.FieldType.GetElementType(), components.Length);
-            Array.Copy(components, componentsTyped, components.Length);
-            
-            field.SetValue(target, componentsTyped);
-            return true;
-        }
-        
         object component = target.GetComponentInChildren(field.FieldType);
         if (component.IsUnityNull()) return false;
         field.SetValue(target, component);
