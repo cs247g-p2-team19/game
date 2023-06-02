@@ -27,7 +27,7 @@ public class KeyValueStore : AutoMonoBehaviour
     }
 
     public void Set(KVStoreKey key, string value) {
-        string oldValue = _values[key];
+        string oldValue = Get(key);
         _values[key] = value;
         onChange.Invoke(key, oldValue, value);
     }
