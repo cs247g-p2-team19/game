@@ -49,6 +49,7 @@ public class ForestPlayerController : PlayerController
     private InputAction _interactAction;
     private InputAction _dashAction;
     private InputAction _inventoryAction;
+    private InputAction _escapeAction;
 
     private InputAction _pointerLocation;
 
@@ -68,9 +69,11 @@ public class ForestPlayerController : PlayerController
         _dashAction = _map.FindAction("Dash");
         _inventoryAction = _map.FindAction("Inventory");
         _pointerLocation = _map.FindAction("PointerLocation");
+        _escapeAction = _map.FindAction("Escape");
 
         _jumpAction.performed += OnJump;
         _inventoryAction.performed += OnInventory;
+        _escapeAction.performed += OnEscape;
 
         _map.Enable();
     }
@@ -78,6 +81,7 @@ public class ForestPlayerController : PlayerController
     private void OnDisable() {
         _jumpAction.performed -= OnJump;
         _inventoryAction.performed -= OnInventory;
+        _escapeAction.performed -= OnEscape;
 
         _map.Disable();
     }
@@ -118,5 +122,9 @@ public class ForestPlayerController : PlayerController
         else {
             cameraFocus.Unfocus(inventoryFocus);
         }
+    }
+
+    private void OnEscape(InputAction.CallbackContext context) {
+        EscapeStack.Instance.DoEscape();
     }
 }
