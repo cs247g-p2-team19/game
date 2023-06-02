@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class KeyValueStore : AutoMonoBehaviour
 {
@@ -14,6 +15,8 @@ public class KeyValueStore : AutoMonoBehaviour
         }
     }
 
+    public UnityEvent<KVStoreKey, string, string> onChange;
+
     private static KeyValueStore _instance;
     private static bool _hasInstance;
 
@@ -24,7 +27,9 @@ public class KeyValueStore : AutoMonoBehaviour
     }
 
     public void Set(KVStoreKey key, string value) {
+        string oldValue = _values[key];
         _values[key] = value;
+        onChange.Invoke(key, oldValue, value);
     }
 
     public void Delete(KVStoreKey key) {
