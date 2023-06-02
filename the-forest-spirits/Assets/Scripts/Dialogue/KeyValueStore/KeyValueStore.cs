@@ -15,7 +15,7 @@ public class KeyValueStore : AutoMonoBehaviour
         }
     }
 
-    public UnityEvent<KVStoreKey, string, string> onChange;
+    public UnityEvent<KVStoreKey, string, string> onChange = new();
 
     private static KeyValueStore _instance;
     private static bool _hasInstance;
