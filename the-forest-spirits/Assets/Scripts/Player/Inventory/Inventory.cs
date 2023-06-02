@@ -75,9 +75,16 @@ public class Inventory : AutoMonoBehaviour
             Utility.EaseOut(Utility.EaseInOut<Vector3>(Vector3.Lerp)), sc => transform.localScale = sc);
         _showHideRoutine = this.WaitThen(lerpCoro, () => { _showHideRoutine = null; });
         RenderInventory();
+        
+        EscapeStack.Instance.AddEscape(OnUndo);
+    }
+
+    private void OnUndo() {
+        if (IsOpen) Hide();
     }
 
     public void Hide() {
+        EscapeStack.Instance.RemoveEscape(OnUndo);
         IsOpen = false;
         if (_showHideRoutine != null) {
             StopCoroutine(_showHideRoutine);

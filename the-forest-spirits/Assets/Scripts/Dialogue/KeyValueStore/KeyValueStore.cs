@@ -14,11 +14,11 @@ public class KeyValueStore : AutoMonoBehaviour
             return _instance;
         }
     }
-
-    public UnityEvent<KVStoreKey, string, string> onChange = new();
-
     private static KeyValueStore _instance;
     private static bool _hasInstance;
+
+
+    public UnityEvent<KVStoreKey, string, string> onChange = new();
 
     private Dictionary<KVStoreKey, string> _values = new();
 
