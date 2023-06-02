@@ -35,10 +35,7 @@ public class Player : AutoMonoBehaviour
 
     [AutoDefaultInChildren, Required]
     public new AudioSource audio;
-
-    // Keeps track of what we're overlapping with for when the player later hits the Interact button.
-    private Interactable _overlappingInteractable = null;
-
+    
     #region Unity Events
 
     private void Start() {
@@ -66,29 +63,8 @@ public class Player : AutoMonoBehaviour
             collectable.Touch();
             return;
         }
-
-        var interactable = other.gameObject.GetComponent<Interactable>();
-        if (interactable != null && interactable.isCurrentlyInteractable) {
-            if (_overlappingInteractable == null) {
-                ShowInteractablePrompt();
-            }
-
-            _overlappingInteractable = interactable;
-        }
     }
-
-    /** Unsets interactions when we leave them */
-    private void OnTriggerExit2D(Collider2D other) {
-        var interactable = other.gameObject.GetComponent<Interactable>();
-        if (interactable != null) {
-            if (_overlappingInteractable != null) {
-                HideInteractablePrompt();
-            }
-
-            _overlappingInteractable = null;
-        }
-    }
-
+    
     #endregion
 
     #region Interactables
@@ -100,19 +76,7 @@ public class Player : AutoMonoBehaviour
     private void HideInteractablePrompt() {
         interactPopup.FadeOut();
     }
-
-    /** Can be called to trigger an interactable */
-    public void TriggerInteractions() {
-        if (_overlappingInteractable != null) {
-            OnInteract(_overlappingInteractable);
-        }
-    }
-
-
-    private void OnInteract(Interactable interactable) {
-        interactable.Interact();
-    }
-
+    
     #endregion
 
     #region Audio

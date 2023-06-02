@@ -70,7 +70,6 @@ public class ForestPlayerController : PlayerController
         _pointerLocation = _map.FindAction("PointerLocation");
 
         _jumpAction.performed += OnJump;
-        _interactAction.performed += OnInteract;
         _inventoryAction.performed += OnInventory;
 
         _map.Enable();
@@ -78,7 +77,6 @@ public class ForestPlayerController : PlayerController
 
     private void OnDisable() {
         _jumpAction.performed -= OnJump;
-        _interactAction.performed -= OnInteract;
         _inventoryAction.performed -= OnInventory;
 
         _map.Disable();
@@ -106,13 +104,7 @@ public class ForestPlayerController : PlayerController
 
         Debug.Log("Jumped!");
     }
-
-    private void OnInteract(InputAction.CallbackContext context) {
-        if (Lil.Inventory.IsOpen) return;
-
-        Lil.Guy.TriggerInteractions();
-    }
-
+    
     private void OnInventory(InputAction.CallbackContext context) {
         if (_stopped) return;
         

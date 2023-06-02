@@ -511,7 +511,6 @@ GameObject:
   - component: {fileID: 290284916}
   - component: {fileID: 290284915}
   - component: {fileID: 290284918}
-  - component: {fileID: 290284917}
   - component: {fileID: 290284919}
   - component: {fileID: 290284920}
   - component: {fileID: 290284921}
@@ -592,35 +591,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &290284917
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 290284914}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8787fea94cd354dc7935fccbf1e3680c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isCurrentlyInteractable: 1
-  onInteract:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 290284922}
-        m_TargetAssemblyTypeName: Talker, Assembly-CSharp
-        m_MethodName: OnInteract
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  collider: {fileID: 290284918}
 --- !u!61 &290284918
 BoxCollider2D:
   m_ObjectHideFlags: 0
