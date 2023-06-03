@@ -45,6 +45,9 @@ public class InventoryItem : AutoMonoBehaviour, IMouseEventReceiver
     [Tooltip("Invoked when this is used in the inventory.")]
     public UnityEvent<InventoryItem> onUse;
 
+    [Tooltip("Is this a note. Never before seen functionality")]
+    public bool isNote;
+
     #endregion
 
     private bool _setupDone = false;
