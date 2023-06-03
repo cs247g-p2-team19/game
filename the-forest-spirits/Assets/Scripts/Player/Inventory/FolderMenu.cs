@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FolderMenu : AutoMonoBehaviour
+public class FolderMenu : AutoMonoBehaviour, IMouseEventReceiver
 {
     // Start is called before the first frame update
     
@@ -13,8 +13,20 @@ public class FolderMenu : AutoMonoBehaviour
     private static readonly int Open = Animator.StringToHash("Open");
 
 
-    public void FolderInteract() {
-        animator.SetBool(Open, !IsOpen);
+    public void OpenFolder() {
+        animator.SetBool(Open, true);
     }
-    
+
+    public void CloseFolder() {
+        animator.SetBool(Open, false);
+    }
+
+    public bool IsMouseInteractableAt(Vector2 screenPos, Camera cam, IMouseAttachable receiver = null) {
+        return receiver == null && !IsOpen;
+    }
+
+    public bool OnPointerDown(Vector2 screenPos, Camera cam) {
+        OpenFolder();
+        return true;
+    }
 }
