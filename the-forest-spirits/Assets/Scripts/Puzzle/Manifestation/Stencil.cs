@@ -54,6 +54,8 @@ public class Stencil : InventoryItem, IMouseAttachable
             //}
         }
 
+        // TODO: Play some kind of "wrong" sound
+        manager.RemoveCursorAttachment();
         return false;
     }
 }
