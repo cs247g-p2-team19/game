@@ -124,6 +124,22 @@ public class ForestPlayerController : PlayerController
         }
     }
 
+    public void ManualInventoryToggle() {
+        if (_stopped) return;
+        
+        Lil.Inventory.Toggle();
+
+        animator.SetBool(InventoryOpen, Lil.Inventory.IsOpen);
+
+        if (Lil.Inventory.IsOpen) {
+            cameraFocus.Focus(inventoryFocus);
+        }
+        else {
+            cameraFocus.Unfocus(inventoryFocus);
+        }
+    }
+    
+
     private void OnEscape(InputAction.CallbackContext context) {
         EscapeStack.Instance.DoEscape();
     }

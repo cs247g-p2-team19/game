@@ -10,7 +10,7 @@ public class Inventory : AutoMonoBehaviour
 {
     public bool IsOpen { get; private set; }
 
-    public List<InventoryItem> Items => FindObjectsByType<InventoryItem>(FindObjectsInactive.Include, FindObjectsSortMode.None).Where(obj => obj is not Stencil).ToList();
+    public List<InventoryItem> Items => FindObjectsByType<InventoryItem>(FindObjectsInactive.Include, FindObjectsSortMode.None).Where(obj => obj is not Stencil && !obj.isNote).ToList();
     public List<InventoryItem> UnlockedItems => Items.Where(item => !item.isLocked).ToList();
 
     public List<Stencil> Stencils => FindObjectsByType<Stencil>(FindObjectsInactive.Include, FindObjectsSortMode.None).ToList();
