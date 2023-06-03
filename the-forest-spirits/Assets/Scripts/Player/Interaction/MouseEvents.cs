@@ -37,6 +37,7 @@ public class MouseEvents : AutoMonoBehaviour, IMouseEventReceiver
         if (isClickable) {
             onMouseDown.Invoke(screenPos);
         }
+        Debug.Log("you clicked on a thing >:C");
 
         return true;
     }

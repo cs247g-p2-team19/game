@@ -95,7 +95,7 @@ public class MouseManager : AutoMonoBehaviour
 
     /**
      * Retrieves all the IMouseEventReceivers that are "valid" (i.e. we're
-     * hovering over thema and their IsMouseInteractableAt callbacks return true)
+     * hovering over them and their IsMouseInteractableAt callbacks return true)
      */
     private List<IMouseEventReceiver> GetValidClickables(Vector2 screenPos) {
         List<IMouseEventReceiver> clickables = new();
@@ -194,6 +194,7 @@ public class MouseManager : AutoMonoBehaviour
         GameObject go = GameObject.FindWithTag("Cursor Attachment");
         if (go != null) {
             Destroy(go);
+            CurrentAttached = null;
         }
     }
 }
