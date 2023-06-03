@@ -1078,23 +1078,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8787fea94cd354dc7935fccbf1e3680c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isCurrentlyInteractable: 1
-  onInteract:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 290284922}
-        m_TargetAssemblyTypeName: Talker, Assembly-CSharp
-        m_MethodName: OnInteract
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  collider: {fileID: 290284918}
 --- !u!61 &290284918
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4383,6 +4366,7 @@ MonoBehaviour:
   cursorAttachment: {fileID: 1989463994100063015, guid: 0b9e10eb04c904405bf9f1a1e3e7e3ff, type: 3}
   thenSpawn: {fileID: 6608122000835756248, guid: 9ef7b984397df4ec1aae5beb2ae4ceff, type: 3}
   poof: {fileID: 4811982815344795881, guid: 075d5aaa3713f4de7ac160ad17578605, type: 3}
+  outside: {fileID: 2083326499}
 --- !u!114 &994590084
 MonoBehaviour:
   m_ObjectHideFlags: 0
