@@ -1445,9 +1445,9 @@ MonoBehaviour:
   onStencilUse:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5046204120681534739}
-        m_TargetAssemblyTypeName: ForestPlayerController, Assembly-CSharp
-        m_MethodName: ManualInventoryToggle
+      - m_Target: {fileID: 1931375156}
+        m_TargetAssemblyTypeName: Inventory, Assembly-CSharp
+        m_MethodName: Hide
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5094,7 +5094,7 @@ RectTransform:
   - {fileID: 516916352}
   - {fileID: 922139075}
   m_Father: {fileID: 1462589270}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -7775,7 +7775,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8458792715209482402, guid: 80105b6d7e84f420d9f02ba8c4a24f7c, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8458792715209482402, guid: 80105b6d7e84f420d9f02ba8c4a24f7c, type: 3}
       propertyPath: m_SizeDelta.x
@@ -7805,6 +7805,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6987484696081455464, guid: 80105b6d7e84f420d9f02ba8c4a24f7c, type: 3}
   m_PrefabInstance: {fileID: 1931375153}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1931375156 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4645414049846905822, guid: 80105b6d7e84f420d9f02ba8c4a24f7c, type: 3}
+  m_PrefabInstance: {fileID: 1931375153}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 122167289d4345558146540c4aaad528, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1934171923
 GameObject:
   m_ObjectHideFlags: 0
@@ -8815,17 +8826,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5046204119355467580, guid: 80105b6d7e84f420d9f02ba8c4a24f7c, type: 3}
   m_PrefabInstance: {fileID: 1931375153}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5046204120681534739 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5046204119355467581, guid: 80105b6d7e84f420d9f02ba8c4a24f7c, type: 3}
-  m_PrefabInstance: {fileID: 1931375153}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4332c3259ac548119cd59ba7ee7ecfb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &5264004052110809188
 MonoBehaviour:
   m_ObjectHideFlags: 0
