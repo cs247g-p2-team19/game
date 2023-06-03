@@ -75,6 +75,9 @@ public class ForestPlayerController : PlayerController
         _inventoryAction.performed += OnInventory;
         _escapeAction.performed += OnEscape;
 
+        Lil.Inventory.onOpenInventory.AddListener(OnInventoryToggles);
+        Lil.Inventory.onCloseInventory.AddListener(OnInventoryToggles);
+
         _map.Enable();
     }
 
@@ -82,6 +85,9 @@ public class ForestPlayerController : PlayerController
         _jumpAction.performed -= OnJump;
         _inventoryAction.performed -= OnInventory;
         _escapeAction.performed -= OnEscape;
+        
+        Lil.Inventory.onOpenInventory.RemoveListener(OnInventoryToggles);
+        Lil.Inventory.onCloseInventory.RemoveListener(OnInventoryToggles);
 
         _map.Disable();
     }
@@ -89,7 +95,7 @@ public class ForestPlayerController : PlayerController
     /** Movement happens here */
     void Update() {
         mouseManager.UpdateMouse(_pointerLocation.ReadValue<Vector2>(), _interactAction.IsPressed());
-        
+
 
         if (Lil.Inventory.IsOpen || _stopped) return;
 
@@ -108,12 +114,14 @@ public class ForestPlayerController : PlayerController
 
         Debug.Log("Jumped!");
     }
-    
+
     private void OnInventory(InputAction.CallbackContext context) {
         if (_stopped) return;
-        
-        Lil.Inventory.Toggle();
 
+        Lil.Inventory.Toggle();
+    }
+
+    private void OnInventoryToggles() {
         animator.SetBool(InventoryOpen, Lil.Inventory.IsOpen);
 
         if (Lil.Inventory.IsOpen) {
@@ -124,21 +132,6 @@ public class ForestPlayerController : PlayerController
         }
     }
 
-    public void ManualInventoryToggle() {
-        if (_stopped) return;
-        
-        Lil.Inventory.Toggle();
-
-        animator.SetBool(InventoryOpen, Lil.Inventory.IsOpen);
-
-        if (Lil.Inventory.IsOpen) {
-            cameraFocus.Focus(inventoryFocus);
-        }
-        else {
-            cameraFocus.Unfocus(inventoryFocus);
-        }
-    }
-    
 
     private void OnEscape(InputAction.CallbackContext context) {
         EscapeStack.Instance.DoEscape();

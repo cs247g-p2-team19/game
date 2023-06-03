@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Serialization;
 
 /**
@@ -26,6 +27,9 @@ public class Inventory : AutoMonoBehaviour
     //to find a fix later
     [FormerlySerializedAs("Spots")]
     public List<InventorySpot> spots;
+
+    public UnityEvent onOpenInventory;
+    public UnityEvent onCloseInventory;
     
     private Coroutine _showHideRoutine;
     private Vector3 _scale;
@@ -83,6 +87,7 @@ public class Inventory : AutoMonoBehaviour
         RenderInventory();
         
         EscapeStack.Instance.AddEscape(OnUndo);
+        onOpenInventory.Invoke();
     }
 
     private void OnUndo() {
@@ -104,6 +109,7 @@ public class Inventory : AutoMonoBehaviour
             _showHideRoutine = null;
             display.SetActive(false);
         });
+        onCloseInventory.Invoke();
     }
 
     public void RenderInventory() {
