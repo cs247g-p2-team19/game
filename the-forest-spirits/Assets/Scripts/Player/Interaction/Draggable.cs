@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,19 +10,24 @@ public class Draggable : AutoMonoBehaviour
     [AutoDefaultMainCamera]
     public Camera mainCamera;
 
+    private Vector3 _targetPos;
     private Vector2 _lastPos;
     private bool _dragging;
 
     public void OnDrag(Vector2 screenPos) {
+        Vector2 mousePos = mainCamera.ScreenToWorldPoint(screenPos);
+
         if (!_dragging) {
-            _lastPos = mainCamera.ScreenToWorldPoint(screenPos);
+            _targetPos = transform.position;
+            _lastPos = mousePos;
             _dragging = true;
+            return;
         }
 
-        Vector2 mousePos = mainCamera.ScreenToWorldPoint(screenPos);
         Vector2 moveVec = mousePos - _lastPos;
-        var position = transform.position;
-        transform.position = position + (Vector3) moveVec;
+        _targetPos += (Vector3) moveVec;
+
+        transform.position = _targetPos;
 
         _lastPos = mousePos;
     }

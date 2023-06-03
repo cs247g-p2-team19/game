@@ -16,6 +16,15 @@ public class MouseEvents : AutoMonoBehaviour, IMouseEventReceiver
     public UnityEvent<Vector2> onMouseDown;
     public UnityEvent<Vector2> onMouseDrag;
 
+    protected override void OnValidate() {
+        base.OnValidate();
+        
+        // Clickable handlers used by the draggable things
+        if (isDraggable) {
+            isClickable = true;
+        }
+    }
+
     public void OnPointerEnter(Vector2 screenPos, Camera cam) {
         onHover.Invoke(screenPos);
     }
@@ -29,12 +38,12 @@ public class MouseEvents : AutoMonoBehaviour, IMouseEventReceiver
     }
 
     public bool OnPointerDown(Vector2 screenPos, Camera cam) {
-        IMouseEventReceiver self = this;
-        if (!self.IsMouseInteractableAt(screenPos, cam)) {
+        if (!IsMouseInteractableAt(screenPos, cam, null)) {
             return false;
         }
 
-        if (isClickable) {
+        // PointerDown can be used by Draggable to detect when a drag starts
+        if (isClickable || isDraggable) {
             onMouseDown.Invoke(screenPos);
         }
         Debug.Log("you clicked on a thing >:C");
@@ -43,7 +52,8 @@ public class MouseEvents : AutoMonoBehaviour, IMouseEventReceiver
     }
 
     public void OnPointerUp(Vector2 screenPos, Camera cam) {
-        if (!isClickable) return;
+        // PointerUp used by Draggable to detect when we're done dragging
+        if (!isClickable && !isDraggable) return;
 
         onMouseUp.Invoke(screenPos);
     }
