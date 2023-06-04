@@ -34,12 +34,14 @@ public class Word : AutoMonoBehaviour, IMouseEventReceiver
                     _ => 0
                 };
             });
+            Debug.Log(_overlapping);
         }
     }
 
     private void OnCollisionExit2D(Collision2D other) {
         if (!other.collider.IsUnityNull() && other.collider.GetComponent<Word>() is var w && w != null) {
             _overlapping.Remove(w);
+            Debug.Log(_overlapping);
         }
     }
 
