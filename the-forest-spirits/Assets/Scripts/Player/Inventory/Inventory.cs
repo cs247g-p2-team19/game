@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
@@ -54,11 +55,11 @@ public class Inventory : AutoMonoBehaviour
 
     #region Item Management
     public bool IsItemUnlocked(InventoryItem item) {
-        return UnlockedItems.Contains(item);
+        return UnlockedItems.Contains(item) || UnlockedStencils.Contains(item);
     }
 
     public bool IsItemUnlocked(string id) {
-        return UnlockedItems.Contains(InventoryItem.GetItemById(id));
+        return UnlockedItems.Contains(InventoryItem.GetItemById(id)) || UnlockedStencils.Contains(InventoryItem.GetItemById(id));
     }
 
     #endregion

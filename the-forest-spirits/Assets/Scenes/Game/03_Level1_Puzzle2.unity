@@ -451,7 +451,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 170766567}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.28, y: 2.36, z: -4.19}
+  m_LocalPosition: {x: 30.93, y: 2.36, z: -4.19}
   m_LocalScale: {x: 2.44, y: 2.44, z: 2.44}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1078,7 +1078,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 290284914}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.3400025, y: 0.05, z: -0.9}
+  m_LocalPosition: {x: 41.260002, y: 0.05, z: -0.9}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2293,7 +2293,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 6.31, y: 1.3299999}
+  m_AnchoredPosition: {x: 41.23, y: 1.3299999}
   m_SizeDelta: {x: 5.4152, y: 5.862}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &459057153
@@ -4600,51 +4600,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1 &940151530
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 940151532}
-  - component: {fileID: 940151531}
-  m_Layer: 0
-  m_Name: Handle Spawnpoint (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &940151531
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 940151530}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c439e22d84ef24c0580e4394d90b3f42, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 5046204120681534733}
---- !u!4 &940151532
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 940151530}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.28, y: 2.36, z: -4.19}
-  m_LocalScale: {x: 2.44, y: 2.44, z: 2.44}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &940596515
 GameObject:
   m_ObjectHideFlags: 0
@@ -6034,7 +5989,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   next: {fileID: 1808257984}
   doesnt: 0
-  itemId: Journal
+  itemId: handlestencil
   fallbackTo: {fileID: 958864842}
 --- !u!1 &1445392970
 GameObject:
@@ -7152,7 +7107,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1474969047897440412, guid: ed8d47900e17746359c424d91e341227, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -13.840619
+      value: 29.85
       objectReference: {fileID: 0}
     - target: {fileID: 1474969047897440415, guid: ed8d47900e17746359c424d91e341227, type: 3}
       propertyPath: anchor
@@ -7554,7 +7509,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-  - text: reading? booooring.
+  - text: u alr have the stencil
+    stopUntilForced: 0
+    onStart:
+      m_PersistentCalls:
+        m_Calls: []
+    linkResponders: []
+    onEnd:
+      m_PersistentCalls:
+        m_Calls: []
+    waitTime: 0
+  - text: get manifestin
     stopUntilForced: 0
     onStart:
       m_PersistentCalls:
@@ -7879,7 +7844,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5046204119355467580, guid: 80105b6d7e84f420d9f02ba8c4a24f7c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -13.77
+      value: 29.49
       objectReference: {fileID: 0}
     - target: {fileID: 5046204119355467580, guid: 80105b6d7e84f420d9f02ba8c4a24f7c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -8968,7 +8933,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3560817632329789903}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.81, y: -0.22, z: -3}
+  m_LocalPosition: {x: 24.54, y: -0.06, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
