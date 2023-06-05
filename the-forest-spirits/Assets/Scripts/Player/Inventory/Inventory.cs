@@ -12,17 +12,21 @@ public class Inventory : AutoMonoBehaviour
 {
     public bool IsOpen { get; private set; }
 
-    public List<InventoryItem> Items => FindObjectsByType<InventoryItem>(FindObjectsInactive.Include, FindObjectsSortMode.None).Where(obj => obj is not Stencil && !obj.isNote).ToList();
+    public List<InventoryItem> Items =>
+        FindObjectsByType<InventoryItem>(FindObjectsInactive.Include, FindObjectsSortMode.None)
+            .Where(obj => obj is not Stencil && !obj.isNote).ToList();
+
     public List<InventoryItem> UnlockedItems => Items.Where(item => !item.isLocked).ToList();
 
-    public List<Stencil> Stencils => FindObjectsByType<Stencil>(FindObjectsInactive.Include, FindObjectsSortMode.None).ToList();
+    public List<Stencil> Stencils =>
+        FindObjectsByType<Stencil>(FindObjectsInactive.Include, FindObjectsSortMode.None).ToList();
 
     public List<Stencil> UnlockedStencils => Stencils.Where(stencil => !stencil.isLocked).ToList();
-    
+
     public List<StencilSpot> stencilSpots;
 
     public GameObject display;
-    
+
     //private List<InventorySpot> Spots => FindObjectsByType<InventorySpot>(FindObjectsInactive.Include, FindObjectsSortMode.None).ToList();
     //Recaculating the Spots each time causes some issues -- for now it's easier to just manual drag all the InventorySpots in I think. Will
     //to find a fix later
@@ -31,7 +35,7 @@ public class Inventory : AutoMonoBehaviour
 
     public UnityEvent onOpenInventory;
     public UnityEvent onCloseInventory;
-    
+
     private Coroutine _showHideRoutine;
     private Vector3 _scale;
 
@@ -40,8 +44,8 @@ public class Inventory : AutoMonoBehaviour
     private void Awake() {
         _scale = transform.localScale;
         display.SetActive(true);
-        
-        foreach (var item in FindObjectsByType<InventoryItem>(FindObjectsInactive.Include,FindObjectsSortMode.None)) {
+
+        foreach (var item in FindObjectsByType<InventoryItem>(FindObjectsInactive.Include, FindObjectsSortMode.None)) {
             item.Setup();
             Items.Add(item);
         }
@@ -54,12 +58,14 @@ public class Inventory : AutoMonoBehaviour
 
 
     #region Item Management
+
     public bool IsItemUnlocked(InventoryItem item) {
         return UnlockedItems.Contains(item) || UnlockedStencils.Contains(item);
     }
 
     public bool IsItemUnlocked(string id) {
-        return UnlockedItems.Contains(InventoryItem.GetItemById(id)) || UnlockedStencils.Contains(InventoryItem.GetItemById(id));
+        return UnlockedItems.Contains(InventoryItem.GetItemById(id)) ||
+               UnlockedStencils.Contains(InventoryItem.GetItemById(id));
     }
 
     #endregion
@@ -79,14 +85,20 @@ public class Inventory : AutoMonoBehaviour
             StopCoroutine(_showHideRoutine);
         }
 
-        
+
         transform.localScale = Vector3.zero;
         display.SetActive(true);
         var lerpCoro = this.AutoLerp(Vector3.zero, _scale, 0.5f,
             Utility.EaseOut(Utility.EaseInOut<Vector3>(Vector3.Lerp)), sc => transform.localScale = sc);
-        _showHideRoutine = this.WaitThen(lerpCoro, () => { _showHideRoutine = null; });
+        _showHideRoutine = this.WaitThen(lerpCoro, () => {
+            foreach (var bounded in GetComponentsInChildren<Bounded>(includeInactive: true)) {
+                bounded.enabled = true;
+            }
+
+            _showHideRoutine = null;
+        });
         RenderInventory();
-        
+
         EscapeStack.Instance.AddEscape(OnUndo);
         onOpenInventory.Invoke();
     }
@@ -104,6 +116,10 @@ public class Inventory : AutoMonoBehaviour
 
         transform.localScale = _scale;
         display.SetActive(true);
+        foreach (var bounded in GetComponentsInChildren<Bounded>(includeInactive: true)) {
+            bounded.enabled = false;
+        }
+
         var lerpCoro = this.AutoLerp(_scale, Vector3.zero, 0.5f,
             Utility.EaseOut(Utility.EaseInOut<Vector3>(Vector3.Lerp)), sc => transform.localScale = sc);
         _showHideRoutine = this.WaitThen(lerpCoro, () => {
