@@ -71,4 +71,8 @@ public class Bounded : AutoMonoBehaviour
     public void StopConsuming() {
         _consumers--;
     }
+
+    public void SetBoundary(Boundary b) {
+        by = b;
+    }
 }
