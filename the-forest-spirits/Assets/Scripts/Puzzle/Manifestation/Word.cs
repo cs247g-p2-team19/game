@@ -66,13 +66,17 @@ public class Word : AutoMonoBehaviour, IMouseEventReceiver
             foreach (Word word in (_overlapping)) {
                 Debug.Log(word.word);
             }
+            print(CurrentWord);
         }
     }
 
     public void ExitOverlap(Word w) {
         if (w != null) {
+            Debug.Log("removing " + w.word);
             _overlapping.Remove(w);
+            
         }
+        print(CurrentWord);
     }
     
     // private void OnTriggerEnter2D(Collider2D other) {
