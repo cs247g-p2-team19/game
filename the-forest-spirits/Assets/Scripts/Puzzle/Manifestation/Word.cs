@@ -17,7 +17,7 @@ public class Word : AutoMonoBehaviour, IMouseEventReceiver
     //[SerializeField, ReadOnly, Required]
     public Collider2D _collider;
 
-    private readonly List<Word> _overlapping = new();
+    private List<Word> _overlapping = new();
     
     public string CurrentWord =>
         _overlapping.Aggregate("", (current, w) => current + w.word);
@@ -56,7 +56,7 @@ public class Word : AutoMonoBehaviour, IMouseEventReceiver
             }
 
             _overlapping.Sort((w1, w2) => {
-                var diff = w1.Bounds.min.x - w2.Bounds.min.x;
+                var diff = w1.transform.position.x - w2.transform.position.x;
                 return diff switch {
                     < 0 => -1,
                     > 0 => 1,
