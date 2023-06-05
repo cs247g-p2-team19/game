@@ -81,8 +81,11 @@ public class Player : AutoMonoBehaviour
 
     #region Audio
 
-    public void PlaySFX(AudioClip clip, float scaleVolume = 1f) {
+    public void PlaySFX(AudioClip clip, float scaleVolume) {
         audio.PlayOneShot(clip, scaleVolume);
+    }
+    public void PlaySFX(AudioClip clip) {
+        PlaySFX(clip, 1f);
     }
 
     public void FadeMusicOut() {

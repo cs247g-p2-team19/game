@@ -1406,6 +1406,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 390584921}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: PlaySFX
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 2d62dd38e07714d2da9b2cedddc887f3, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   delay: 0
   _didTrigger: 0
 --- !u!114 &421850324
@@ -2528,6 +2540,7 @@ GameObject:
   - component: {fileID: 1274069464}
   - component: {fileID: 1274069463}
   - component: {fileID: 1274069465}
+  - component: {fileID: 1274069466}
   m_Layer: 0
   m_Name: point of no return
   m_TagString: Untagged
@@ -2551,6 +2564,18 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1274069459}
+        m_TargetAssemblyTypeName: Once, Assembly-CSharp
+        m_MethodName: Trigger
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1274069466}
         m_TargetAssemblyTypeName: Once, Assembly-CSharp
         m_MethodName: Trigger
         m_Mode: 1
@@ -2709,7 +2734,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d650094520817f499cd8a5ce422782e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetSceneId: 2
+  targetSceneId: 3
   targetScenePath: 
   animator: {fileID: 1274069464}
   onOpen:
@@ -2764,6 +2789,35 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   delay: 1
+  _didTrigger: 0
+--- !u!114 &1274069466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1274069457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab18f21ed69f470e8ca26d72a8b4ec1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onTrigger:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 390584921}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: PlaySFX
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 8e0692f3c7e0244e1bfcce62ed3978ee, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  delay: 0
   _didTrigger: 0
 --- !u!1 &1403772886
 GameObject:
@@ -3108,6 +3162,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 70684704455975155, guid: ed8d47900e17746359c424d91e341227, type: 3}
+      propertyPath: pauseTime
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1474969047363506307, guid: ed8d47900e17746359c424d91e341227, type: 3}
       propertyPath: m_SizeDelta.x
       value: 108.4

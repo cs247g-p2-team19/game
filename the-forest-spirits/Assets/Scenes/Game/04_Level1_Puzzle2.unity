@@ -1146,7 +1146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d650094520817f499cd8a5ce422782e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetSceneId: 2
+  targetSceneId: 6
   targetScenePath: 
   animator: {fileID: 290284919}
   onOpen:
@@ -1510,7 +1510,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5.0840373, y: 5.740123}
+  m_Size: {x: 3.1386688, y: 1.979815}
   m_EdgeRadius: 0
 --- !u!1 &341663935
 GameObject:
@@ -5241,7 +5241,7 @@ RectTransform:
   - {fileID: 516916352}
   - {fileID: 922139075}
   m_Father: {fileID: 1462589270}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -7889,6 +7889,10 @@ PrefabInstance:
     - target: {fileID: 6987484695873390352, guid: 80105b6d7e84f420d9f02ba8c4a24f7c, type: 3}
       propertyPath: m_Offset.x
       value: 0.08530998
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987484695873390359, guid: 80105b6d7e84f420d9f02ba8c4a24f7c, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6987484695873390359, guid: 80105b6d7e84f420d9f02ba8c4a24f7c, type: 3}
       propertyPath: m_LocalScale.x

@@ -14,6 +14,7 @@ public class FolderMenu : AutoMonoBehaviour, IMouseEventReceiver
 
 
     public void OpenFolder() {
+        KeyValueStore.Instance.Set(KVStoreKey.HasOpenedCaseFile, "true");
         animator.SetBool(Open, true);
     }
 
