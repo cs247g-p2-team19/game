@@ -539,7 +539,46 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
     waitTime: 1
-  - text: <u><link="continue">You hope you have everything prepared.</link></u>
+  - text: You hope you have everything  <u><link="continue">prepared.</link></u>
+    stopUntilForced: 1
+    onStart:
+      m_PersistentCalls:
+        m_Calls: []
+    linkResponders:
+    - linkId: continue
+      thenContinue: 1
+      onLink:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 427120948}
+            m_TargetAssemblyTypeName: Fadable`1[[TMPro.TextMeshPro, Unity.TextMeshPro
+            m_MethodName: FadeOut
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+          - m_Target: {fileID: 1653193303}
+            m_TargetAssemblyTypeName: CutsceneDelay, Assembly-CSharp
+            m_MethodName: callOnDelayEnd
+            m_Mode: 4
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 1
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+    onEnd:
+      m_PersistentCalls:
+        m_Calls: []
+    waitTime: 1
+  - text: You hope <u><link="continue">you</link></u> are prepared.
     stopUntilForced: 1
     onStart:
       m_PersistentCalls:
