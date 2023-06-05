@@ -76,7 +76,7 @@ public class InventoryItem : AutoMonoBehaviour, IMouseEventReceiver
         Setup();
     }
 
-    public bool OnPointerDown(Vector2 _, Camera __) {
+    public virtual bool OnPointerDown(Vector2 _, Camera __) {
         if (onUseSound != null) {
             Lil.Guy.PlaySFX(onUseSound);
         }
