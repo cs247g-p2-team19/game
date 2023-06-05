@@ -65,5 +65,13 @@ public class CameraFocusTrigger : AutoMonoBehaviour
         }
     }
 
+    public void ForceFocus() {
+        focuser.Focus(area, resizeTime);
+    }
+
+    public void ForceUnfocus() {
+        focuser.Unfocus(area);
+    }
+
     #endregion
 }
