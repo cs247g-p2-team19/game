@@ -4799,10 +4799,10 @@ GameObject:
   m_Component:
   - component: {fileID: 922139075}
   - component: {fileID: 922139078}
-  - component: {fileID: 922139077}
   - component: {fileID: 922139076}
   - component: {fileID: 922139080}
   - component: {fileID: 922139079}
+  - component: {fileID: 922139081}
   m_Layer: 3
   m_Name: Clickable
   m_TagString: Untagged
@@ -4844,20 +4844,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   word: shine
   _collider: {fileID: 0}
---- !u!114 &922139077
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 922139074}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2981fb3e179a4930878daf33e69cb677, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rect: {fileID: 922139075}
-  collider: {fileID: 922139078}
 --- !u!61 &922139078
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4871,7 +4857,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.4420864, y: -0.15114158}
+  m_Offset: {x: 2.16, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -5018,6 +5004,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &922139081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 922139074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2981fb3e179a4930878daf33e69cb677, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rect: {fileID: 922139075}
+  collider: {fileID: 922139078}
 --- !u!1 &940596515
 GameObject:
   m_ObjectHideFlags: 0
