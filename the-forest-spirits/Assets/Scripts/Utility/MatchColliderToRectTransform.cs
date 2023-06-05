@@ -16,6 +16,6 @@ public class MatchColliderToRectTransform : AutoMonoBehaviour
     public new BoxCollider2D collider;
 
     private void Update() {
-        collider.size = new Vector2(rect.sizeDelta.x, rect.sizeDelta.y);
+        collider.size = new Vector2(rect.rect.size.x, rect.rect.size.y);
     }
 }
