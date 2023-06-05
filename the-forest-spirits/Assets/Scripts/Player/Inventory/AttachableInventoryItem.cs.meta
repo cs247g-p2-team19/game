@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 06c71837109544e7ab770c9c79e37cf1
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - onUnlockSound: {instanceID: 0}
+  - onUseSound: {instanceID: 0}
+  - spriteToAttach: {instanceID: 0}
+  - _spriteAttachable: {fileID: 2053881710895399350, guid: 757bbc39cb60a44c296fc76597822f9b, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
