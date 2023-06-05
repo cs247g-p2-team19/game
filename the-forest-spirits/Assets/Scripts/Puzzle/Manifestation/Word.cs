@@ -13,8 +13,8 @@ public class Word : AutoMonoBehaviour, IMouseEventReceiver
     public string word;
 
 
-    [SerializeField, ReadOnly, Required]
-    private Collider2D _collider;
+    //[SerializeField, ReadOnly, Required]
+    public Collider2D _collider;
 
     private readonly List<Word> _overlapping = new();
 
@@ -24,6 +24,8 @@ public class Word : AutoMonoBehaviour, IMouseEventReceiver
 
 
     private void OnCollisionEnter2D(Collision2D other) {
+        Debug.Log("ow we collide");
+        Debug.Log(other.gameObject.name);
         if (!other.collider.IsUnityNull() && other.collider.GetComponent<Word>() is var w && w != null) {
             _overlapping.Add(w);
             _overlapping.Sort((w1, w2) => {
@@ -34,12 +36,39 @@ public class Word : AutoMonoBehaviour, IMouseEventReceiver
                     _ => 0
                 };
             });
-            Debug.Log(_overlapping);
+            foreach (Word word in (_overlapping)) {
+                Debug.Log(word.word);
+            }
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D other) {
+        Debug.Log("ow we trigger");
+        Debug.Log(other.gameObject.name);
+        if (!other.IsUnityNull() && other.gameObject.GetComponent<Word>() is var w && w != null) {
+            _overlapping.Add(w);
+            _overlapping.Sort((w1, w2) => {
+                var diff = w1.Bounds.min.x - w2.Bounds.min.x;
+                return diff switch {
+                    < 0 => -1,
+                    > 0 => 1,
+                    _ => 0
+                };
+            });
+            foreach (Word word in (_overlapping)) {
+                Debug.Log(word.word);
+            }
         }
     }
 
     private void OnCollisionExit2D(Collision2D other) {
         if (!other.collider.IsUnityNull() && other.collider.GetComponent<Word>() is var w && w != null) {
+            _overlapping.Remove(w);
+            Debug.Log(_overlapping);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other) {
+        if (!other.IsUnityNull() && other.gameObject.GetComponent<Word>() is var w && w != null) {
             _overlapping.Remove(w);
             Debug.Log(_overlapping);
         }
