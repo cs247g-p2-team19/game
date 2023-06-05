@@ -134,6 +134,11 @@ public class Inventory : AutoMonoBehaviour
             InventoryItem item = UnlockedItems[i];
             item.transform.position = spots[i].gameObject.transform.position;
         }
+
+        for (int i = 0; i < UnlockedStencils.Count; i++) {
+            Stencil stencil = UnlockedStencils[i];
+            stencil.transform.position = stencilSpots[i].transform.position;
+        }
     }
 
     #endregion

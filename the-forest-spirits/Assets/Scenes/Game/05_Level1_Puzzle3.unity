@@ -8690,13 +8690,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6987484695873390352, guid: 80105b6d7e84f420d9f02ba8c4a24f7c, type: 3}
-      propertyPath: m_Size.x
-      value: 11.0714245
-      objectReference: {fileID: 0}
-    - target: {fileID: 6987484695873390352, guid: 80105b6d7e84f420d9f02ba8c4a24f7c, type: 3}
-      propertyPath: m_Offset.x
-      value: 0.08530998
+    - target: {fileID: 6987484695241935792, guid: 80105b6d7e84f420d9f02ba8c4a24f7c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6987484696081455446, guid: 80105b6d7e84f420d9f02ba8c4a24f7c, type: 3}
       propertyPath: onMouseDown.m_PersistentCalls.m_Calls.Array.size
