@@ -132,12 +132,14 @@ public class Inventory : AutoMonoBehaviour
     public void RenderInventory() {
         for (int i = 0; i < UnlockedItems.Count; i++) {
             InventoryItem item = UnlockedItems[i];
-            item.transform.position = spots[i].gameObject.transform.position;
+            item.transform.SetParent(spots[i].gameObject.transform, worldPositionStays: true);
+            item.transform.localPosition = Vector3.zero;
         }
 
         for (int i = 0; i < UnlockedStencils.Count; i++) {
             Stencil stencil = UnlockedStencils[i];
-            stencil.transform.position = stencilSpots[i].transform.position;
+            stencil.transform.SetParent(stencilSpots[i].transform, worldPositionStays: true);
+            stencil.transform.localPosition = Vector3.zero;
         }
     }
 
