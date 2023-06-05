@@ -79,6 +79,13 @@ public class Talker : AutoMonoBehaviour, IMouseEventReceiver
         }
     }
 
+    public void StopConversation() {
+        if (_talking) {
+            _currentConversation.dialogue[_index].onEnd.Invoke();
+        }
+        Teardown();
+    }
+
     public void GoTo(Branch branch) {
         if (_talking) {
             NextInternal(branch);
