@@ -5420,7 +5420,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
     waitTime: 0
-  - text: 'i wish i couuld get some  <link="sunshine" ><b><u>sunshine</b><u></link>
+  - text: 'i wish i couuld get some  <link="sunshine" ><b><u>sunshine</b></u></link>
       down here '
     stopUntilForced: 0
     onStart:
@@ -8564,7 +8564,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-  - text: omg no wayyyyy u have a handle?
+  - text: omg no way sunshine my fav
     stopUntilForced: 0
     onStart:
       m_PersistentCalls:
