@@ -15,6 +15,21 @@ EditorBuildSettings:
     path: Assets/Scenes/Game/02_Prologue02_GhostCity.unity
     guid: ecda97e04fb204a5ca22c3c4e9dfcc57
   - enabled: 1
+    path: Assets/Scenes/Game/02T_Prologue01_Transition.unity
+    guid: ef37c272edfba46c1891d73ec7ec4f7c
+  - enabled: 1
+    path: Assets/Scenes/Game/03_Level1_FirstPuzzle.unity
+    guid: 1130fed2526c640f180e2f9ef8aa19a8
+  - enabled: 1
+    path: Assets/Scenes/Game/04_Level1_Puzzle2.unity
+    guid: 79fbe65d46fd14101865027bf6101ee4
+  - enabled: 1
+    path: Assets/Scenes/Game/05_Level1_Puzzle3.unity
+    guid: 2ef14d7be14644f16ae459019c2b02e1
+  - enabled: 1
+    path: Assets/Scenes/Game/06_Level1_Puzzle4.unity
+    guid: 4b43af7cc0f5d4986b7ef9054e47de45
+  - enabled: 1
     path: Assets/Scenes/_game_version1/XX_Teaser.unity
     guid: 854b2dd7231e344fbbd4d0ff5d9c7600
   m_configObjects: {}

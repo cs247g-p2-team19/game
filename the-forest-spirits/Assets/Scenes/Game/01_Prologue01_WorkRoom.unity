@@ -651,7 +651,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d650094520817f499cd8a5ce422782e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetSceneId: 1
+  targetSceneId: 2
   targetScenePath: 
   animator: {fileID: 290284919}
   onOpen:
@@ -1417,7 +1417,7 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3057524358385348325, guid: 80105b6d7e84f420d9f02ba8c4a24f7c, type: 3}
+    - target: {fileID: 0}
       propertyPath: key
       value: 2
       objectReference: {fileID: 0}

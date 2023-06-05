@@ -1634,7 +1634,6 @@ GameObject:
   - component: {fileID: 6987484695873390353}
   - component: {fileID: 6987484695873390352}
   - component: {fileID: 6987484695873390366}
-  - component: {fileID: 3057524358385348325}
   m_Layer: 3
   m_Name: Folder
   m_TagString: Untagged
@@ -1784,19 +1783,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 6987484695873390353}
---- !u!114 &3057524358385348325
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6987484695873390358}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1b43354c3de4bdabc3153b7e97cb610, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  key: 0
 --- !u!1 &6987484696081455467
 GameObject:
   m_ObjectHideFlags: 0
