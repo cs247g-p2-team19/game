@@ -1626,6 +1626,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65546631feff4d1f95517733ad957882, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onMouseDown: {fileID: 8300000, guid: f948f6b0ef1e447e386efd8e1d45b3f2, type: 3}
+  onMouseUpNothing: {fileID: 8300000, guid: 020b7c8d547c74f8e878eea7db0998de, type: 3}
+  onMouseUpItem: {fileID: 8300000, guid: 7839483208ff549d1af76836669a1d1d, type: 3}
   cursor: {fileID: 8671211116497579906}
   cursorAnim: {fileID: 2676289535853330495}
   mainCamera: {fileID: 0}
@@ -2390,6 +2393,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd339052d535441bd97a1a20dee378cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onOpenClip: {fileID: 8300000, guid: 5c319e696ed3d4ad3b5be7bd31d3ef81, type: 3}
+  onCloseClip: {fileID: 8300000, guid: 5c319e696ed3d4ad3b5be7bd31d3ef81, type: 3}
   animator: {fileID: 6987484695873390353}
 --- !u!1 &6987484696081455467
 GameObject:

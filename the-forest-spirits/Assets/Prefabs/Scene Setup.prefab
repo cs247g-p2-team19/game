@@ -180,7 +180,7 @@ MonoBehaviour:
   backgroundAudio: {fileID: 0}
   doorOpen: {fileID: 8300000, guid: 77c1b14d1fb7a4d80a0a5898224a7369, type: 3}
   doorClosed: {fileID: 8300000, guid: 50d9603440a1c4f7a8774ca442689dfe, type: 3}
-  defaultOnCollectCollectable: {fileID: 8300000, guid: 678d3d94310f446d781514f840d96b2c, type: 3}
+  defaultOnCollectCollectable: {fileID: 8300000, guid: be8edea3fb4ea47a7b928d37861077f1, type: 3}
 --- !u!114 &70684704455975155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -317,6 +317,7 @@ MonoBehaviour:
   by: {fileID: 1474969047363506305}
   boundX: 1
   boundY: 0
+  camera: {fileID: 1474969047897440413}
 --- !u!114 &8166955964837283197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -329,9 +330,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64029325e00646918ecd9c46bb09e11a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boundsRef: {fileID: 1474969047897440414}
   followRef: {fileID: 1474969047897440415}
   cameraRef: {fileID: 1474969047897440413}
-  boundsRef: {fileID: 1474969047897440414}
+  onFocus:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &6303735189388559210
 GameObject:
   m_ObjectHideFlags: 0

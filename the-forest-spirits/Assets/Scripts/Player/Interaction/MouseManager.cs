@@ -10,10 +10,16 @@ public class MouseManager : AutoMonoBehaviour
 {
     private static readonly int MouseDown = Animator.StringToHash("MouseDown");
     private static readonly int IsHovering = Animator.StringToHash("IsHovering");
-    
+
     public IMouseAttachable CurrentAttached { private set; get; }
 
     #region Unity fields
+
+    public AudioClip onMouseDown;
+    public AudioClip onMouseUpNothing;
+    public AudioClip onMouseUpItem;
+
+    public float sfxVolume = 0.2f;
 
     [Required]
     public RectTransform cursor;
@@ -28,7 +34,7 @@ public class MouseManager : AutoMonoBehaviour
     public ForestPlayerController controller;
 
     #endregion
-    
+
 
     // Since the animation controller can be overridden, this stores the original one
     private RuntimeAnimatorController _originalController;
@@ -75,11 +81,22 @@ public class MouseManager : AutoMonoBehaviour
         switch (isDown) {
             case true when !_pointerIsDown:
                 DoMouseDown(validClickables, screenPos);
+                if (onMouseDown != null) {
+                    Lil.Music.PlaySFX(onMouseDown, sfxVolume);
+                }
+
                 break;
             case true when _pointerIsDown:
                 DoMouseDrag(screenPos);
                 break;
             case false when _pointerIsDown:
+                if (_lastClicked != null && onMouseUpItem != null) {
+                    Lil.Music.PlaySFX(onMouseUpItem, sfxVolume);
+                }
+                else if (onMouseUpNothing != null) {
+                    Lil.Music.PlaySFX(onMouseUpNothing, sfxVolume);
+                }
+
                 DoMouseUp(screenPos);
                 break;
         }
@@ -121,18 +138,20 @@ public class MouseManager : AutoMonoBehaviour
             CurrentAttached.OnClickWhileAttached(clickables, this);
             return true;
         }
+
         foreach (IMouseEventReceiver clickable in clickables) {
             if (!clickable.OnPointerDown(screenPos, mainCamera)) continue;
             _lastClicked = clickable;
             if (clickable is IMouseAttachable receiver && CurrentAttached == null && receiver.OnTryAttach(this)) {
                 CurrentAttached = receiver;
             }
+
             return true;
         }
 
         return false;
     }
-    
+
     /** Should trigger OnPointerDrag  */
     private bool DoMouseDrag(Vector2 screenPos) {
         if (_lastClicked == null) {
