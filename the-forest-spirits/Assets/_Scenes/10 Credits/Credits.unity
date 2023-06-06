@@ -442,7 +442,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d650094520817f499cd8a5ce422782e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetSceneId: 1
+  targetSceneId: 8
   targetScenePath: 
   animator: {fileID: 427120953}
   onOpen:
@@ -882,7 +882,7 @@ MonoBehaviour:
 
 
       thank you for
-      playing :)'
+      <u><link="continue">playing</link></u> :)'
     stopUntilForced: 1
     onStart:
       m_PersistentCalls:
@@ -893,33 +893,9 @@ MonoBehaviour:
       onLink:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 427120948}
-            m_TargetAssemblyTypeName: Fadable`1[[TMPro.TextMeshPro, Unity.TextMeshPro
-            m_MethodName: FadeOut
-            m_Mode: 1
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-          - m_Target: {fileID: 1653193303}
-            m_TargetAssemblyTypeName: CutsceneDelay, Assembly-CSharp
-            m_MethodName: callOnDelayEnd
-            m_Mode: 4
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 1
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-          - m_Target: {fileID: 154420171}
-            m_TargetAssemblyTypeName: MouseTutorial, Assembly-CSharp
-            m_MethodName: Cancel
+          - m_Target: {fileID: 427120952}
+            m_TargetAssemblyTypeName: Door, Assembly-CSharp
+            m_MethodName: TransitionScene
             m_Mode: 1
             m_Arguments:
               m_ObjectArgument: {fileID: 0}
@@ -976,7 +952,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 70684704455975155, guid: ed8d47900e17746359c424d91e341227, type: 3}
       propertyPath: pauseTime
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1474969047666645645, guid: ed8d47900e17746359c424d91e341227, type: 3}
       propertyPath: m_Name
@@ -1052,15 +1028,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3473811720661405917, guid: ed8d47900e17746359c424d91e341227, type: 3}
       propertyPath: m_Color.b
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3473811720661405917, guid: ed8d47900e17746359c424d91e341227, type: 3}
       propertyPath: m_Color.g
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3473811720661405917, guid: ed8d47900e17746359c424d91e341227, type: 3}
       propertyPath: m_Color.r
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6187911570451958519, guid: ed8d47900e17746359c424d91e341227, type: 3}
       propertyPath: backgroundAudio
