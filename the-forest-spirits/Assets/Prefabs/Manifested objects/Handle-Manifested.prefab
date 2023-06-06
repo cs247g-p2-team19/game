@@ -8,10 +8,11 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6608122000835756255}
+  - component: {fileID: 5969284947818411537}
   - component: {fileID: 6608122000835756254}
   - component: {fileID: 3931807877411227018}
   - component: {fileID: 2940240627968996034}
+  - component: {fileID: 1608914878247449754}
   m_Layer: 0
   m_Name: Handle-Manifested
   m_TagString: Untagged
@@ -19,8 +20,8 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6608122000835756255
-Transform:
+--- !u!224 &5969284947818411537
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -28,12 +29,17 @@ Transform:
   m_GameObject: {fileID: 6608122000835756248}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2946814, y: 0.2946814, z: 0.2946814}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.05, y: 0.050000004, z: 0.050000004}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 20.726946, y: 12.59}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &6608122000835756254
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -75,7 +81,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: aca0742d9b74343a981cdad44aec1fe9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: be3c084b92e5242c7bcb66c3f1cf4b02, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -121,12 +127,26 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.43, y: 1.505}
+    oldSize: {x: 20.726946, y: 12.59}
     newSize: {x: 1.43, y: 1.505}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.57, y: 3.62}
+  m_Size: {x: 20.726946, y: 12.59}
   m_EdgeRadius: 0
+--- !u!114 &1608914878247449754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6608122000835756248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2981fb3e179a4930878daf33e69cb677, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rect: {fileID: 5969284947818411537}
+  collider: {fileID: 2940240627968996034}
