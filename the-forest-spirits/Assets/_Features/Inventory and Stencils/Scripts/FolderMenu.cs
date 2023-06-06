@@ -19,6 +19,8 @@ public class FolderMenu : AutoMonoBehaviour, IMouseEventReceiver
 
     public void OpenFolder() {
         KeyValueStore.Instance.Set(KVStoreKey.HasOpenedCaseFile, "true");
+        KeyValueStore.Instance.Set(KVStoreKey.FolderOpen, "true");
+
         animator.SetBool(Open, true);
         if (onOpenClip != null) {
             Lil.Music.PlaySFX(onOpenClip, 0.2f);
@@ -26,6 +28,7 @@ public class FolderMenu : AutoMonoBehaviour, IMouseEventReceiver
     }
 
     public void CloseFolder() {
+        KeyValueStore.Instance.Delete(KVStoreKey.FolderOpen);
         animator.SetBool(Open, false);
         if (onCloseClip != null) {
             Lil.Music.PlaySFX(onCloseClip, 0.2f);

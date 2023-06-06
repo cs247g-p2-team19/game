@@ -26,8 +26,15 @@ public class Stencil : AttachableInventoryItem
     public override bool IsMouseInteractableAt(Vector2 screenPos, Camera cam, IMouseAttachable receiver) {
         return receiver == null;
     }
-    
+
+    public override bool OnTryAttach(MouseManager manager) {
+        KeyValueStore.Instance.Set(KVStoreKey.StencilAttached, "true");
+        return base.OnTryAttach(manager);
+    }
+
     public override bool OnClickWhileAttached(List<IMouseEventReceiver> others, MouseManager manager) {
+        KeyValueStore.Instance.Delete(KVStoreKey.StencilAttached);
+
         if (others.OfType<Word>().FirstOrDefault(w => w.CurrentWord.ToLower() == targetWord) is var word &&
             word != null) {
             
