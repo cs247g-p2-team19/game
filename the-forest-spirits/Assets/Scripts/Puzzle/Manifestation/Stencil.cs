@@ -4,13 +4,12 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
-public class Stencil : InventoryItem, IMouseAttachable
+public class Stencil : AttachableInventoryItem
 {
     public string targetWord;
-
-    public GameObject cursorAttachment;
-
+    
     public GameObject thenSpawn;
     public GameObject poof;
 
@@ -27,15 +26,8 @@ public class Stencil : InventoryItem, IMouseAttachable
     public override bool IsMouseInteractableAt(Vector2 screenPos, Camera cam, IMouseAttachable receiver) {
         return receiver == null;
     }
-
-    public bool OnTryAttach(MouseManager manager) {
-        GameObject go = manager.SetCursorAttachment(cursorAttachment);
-        go.GetComponentInChildren<TextMeshProUGUI>().text = targetWord;
-
-        return true;
-    }
-
-    public bool OnClickWhileAttached(List<IMouseEventReceiver> others, MouseManager manager) {
+    
+    public override bool OnClickWhileAttached(List<IMouseEventReceiver> others, MouseManager manager) {
         if (others.OfType<Word>().FirstOrDefault(w => w.CurrentWord.ToLower() == targetWord) is var word &&
             word != null) {
             

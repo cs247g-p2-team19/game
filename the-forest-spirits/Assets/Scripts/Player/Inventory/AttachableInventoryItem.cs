@@ -29,17 +29,18 @@ public class AttachableInventoryItem : InventoryItem, IMouseAttachable
         return true;
     }
 
-    public bool OnTryAttach(MouseManager manager) {
+    public virtual bool OnTryAttach(MouseManager manager) {
         Debug.Log("Attaching!");
         var attachment = manager.SetCursorAttachment(_spriteAttachable);
         var image = attachment.GetComponentInChildren<Image>();
         image.sprite = spriteToAttach;
         var scaler = attachment.GetComponentInChildren<AspectRatioFitter>();
         scaler.aspectRatio = spriteToAttach.bounds.size.x / spriteToAttach.bounds.size.y;
+        scaler.gameObject.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
         return true;
     }
 
-    public bool OnClickWhileAttached(List<IMouseEventReceiver> others, MouseManager manager) {
+    public virtual bool OnClickWhileAttached(List<IMouseEventReceiver> others, MouseManager manager) {
         Debug.Log("Clicked while attached!");
         OnAttachedInventoryItemClick match = others.OfType<OnAttachedInventoryItemClick>().ElementAtOrDefault(0);
         manager.RemoveCursorAttachment();

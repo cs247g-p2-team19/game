@@ -200,7 +200,7 @@ public class MouseManager : AutoMonoBehaviour
             rt = cursorAttachment.AddComponent<RectTransform>();
         }
 
-        rt.SetParent(cursor, worldPositionStays: true);
+        rt.SetParent(cursor, worldPositionStays: false);
         rt.anchorMin = Vector2.right;
         rt.anchorMin = Vector2.right;
         rt.pivot = new Vector2(0.5f, 0.5f);
