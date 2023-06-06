@@ -9,15 +9,18 @@ public class MusicManager : MonoBehaviour
         get {
             if (_hasInstance) return _instance;
             var go = new GameObject("_music_manager");
+            _hasInstance = true;
             _instance = go.AddComponent<MusicManager>();
             return _instance;
         }
     }
 
-    public float crossfade = 1f;
+    public float crossfade = 2f;
 
     private static bool _hasInstance = false;
     private static MusicManager _instance;
+
+    private static readonly Utility.LerpFn<float> _lerpFn = Mathf.Lerp;
 
 
     private AudioSource _sfxSource;
@@ -44,13 +47,17 @@ public class MusicManager : MonoBehaviour
             _audios.Add(gameObject.AddComponent<AudioSource>());
         }
 
-        double time = AudioSettings.dspTime + crossfade;
+        double time = AudioSettings.dspTime;
+        var coros = new List<Coroutine>();
 
         for (int i = 0; i < layers.layers.Length; i++) {
             _audios[i].clip = layers.layers[i].clip;
-            _audios[i].volume = layers.layers[i].volume;
+            _audios[i].volume = 0f;
             if (layers.layers[i].automaticallyEnabled) {
                 _audios[i].PlayScheduled(time);
+                int id = i;
+                coros.Add(this.AutoLerp(0f, layers.layers[id].volume, crossfade, _lerpFn,
+                    volume => _audios[id].volume = volume));
             }
 
             if (i != 0) {
@@ -72,12 +79,12 @@ public class MusicManager : MonoBehaviour
         _audios = new();
         var coros = new List<Coroutine>();
         foreach (var audio in audios) {
-            var coro = this.AutoLerp(audio.volume, 0f, crossfade, Utility.EaseInOutF, volume => audio.volume = volume);
+            var coro = this.AutoLerp(audio.volume, 0f, crossfade, _lerpFn, volume => audio.volume = volume);
             var then = this.WaitThen(coro, () => {
                 audio.Stop();
                 Destroy(audio);
             });
-            
+
             coros.Add(then);
         }
 
@@ -94,12 +101,12 @@ public class MusicManager : MonoBehaviour
         _audios[id].volume = 0;
         _audios[id].Play();
         _audios[id].timeSamples = _audios[0].timeSamples;
-        this.AutoLerp(0f, _currentLayers.layers[id].volume, crossfade, Utility.EaseInOutF,
+        this.AutoLerp(0f, _currentLayers.layers[id].volume, crossfade, _lerpFn,
             volume => _audios[id].volume = volume);
     }
 
     public void DisableLayer(int id) {
-        var coro = this.AutoLerp(_currentLayers.layers[id].volume, 0f, crossfade, Utility.EaseInOutF,
+        var coro = this.AutoLerp(_currentLayers.layers[id].volume, 0f, crossfade, _lerpFn,
             volume => _audios[id].volume = volume);
         this.WaitThen(coro, () => { _audios[id].Stop(); });
     }

@@ -749,7 +749,7 @@ PrefabInstance:
     - target: {fileID: 6187911570451958519, guid: ed8d47900e17746359c424d91e341227, type: 3}
       propertyPath: backgroundAudio
       value: 
-      objectReference: {fileID: 8300000, guid: 38ffa9c9167794114812052ed6d19902, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 6187911570451958519, guid: ed8d47900e17746359c424d91e341227, type: 3}
       propertyPath: defaultOnCollectCollectable
       value: 
@@ -816,3 +816,27 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1797791857}
+        m_TargetAssemblyTypeName: MusicManagerHelper, Assembly-CSharp
+        m_MethodName: Stop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1797791857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1797791855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27678bfe009b4d18bd12ddb188e300fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
