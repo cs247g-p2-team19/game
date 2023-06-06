@@ -921,7 +921,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-  - text: See you tomorrow.
+  - text: see you tomorrow.
     stopUntilForced: 0
     onStart:
       m_PersistentCalls:
