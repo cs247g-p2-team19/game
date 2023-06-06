@@ -99,6 +99,8 @@ public class InventoryItem : AutoMonoBehaviour, IMouseEventReceiver
         Lil.Guy.onUnlockItem.Invoke(this);
         this.isLocked = false;
         Lil.Inventory.RenderInventory();
+        Lil.Inventory.onUnlockItem.Invoke();
+
     }
 
     public void Lock() {
