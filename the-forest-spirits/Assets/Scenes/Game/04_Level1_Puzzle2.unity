@@ -4949,7 +4949,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-  - text: passing through? can't help you there, i'm broken...
+  - text: "ahhh\u2026 a Keeper. we are not so different, you and i."
     stopUntilForced: 0
     onStart:
       m_PersistentCalls:
@@ -4959,7 +4959,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
     waitTime: 0
-  - text: what good is a door that can't be opened?
+  - text: i was a blacksmith, shaping life with my bare hands.
     stopUntilForced: 0
     onStart:
       m_PersistentCalls:
@@ -4969,7 +4969,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
     waitTime: 0
-  - text: oh... you're a Keeper? i hear you can bring back memories to life...
+  - text: but now i am a humble door.
     stopUntilForced: 0
     onStart:
       m_PersistentCalls:
@@ -4979,8 +4979,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
     waitTime: 0
-  - text: 'here, a stencil for you to use. perhaps you bring back my <link="handle"
-      ><b><u>handle</b><u></link>? '
+  - text: and as you can see, i am missing my <link="handle" ><b><u>handle</b><u></link>.
     stopUntilForced: 1
     onStart:
       m_PersistentCalls:
@@ -5007,12 +5006,29 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
     waitTime: 0
-  - text: '*hits the griddy on you*'
-    stopUntilForced: 0
+  - text: make me one, and you may go through.
+    stopUntilForced: 1
     onStart:
       m_PersistentCalls:
         m_Calls: []
-    linkResponders: []
+    linkResponders:
+    - linkId: handle
+      thenContinue: 1
+      onLink:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 321877900}
+            m_TargetAssemblyTypeName: InventoryItem, Assembly-CSharp
+            m_MethodName: Unlock
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
     onEnd:
       m_PersistentCalls:
         m_Calls: []
@@ -7999,7 +8015,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-  - text: omg no wayyyyy u have a handle?
+  - text: you understand now.
     stopUntilForced: 0
     onStart:
       m_PersistentCalls:
@@ -8009,7 +8025,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
     waitTime: 0
-  - text: pass through uwu
+  - text: go ahead, young one.
     stopUntilForced: 0
     onStart:
       m_PersistentCalls:
