@@ -3089,7 +3089,7 @@ PrefabInstance:
     - target: {fileID: 6187911570451958519, guid: ed8d47900e17746359c424d91e341227, type: 3}
       propertyPath: backgroundAudio
       value: 
-      objectReference: {fileID: 8300000, guid: 71bc635fc7b31417bb180146720a6ede, type: 3}
+      objectReference: {fileID: 1659491081}
     - target: {fileID: 6187911570451958519, guid: ed8d47900e17746359c424d91e341227, type: 3}
       propertyPath: defaultOnCollectCollectable
       value: 
@@ -3118,6 +3118,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af63fda81aed6418a89134a9d8cd2852, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1659491080 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1474969047666645645, guid: ed8d47900e17746359c424d91e341227, type: 3}
+  m_PrefabInstance: {fileID: 1659491077}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1659491081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1659491080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfff4a84803a4fce8627f160ac98859c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layers:
+  - clip: {fileID: 8300000, guid: 71bc635fc7b31417bb180146720a6ede, type: 3}
+    automaticallyEnabled: 1
+    volume: 0.3
 --- !u!20 &1659491085 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 1474969047897440413, guid: ed8d47900e17746359c424d91e341227, type: 3}
