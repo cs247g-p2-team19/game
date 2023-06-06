@@ -12267,6 +12267,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1591648252, guid: 80105b6d7e84f420d9f02ba8c4a24f7c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 22.18
+      objectReference: {fileID: 0}
     - target: {fileID: 181005179255986081, guid: 80105b6d7e84f420d9f02ba8c4a24f7c, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -13097,7 +13101,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   isNote: 0
-  spriteToAttach: {fileID: 21300000, guid: 5d52b20f865aff242bfcb08c3b6f61a5, type: 3}
+  spriteToAttach: {fileID: 21300000, guid: 1cb26c20dd060427daec8d2e146e10a3, type: 3}
   onMatch:
     m_PersistentCalls:
       m_Calls: []
