@@ -6,9 +6,11 @@ MonoImporter:
   defaultReferences:
   - onUnlockSound: {instanceID: 0}
   - onUseSound: {instanceID: 0}
-  - cursorAttachment: {instanceID: 0}
+  - spriteToAttach: {instanceID: 0}
+  - _spriteAttachable: {fileID: 2053881710895399350, guid: 757bbc39cb60a44c296fc76597822f9b, type: 3}
   - thenSpawn: {instanceID: 0}
   - poof: {fileID: 4811982815344795881, guid: 075d5aaa3713f4de7ac160ad17578605, type: 3}
+  - spawnPoint: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

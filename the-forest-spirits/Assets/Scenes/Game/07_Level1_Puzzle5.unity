@@ -1965,8 +1965,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   isNote: 0
+  spriteToAttach: {fileID: 21300000, guid: 0cb72f9b58da046c69d09f7874e520af, type: 3}
+  onMatch:
+    m_PersistentCalls:
+      m_Calls: []
+  _spriteAttachable: {fileID: 2053881710895399350, guid: 757bbc39cb60a44c296fc76597822f9b, type: 3}
   targetWord: ice
-  cursorAttachment: {fileID: 1989463994100063015, guid: 0b9e10eb04c904405bf9f1a1e3e7e3ff, type: 3}
   thenSpawn: {fileID: 6608122000835756248, guid: 041fb4bc330b84ef48ddc261300b58e8, type: 3}
   poof: {fileID: 4811982815344795881, guid: 075d5aaa3713f4de7ac160ad17578605, type: 3}
   onStencilUse:
@@ -10873,8 +10877,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   isNote: 0
+  spriteToAttach: {fileID: 21300000, guid: 0cb72f9b58da046c69d09f7874e520af, type: 3}
+  onMatch:
+    m_PersistentCalls:
+      m_Calls: []
+  _spriteAttachable: {fileID: 2053881710895399350, guid: 757bbc39cb60a44c296fc76597822f9b, type: 3}
   targetWord: flower
-  cursorAttachment: {fileID: 1989463994100063015, guid: 0b9e10eb04c904405bf9f1a1e3e7e3ff, type: 3}
   thenSpawn: {fileID: 6608122000835756248, guid: 041fb4bc330b84ef48ddc261300b58e8, type: 3}
   poof: {fileID: 4811982815344795881, guid: 075d5aaa3713f4de7ac160ad17578605, type: 3}
   onStencilUse:
