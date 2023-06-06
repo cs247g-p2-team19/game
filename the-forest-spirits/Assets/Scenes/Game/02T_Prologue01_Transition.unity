@@ -512,7 +512,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-  - text: 5pm on a Tuesday. <u><link="continue">The trial is tomorrow.</link></u>
+  - text: The journal's papers are <u><link="continue">lost.</link></u>
     stopUntilForced: 1
     onStart:
       m_PersistentCalls:
@@ -551,7 +551,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
     waitTime: 1
-  - text: I wonder if they will <u><link="continue">forget</link></u> you.
+  - text: It's up to <u><link="continue">you</link></u> to get them back.
     stopUntilForced: 1
     onStart:
       m_PersistentCalls:
@@ -590,7 +590,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
     waitTime: 1
-  - text: Where do forgotten things <u><link="continue">go</link></u>?
+  - text: The <u><link="continue">Judge</link></u> is still expecting you.
     stopUntilForced: 1
     onStart:
       m_PersistentCalls:
