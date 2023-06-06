@@ -11260,8 +11260,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d650094520817f499cd8a5ce422782e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetSceneId: 8
-  targetScenePath: Assets/_Scenes/9X Teaser/9X Teaser.unity
+  targetSceneId: 9
+  targetScenePath: 
   animator: {fileID: 1788887319}
   onOpen:
     m_PersistentCalls:
