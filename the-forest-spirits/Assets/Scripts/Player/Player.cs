@@ -33,24 +33,7 @@ public class Player : AutoMonoBehaviour
     [AutoDefaultInChildren, Required]
     public FadeText interactPopup;
 
-    [AutoDefaultInChildren, Required]
-    public new AudioSource audio;
-    
     #region Unity Events
-
-    private void Start() {
-        var info = SceneInfo.Instance;
-        if (audio != null) {
-            audio.clip = info.backgroundAudio;
-            FadeMusic fading = audio.GetComponent<FadeMusic>();
-            if (fading != null && fading.playOnFadeIn) {
-                fading.FadeIn();
-            }
-            else {
-                audio.Play();
-            }
-        }
-    }
 
     private void OnDestroy() {
         _instance = null;
@@ -78,22 +61,6 @@ public class Player : AutoMonoBehaviour
     }
     
     #endregion
-
-    #region Audio
-
-    public void PlaySFX(AudioClip clip, float scaleVolume) {
-        audio.PlayOneShot(clip, scaleVolume);
-    }
-    public void PlaySFX(AudioClip clip) {
-        PlaySFX(clip, 1f);
-    }
-
-    public void FadeMusicOut() {
-        audio.GetComponent<FadeMusic>().FadeOut();
-    }
-
-    #endregion
-    
 }
 
 /** Just some helpers to clean up some code */

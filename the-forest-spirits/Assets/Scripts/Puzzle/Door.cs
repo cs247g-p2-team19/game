@@ -26,7 +26,7 @@ public class Door : AutoMonoBehaviour
     public void DoorOpen() {
         var sfx = SceneInfo.Instance.doorOpen;
         if (sfx != null) {
-            Lil.Guy.PlaySFX(sfx);
+            Lil.Music.PlaySFX(sfx);
         }
         onOpen.Invoke();
         animator.SetBool(Open, true);
@@ -35,7 +35,7 @@ public class Door : AutoMonoBehaviour
     public void DoorClose() {
         var sfx = SceneInfo.Instance.doorClosed;
         if (sfx != null) {
-            Lil.Guy.PlaySFX(sfx);
+            Lil.Music.PlaySFX(sfx);
         }
         animator.SetBool(Open, false);
     }
