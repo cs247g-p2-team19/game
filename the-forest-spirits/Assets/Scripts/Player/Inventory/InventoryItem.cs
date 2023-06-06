@@ -78,7 +78,7 @@ public class InventoryItem : AutoMonoBehaviour, IMouseEventReceiver
 
     public virtual bool OnPointerDown(Vector2 _, Camera __) {
         if (onUseSound != null) {
-            Lil.Guy.PlaySFX(onUseSound);
+            Lil.Music.PlaySFX(onUseSound);
         }
 
         onUse.Invoke(this);
@@ -91,7 +91,7 @@ public class InventoryItem : AutoMonoBehaviour, IMouseEventReceiver
 
     public void Unlock() {
         if (onUnlockSound != null) {
-            Lil.Guy.PlaySFX(onUnlockSound);
+            Lil.Music.PlaySFX(onUnlockSound);
         }
 
         gameObject.SetActive(true);

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 /**
  * Manages the focus of the camera as it moves
@@ -18,6 +19,8 @@ public class CameraFocuser : AutoMonoBehaviour
 
     [AutoDefault,  ReadOnly]
     public Camera cameraRef;
+
+    public UnityEvent onFocus;
 
 
     // Used for restoring camera state
@@ -66,6 +69,7 @@ public class CameraFocuser : AutoMonoBehaviour
     #region Internal logic
 
     private void FocusInternal(AreaStackElement el, float time) {
+        onFocus.Invoke();
         if (boundsRef != null) {
             boundsRef.enabled = false;
         }

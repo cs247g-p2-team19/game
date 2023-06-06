@@ -35,9 +35,9 @@ public class Collectable : AutoMonoBehaviour
     public void Collect() {
         var defaultCollectSound = SceneInfo.Instance.defaultOnCollectCollectable;
         if (onCollectSound != null) {
-            Lil.Guy.PlaySFX(onCollectSound);
+            Lil.Music.PlaySFX(onCollectSound);
         } else if (defaultCollectSound != null) {
-            Lil.Guy.PlaySFX(defaultCollectSound);
+            Lil.Music.PlaySFX(defaultCollectSound);
         }
         
         onCollect.Invoke();

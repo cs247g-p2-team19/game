@@ -11,4 +11,6 @@ public class Lil
 
     public static Inventory Inventory => Player.Instance.inventory;
     public static Inventory Pockets => Player.Instance.inventory;
+    
+    public static MusicManager Music => MusicManager.Instance;
 }

@@ -20,7 +20,7 @@ public class SceneTransitioner : AutoMonoBehaviour
 
         if (pauseTime > 0f) {
             imageFader.FadeIn();
-            Lil.Guy.FadeMusicOut();
+            Lil.Music.Stop();
             var ready = SceneManager.LoadSceneAsync(idx, LoadSceneMode.Single);
             ready.allowSceneActivation = false;
             this.WaitThen(imageFader.fadeInTime + pauseTime, () => { ready.allowSceneActivation = true; });
@@ -33,7 +33,7 @@ public class SceneTransitioner : AutoMonoBehaviour
     public void LoadFromPath(string scenePath) {
         _isLoading = true;
         imageFader.FadeIn();
-        Lil.Guy.FadeMusicOut();
+        Lil.Music.Stop();
         var ready = SceneManager.LoadSceneAsync(scenePath, LoadSceneMode.Single);
         ready.allowSceneActivation = false;
         this.WaitThen(imageFader.fadeInTime + pauseTime, () => { ready.allowSceneActivation = true; });
