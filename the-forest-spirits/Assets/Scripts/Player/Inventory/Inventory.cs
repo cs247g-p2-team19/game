@@ -35,6 +35,7 @@ public class Inventory : AutoMonoBehaviour
 
     public UnityEvent onOpenInventory;
     public UnityEvent onCloseInventory;
+    public UnityEvent onUnlockItem;
 
     private Coroutine _showHideRoutine;
     private Vector3 _scale;
