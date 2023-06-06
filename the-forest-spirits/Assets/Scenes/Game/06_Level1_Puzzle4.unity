@@ -7138,6 +7138,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1659491081}
+        m_TargetAssemblyTypeName: MusicManagerHelper, Assembly-CSharp
+        m_MethodName: EnableLayer
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!20 &1659491085 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 1474969047897440413, guid: ed8d47900e17746359c424d91e341227, type: 3}
