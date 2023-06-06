@@ -810,6 +810,7 @@ GameObject:
   m_Component:
   - component: {fileID: 147718362}
   - component: {fileID: 147718361}
+  - component: {fileID: 147718363}
   m_Layer: 0
   m_Name: darkness filter@2x
   m_TagString: Untagged
@@ -884,6 +885,34 @@ Transform:
   m_Father: {fileID: 5046204120681534733}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &147718363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 147718360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4f084d618054afc907dc989c7aa03e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  matchingItemId: sunshine
+  onMatch:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 147718360}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &162369432
 GameObject:
   m_ObjectHideFlags: 0
@@ -2623,7 +2652,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0de88d3fe78b49d190d74c52be51922, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: handlestencil
+  itemId: sunshinestencil
   onUnlockSound: {fileID: 0}
   onUseSound: {fileID: 0}
   isLocked: 1
@@ -2640,7 +2669,7 @@ MonoBehaviour:
       m_Calls: []
   _spriteAttachable: {fileID: 2053881710895399350, guid: 757bbc39cb60a44c296fc76597822f9b, type: 3}
   targetWord: sunshine
-  thenSpawn: {fileID: 6608122000835756248, guid: 041fb4bc330b84ef48ddc261300b58e8, type: 3}
+  thenSpawn: {fileID: 6608122000835756248, guid: 9e0cbbd7ba20c4142aa8e209fb2937c6, type: 3}
   poof: {fileID: 4811982815344795881, guid: 075d5aaa3713f4de7ac160ad17578605, type: 3}
   onStencilUse:
     m_PersistentCalls:
@@ -4098,13 +4127,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 472533998}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d090a99bf89494bb889c480a30b0cbf, type: 3}
+  m_Script: {fileID: 11500000, guid: 06380d0bbb3c41e287b68e137d1bb794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  next: {fileID: 1869274088}
-  doesnt: 0
-  itemId: Key
-  fallbackTo: {fileID: 1417375564}
+  key: 0
+  verb: 0
+  value: 
+  thenGoTo: {fileID: 0}
+  otherwiseGoTo: {fileID: 0}
 --- !u!1 &489797221
 GameObject:
   m_ObjectHideFlags: 0
@@ -13913,27 +13943,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ad032f19f11a4fabbfd74e7b4b25829, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue:
-  - text: u alr have the stencil
-    stopUntilForced: 0
-    onStart:
-      m_PersistentCalls:
-        m_Calls: []
-    linkResponders: []
-    onEnd:
-      m_PersistentCalls:
-        m_Calls: []
-    waitTime: 0
-  - text: get manifestin
-    stopUntilForced: 0
-    onStart:
-      m_PersistentCalls:
-        m_Calls: []
-    linkResponders: []
-    onEnd:
-      m_PersistentCalls:
-        m_Calls: []
-    waitTime: 0
+  dialogue: []
   andThen: {fileID: 0}
   onStart:
     m_PersistentCalls:
@@ -13973,7 +13983,7 @@ MonoBehaviour:
   next: {fileID: 1230169305}
   door: {fileID: 290284920}
   was: 0
-  fallbackTo: {fileID: 472534000}
+  fallbackTo: {fileID: 0}
 --- !u!4 &1817131730
 Transform:
   m_ObjectHideFlags: 0
@@ -15921,29 +15931,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5046204119355467580, guid: 80105b6d7e84f420d9f02ba8c4a24f7c, type: 3}
   m_PrefabInstance: {fileID: 1931375153}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5264004052110809188
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9007220639816292381}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f653e9ebcf1840728a679f1fa4296d27, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: Key
-  onUnlockSound: {fileID: 0}
-  onUseSound: {fileID: 0}
-  isLocked: 1
-  onUnlock:
-    m_PersistentCalls:
-      m_Calls: []
-  onUse:
-    m_PersistentCalls:
-      m_Calls: []
-  isNote: 0
 --- !u!114 &6334510317501831952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16118,9 +16105,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 117977150723343728}
-  - component: {fileID: 5264004052110809188}
   - component: {fileID: 3576890902490364078}
   - component: {fileID: 530150629528551821}
+  - component: {fileID: 9007220639816292382}
   m_Layer: 5
   m_Name: Key Holder
   m_TagString: Untagged
@@ -16128,3 +16115,31 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &9007220639816292382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9007220639816292381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06c71837109544e7ab770c9c79e37cf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: sunshine
+  onUnlockSound: {fileID: 0}
+  onUseSound: {fileID: 0}
+  isLocked: 1
+  onUnlock:
+    m_PersistentCalls:
+      m_Calls: []
+  onUse:
+    m_PersistentCalls:
+      m_Calls: []
+  isNote: 0
+  spriteToAttach: {fileID: 21300000, guid: aca0742d9b74343a981cdad44aec1fe9, type: 3}
+  onMatch:
+    m_PersistentCalls:
+      m_Calls: []
+  _spriteAttachable: {fileID: 2053881710895399350, guid: 757bbc39cb60a44c296fc76597822f9b, type: 3}
