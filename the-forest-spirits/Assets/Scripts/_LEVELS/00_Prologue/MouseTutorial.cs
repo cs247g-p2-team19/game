@@ -6,13 +6,11 @@ public class MouseTutorial : AutoMonoBehaviour
 {
     public float help1Delay = 10f;
 
-    [AutoDefaultInChildren, Required]
-    public CanvasGroup help1Group;
+    public Animator help1Animator;
 
     public float help2Delay = 20f;
 
-    [AutoDefaultInChildren, Required]
-    public Animator animator;
+    public Animator help2Animator;
 
 
     private Coroutine _coro;
@@ -29,12 +27,11 @@ public class MouseTutorial : AutoMonoBehaviour
     }
 
     public void StartHelp1() {
-        this.AutoLerp(0f, 1f, 1f, Utility.EaseInOutF, value => help1Group.alpha = value);
-
+        help1Animator.SetTrigger(StartHelp);
         _coro = this.WaitThen(help2Delay, () => { StartHelp2(); });
     }
 
     public void StartHelp2() {
-        animator.SetTrigger(StartHelp);
+        help2Animator.SetTrigger(StartHelp);
     }
 }
