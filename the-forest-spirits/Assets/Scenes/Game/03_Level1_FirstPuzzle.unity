@@ -6779,6 +6779,10 @@ PrefabInstance:
       propertyPath: backgroundAudio
       value: 
       objectReference: {fileID: 8300000, guid: ad5e906f513df4b9090d6c8d4ff80a05, type: 3}
+    - target: {fileID: 6187911570451958519, guid: ed8d47900e17746359c424d91e341227, type: 3}
+      propertyPath: defaultOnCollectCollectable
+      value: 
+      objectReference: {fileID: 8300000, guid: be8edea3fb4ea47a7b928d37861077f1, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed8d47900e17746359c424d91e341227, type: 3}
 --- !u!114 &1659491078 stripped
@@ -7365,7 +7369,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 181005179255986081, guid: 80105b6d7e84f420d9f02ba8c4a24f7c, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2741730404225120752, guid: 80105b6d7e84f420d9f02ba8c4a24f7c, type: 3}
       propertyPath: mainCamera
@@ -7373,11 +7377,11 @@ PrefabInstance:
       objectReference: {fileID: 1659491085}
     - target: {fileID: 3264877987680921913, guid: 80105b6d7e84f420d9f02ba8c4a24f7c, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4656833319955856309, guid: 80105b6d7e84f420d9f02ba8c4a24f7c, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5046204119355467577, guid: 80105b6d7e84f420d9f02ba8c4a24f7c, type: 3}
       propertyPath: by
@@ -7449,7 +7453,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6987484695873390359, guid: 80105b6d7e84f420d9f02ba8c4a24f7c, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6987484696081455444, guid: 80105b6d7e84f420d9f02ba8c4a24f7c, type: 3}
       propertyPath: mainCamera
@@ -7489,15 +7493,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6987484696644277051, guid: 80105b6d7e84f420d9f02ba8c4a24f7c, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6987484696706387157, guid: 80105b6d7e84f420d9f02ba8c4a24f7c, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8458792715209482402, guid: 80105b6d7e84f420d9f02ba8c4a24f7c, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 80105b6d7e84f420d9f02ba8c4a24f7c, type: 3}

@@ -1915,7 +1915,11 @@ PrefabInstance:
     - target: {fileID: 6187911570451958519, guid: ed8d47900e17746359c424d91e341227, type: 3}
       propertyPath: backgroundAudio
       value: 
-      objectReference: {fileID: 8300000, guid: 71bc635fc7b31417bb180146720a6ede, type: 3}
+      objectReference: {fileID: 8300000, guid: e0ad1b97d75a24802a181fd4bac00440, type: 3}
+    - target: {fileID: 6187911570451958519, guid: ed8d47900e17746359c424d91e341227, type: 3}
+      propertyPath: defaultOnCollectCollectable
+      value: 
+      objectReference: {fileID: 8300000, guid: be8edea3fb4ea47a7b928d37861077f1, type: 3}
     - target: {fileID: 8880342073052598195, guid: ed8d47900e17746359c424d91e341227, type: 3}
       propertyPath: startMode
       value: 2
