@@ -6705,11 +6705,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1474969047363506307, guid: ed8d47900e17746359c424d91e341227, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 113.895
+      value: 28.1237
       objectReference: {fileID: 0}
     - target: {fileID: 1474969047363506307, guid: ed8d47900e17746359c424d91e341227, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 32.73307
+      value: -10.1526
       objectReference: {fileID: 0}
     - target: {fileID: 1474969047593133422, guid: ed8d47900e17746359c424d91e341227, type: 3}
       propertyPath: m_IsActive
@@ -7365,7 +7365,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 181005179255986081, guid: 80105b6d7e84f420d9f02ba8c4a24f7c, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2741730404225120752, guid: 80105b6d7e84f420d9f02ba8c4a24f7c, type: 3}
       propertyPath: mainCamera
@@ -7377,7 +7377,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4656833319955856309, guid: 80105b6d7e84f420d9f02ba8c4a24f7c, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5046204119355467577, guid: 80105b6d7e84f420d9f02ba8c4a24f7c, type: 3}
       propertyPath: by
@@ -7449,7 +7449,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6987484695873390359, guid: 80105b6d7e84f420d9f02ba8c4a24f7c, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6987484696081455444, guid: 80105b6d7e84f420d9f02ba8c4a24f7c, type: 3}
       propertyPath: mainCamera
@@ -7489,11 +7489,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6987484696644277051, guid: 80105b6d7e84f420d9f02ba8c4a24f7c, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6987484696706387157, guid: 80105b6d7e84f420d9f02ba8c4a24f7c, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8458792715209482402, guid: 80105b6d7e84f420d9f02ba8c4a24f7c, type: 3}
       propertyPath: m_RootOrder
