@@ -1629,6 +1629,7 @@ MonoBehaviour:
   onMouseDown: {fileID: 8300000, guid: f948f6b0ef1e447e386efd8e1d45b3f2, type: 3}
   onMouseUpNothing: {fileID: 8300000, guid: 020b7c8d547c74f8e878eea7db0998de, type: 3}
   onMouseUpItem: {fileID: 8300000, guid: 7839483208ff549d1af76836669a1d1d, type: 3}
+  sfxVolume: 0.2
   cursor: {fileID: 8671211116497579906}
   cursorAnim: {fileID: 2676289535853330495}
   mainCamera: {fileID: 0}
@@ -12653,7 +12654,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.26159668, y: 0.23662949}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -12664,7 +12665,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.5}
+  m_Size: {x: 3.2668457, y: 2.6670227}
   m_EdgeRadius: 0
 --- !u!114 &4634990332826848214
 MonoBehaviour:
