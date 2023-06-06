@@ -512,7 +512,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-  - text: The journal's papers are <u><link="continue">lost.</link></u>
+  - text: the journal's papers are <u><link="continue">lost.</link></u>
     stopUntilForced: 1
     onStart:
       m_PersistentCalls:
@@ -551,7 +551,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
     waitTime: 1
-  - text: It's up to <u><link="continue">you</link></u> to get them back.
+  - text: it's up to <u><link="continue">you</link></u> to get them back.
     stopUntilForced: 1
     onStart:
       m_PersistentCalls:
@@ -590,7 +590,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
     waitTime: 1
-  - text: The <u><link="continue">Judge</link></u> is still expecting you.
+  - text: the <u><link="continue">Judge</link></u> is still expecting you.
     stopUntilForced: 1
     onStart:
       m_PersistentCalls:
@@ -840,3 +840,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27678bfe009b4d18bd12ddb188e300fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sfxDelay: 0
+  sfxVolume: 1

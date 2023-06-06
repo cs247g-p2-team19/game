@@ -865,7 +865,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-  - text: Your assignment is done, and this soul's life journal is <u><link="continue">complete.</link></u>
+  - text: your assignment is done, and this soul's life journal is <u><link="continue">complete.</link></u>
     stopUntilForced: 1
     onStart:
       m_PersistentCalls:
@@ -916,7 +916,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
     waitTime: 1
-  - text: The trial is <u><link="continue">tomorrow.</link></u>
+  - text: the trial is <u><link="continue">tomorrow.</link></u>
     stopUntilForced: 1
     onStart:
       m_PersistentCalls:
@@ -955,7 +955,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
     waitTime: 1
-  - text: The <u><link="continue">Judge</link></u> expects you.
+  - text: the <u><link="continue">Judge</link></u> expects you.
     stopUntilForced: 1
     onStart:
       m_PersistentCalls:
