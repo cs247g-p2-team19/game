@@ -56,19 +56,13 @@ public class MusicManager : MonoBehaviour
         for (int i = _audios.Count; i < _currentLayers.Length; i++) {
             _audios.Add(gameObject.AddComponent<AudioSource>());
         }
-
-        double time = AudioSettings.dspTime;
-        var coros = new List<Coroutine>();
-
+        
         for (int i = 0; i < _currentLayers.Length; i++) {
             _audios[i].clip = _currentLayers[i].clip;
             _audios[i].volume = 0f;
             _audios[i].loop = true;
             if (_currentLayers[i].automaticallyEnabled) {
-                _audios[i].PlayScheduled(time);
-                int id = i;
-                coros.Add(this.AutoLerp(0f, _currentLayers[id].volume, crossfade, _lerpFn,
-                    volume => _audios[id].volume = volume));
+                _audios[i].Play();
             }
 
             if (i != 0) {
@@ -76,9 +70,7 @@ public class MusicManager : MonoBehaviour
             }
         }
 
-        foreach (var coro in coros) {
-            yield return coro;
-        }
+        yield return StartCoroutine(RecombobulateVolumes());
     }
 
     public void PlaySFX(AudioClip sfx) {
@@ -118,29 +110,44 @@ public class MusicManager : MonoBehaviour
 
         var audio = _audios[id];
 
+        if (audio.isPlaying) return;
+
         audio.volume = 0;
         audio.Play();
         audio.timeSamples = _audios[0].timeSamples;
-        this.AutoLerp(0f, _currentLayers[id].volume, crossfade, _lerpFn,
-            volume => audio.volume = volume);
+        StartCoroutine(RecombobulateVolumes());
     }
 
     public void DisableLayer(int id) {
         Debug.Log($"DISABLING LAYER {id}!!");
 
-        var coro = this.AutoLerp(_currentLayers[id].volume, 0f, crossfade, _lerpFn,
+        if (!_audios[id].isPlaying) return;
+
+        var coro = this.AutoLerp(_audios[id].volume, 0f, crossfade, _lerpFn,
             volume => _audios[id].volume = volume);
         this.WaitThen(coro, () => { _audios[id].Stop(); });
     }
 
-    private void RecombobulateVolumes() {
+    private IEnumerator RecombobulateVolumes() {
         float volSum = 0f;
         for (int i = 0; i < _currentLayers.Length; i++) {
             if (_audios[i].isPlaying) {
                 volSum += _currentLayers[i].volume;
             }
         }
-        
+
+        var coros = new List<Coroutine>();
+        for (int i = 0; i < _currentLayers.Length; i++) {
+            if (_audios[i].isPlaying) {
+                float targetVolume = maxVolume * (_currentLayers[i].volume / volSum);
+                var audio = _audios[i];
+                coros.Add(
+                    this.AutoLerp(audio.volume, targetVolume, crossfade, _lerpFn, volume => audio.volume = volume));
+            }
+        }
+
+        foreach (var coro in coros) {
+            yield return coro;
+        }
     }
-    
 }
