@@ -32,12 +32,14 @@ public class Poof : AutoMonoBehaviour
         Vector3 ground = FindObjectOfType<Ground>().transform.position;
         Vector3 dest = new Vector3(targetTransform.position.x, ground.y + offset, targetTransform.position.z);
         _dropping = this.AutoLerp(targetTransform.position, dest, 1,
-            Utility.EaseIn(Utility.EaseIn<Vector3>(Vector3.Lerp)), value => targetTransform.position = value);
+            Utility.EaseIn(Utility.EaseIn<Vector3>(Vector3.Lerp)), value => {
+                if (targetTransform != null) {
+                    targetTransform.position = value;
+                }
+            });
     }
 
     public void OnFinishPoof() {
-        this.WaitThen(_dropping, () => {
-            Destroy(gameObject);
-        });
+        this.WaitThen(_dropping, () => { Destroy(gameObject); });
     }
 }
