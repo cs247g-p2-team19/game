@@ -5444,8 +5444,8 @@ RectTransform:
   m_GameObject: {fileID: 838241265}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.7400002, y: 0.7400002, z: 0.7400002}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.89, y: 0.89, z: 0.89}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2127087432}
   - {fileID: 171356552}
@@ -6789,7 +6789,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
     waitTime: 0
-  - text: did you see her over there? she's beautiful... i'd love to talk to her
+  - text: did you see them over there? they're beautiful... i'd love to talk to them
       but...
     stopUntilForced: 0
     onStart:
@@ -7728,7 +7728,7 @@ RectTransform:
   m_GameObject: {fileID: 1223318296}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.7000001, y: 0.7000001, z: 0.7000001}
+  m_LocalScale: {x: 0.87, y: 0.87, z: 0.87}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 516916352}
@@ -10104,7 +10104,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1625374124}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 94.13, y: -0.17, z: -3.2508042}
+  m_LocalPosition: {x: 94.13, y: -0.17, z: -1.03}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
