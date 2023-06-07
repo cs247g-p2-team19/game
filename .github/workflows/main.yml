@@ -74,7 +74,7 @@ jobs:
     needs: [build-wgl]
     name: 'Build and upload MacOS'
     timeout-minutes: 45
-    runs-on: [self-hosted, macos]
+    runs-on: [self-hosted, linux]
     steps:
       # Checkout (without LFS)
       - name: Checkout repository
