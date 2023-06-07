@@ -7,12 +7,7 @@ public class MouseTutorial : AutoMonoBehaviour
     public float help1Delay = 10f;
 
     public Animator help1Animator;
-
-    public float help2Delay = 20f;
-
-    public Animator help2Animator;
-
-
+    
     private Coroutine _coro;
     private static readonly int StartHelp = Animator.StringToHash("StartHelp");
 
@@ -20,7 +15,13 @@ public class MouseTutorial : AutoMonoBehaviour
         _coro = this.WaitThen(help1Delay, () => { StartHelp1(); });
     }
 
-    public void Cancel() { }
+    public void Cancel() {
+        help1Animator.enabled = false;
+        if (_coro == null) return;
+        
+        StopCoroutine(_coro);
+        _coro = null;
+    }
 
     public void Restart() {
         Start();
@@ -28,10 +29,5 @@ public class MouseTutorial : AutoMonoBehaviour
 
     public void StartHelp1() {
         help1Animator.SetTrigger(StartHelp);
-        _coro = this.WaitThen(help2Delay, () => { StartHelp2(); });
-    }
-
-    public void StartHelp2() {
-        help2Animator.SetTrigger(StartHelp);
     }
 }
