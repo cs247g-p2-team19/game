@@ -10,6 +10,7 @@ public class SceneInfo : AutoMonoBehaviour
     public static SceneInfo Instance => FindObjectOfType<SceneInfo>();
 
     public MusicLayers backgroundAudio;
+    public MusicLayersMode musicLayerMode;
 
     public AudioClip doorOpen;
     public AudioClip doorClosed;
@@ -18,6 +19,25 @@ public class SceneInfo : AutoMonoBehaviour
 
     private void Start() {
         if (backgroundAudio == null) return;
-        this.WaitThen(MusicManager.Instance.Stop(), () => { MusicManager.Instance.Play(backgroundAudio); });
+        if (musicLayerMode == MusicLayersMode.Replace || !MusicManager.Instance.Playing) {
+            this.WaitThen(MusicManager.Instance.Stop(), () => { MusicManager.Instance.Play(backgroundAudio); });
+        }
+        else {
+            for (var i = 0; i < backgroundAudio.layers.Length; i++) {
+                var layer = backgroundAudio.layers[i];
+                if (layer.automaticallyEnabled) {
+                    MusicManager.Instance.EnableLayer(i);
+                }
+                else {
+                    MusicManager.Instance.DisableLayer(i);
+                }
+            }
+        }
     }
+}
+
+public enum MusicLayersMode
+{
+    Replace = 0,
+    AdjustLayers = 1,
 }
