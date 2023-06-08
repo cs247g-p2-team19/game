@@ -1,4 +1,4 @@
-name: 'Build & Deploy Game'
+name: 'Build & Deploy Game to Development'
 
 on:
   workflow_dispatch:
@@ -9,13 +9,17 @@ on:
 permissions:
   contents: read
   
+concurrency:
+  group: 'build-dev'
+  cancel-in-progress: false
+
 jobs:
   build-wgl:
     name: 'Build and deploy WebGL'
     timeout-minutes: 45
     runs-on: [self-hosted, linux]
     environment:
-        name: "${{ (contains(github.event.head_commit.message, '[prod]') || github.event_name == 'workflow_dispatch') && 'Production' || 'Development' }}"
+        name: Development
         url: "${{ steps.deploy.outputs.url }}"
     steps:
       # Checkout (without LFS)
