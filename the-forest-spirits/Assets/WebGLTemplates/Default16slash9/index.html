@@ -12,6 +12,7 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
+        align-items: center;
       }
       #unity-canvas {
         aspect-ratio: 16 / 9;
@@ -81,8 +82,8 @@
       }).then(() => {
         progressEl.style.height = 0;
       });
-      
-      window.addEventListener("resize", () => {
+     
+      const onResize = () => {
         const normalizedWidth = window.innerWidth / 16;
         const normalizedHeight = window.innerHeight / 9;
         if (normalizedHeight < normalizedWidth) {
@@ -90,7 +91,11 @@
         } else {
           canvas.style.width = "100%"
         }
-      })
+      }
+
+      window.addEventListener("resize", onResize);
+      onResize();
+
     </script>
   </body>
 </html>
