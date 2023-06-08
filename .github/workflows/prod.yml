@@ -68,7 +68,7 @@ jobs:
           cd build/WebGL/WebGL
           sudo cp -r ../../../.vercel-for-build ./.vercel
           sudo mv ./.vercel/config.json ./vercel.json
-          vercel deploy --token ${{ secrets.JONA_VERCEL_TOKEN }} ${{ (contains(github.event.head_commit.message, '[prod]') && github.event_name != 'workflow_dispatch') && '--prod' || '' }} | tee ${{ runner.temp }}/_OUT_URL.txt
+          vercel deploy --token ${{ secrets.JONA_VERCEL_TOKEN }} --prod | tee ${{ runner.temp }}/_OUT_URL.txt
           echo "url=$(cat ${{ runner.temp }}/_OUT_URL.txt)" >> "$GITHUB_OUTPUT"
           rm ${{ runner.temp }}/_OUT_URL.txt
   build-macos:
