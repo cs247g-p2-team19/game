@@ -16,6 +16,8 @@ public class MusicManager : MonoBehaviour
         }
     }
 
+    public bool Playing => _currentLayers != null;
+
     public float crossfade = 2f;
 
     public float maxVolume = 0.3f;
@@ -28,7 +30,7 @@ public class MusicManager : MonoBehaviour
 
     private AudioSource _sfxSource;
     private List<AudioSource> _audios = new();
-    private MusicLayer[] _currentLayers;
+    private MusicLayer[] _currentLayers = null;
 
     private void Awake() {
         DontDestroyOnLoad(gameObject);
@@ -56,7 +58,7 @@ public class MusicManager : MonoBehaviour
         for (int i = _audios.Count; i < _currentLayers.Length; i++) {
             _audios.Add(gameObject.AddComponent<AudioSource>());
         }
-        
+
         for (int i = 0; i < _currentLayers.Length; i++) {
             _audios[i].clip = _currentLayers[i].clip;
             _audios[i].volume = 0f;
@@ -84,6 +86,7 @@ public class MusicManager : MonoBehaviour
     private IEnumerator StopAsync() {
         var audios = _audios;
         _audios = new();
+        _currentLayers = null;
         var coros = new List<Coroutine>();
         foreach (var audio in audios) {
             var coro = this.AutoLerp(audio.volume, 0f, crossfade, _lerpFn, volume => audio.volume = volume);

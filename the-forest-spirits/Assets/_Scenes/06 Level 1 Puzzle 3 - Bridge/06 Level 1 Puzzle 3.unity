@@ -7432,9 +7432,13 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6187911570451958519, guid: ed8d47900e17746359c424d91e341227, type: 3}
+      propertyPath: musicLayerMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6187911570451958519, guid: ed8d47900e17746359c424d91e341227, type: 3}
       propertyPath: backgroundAudio
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1659491082}
     - target: {fileID: 6187911570451958519, guid: ed8d47900e17746359c424d91e341227, type: 3}
       propertyPath: defaultOnCollectCollectable
       value: 
@@ -7491,36 +7495,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 1659491080}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b542cb2f264a1434cbbd43e2710a6970, type: 3}
+  m_Script: {fileID: 11500000, guid: dfff4a84803a4fce8627f160ac98859c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  callback:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1659491081}
-        m_TargetAssemblyTypeName: MusicManagerHelper, Assembly-CSharp
-        m_MethodName: EnableLayer
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1659491081}
-        m_TargetAssemblyTypeName: MusicManagerHelper, Assembly-CSharp
-        m_MethodName: EnableLayer
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  layers:
+  - clip: {fileID: 8300000, guid: 8421aeeaaf9d140c8b7e06a45ca0bd5e, type: 3}
+    automaticallyEnabled: 1
+    volume: 0.3
+  - clip: {fileID: 8300000, guid: bc0b794d5de0a45f8b1af6d3e77bfd91, type: 3}
+    automaticallyEnabled: 1
+    volume: 0.3
+  - clip: {fileID: 8300000, guid: 3a41129c82e644678a6de71fe83608a5, type: 3}
+    automaticallyEnabled: 1
+    volume: 0.3
+  - clip: {fileID: 8300000, guid: 059db7a18376a408fa1868a24706c351, type: 3}
+    automaticallyEnabled: 0
+    volume: 0.3
 --- !u!20 &1659491085 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 1474969047897440413, guid: ed8d47900e17746359c424d91e341227, type: 3}
