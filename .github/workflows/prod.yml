@@ -1,0 +1,202 @@
+name: 'Build & Deploy Game to Production'
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+concurrency:
+  group: 'build-prod'
+  cancel-in-progress: false
+
+jobs:
+  build-wgl:
+    name: 'Build and deploy WebGL'
+    timeout-minutes: 45
+    runs-on: [self-hosted, linux]
+    if: |-
+      (contains(github.event.head_commit.message, '[prod]') || github.event_name == 'workflow_dispatch')
+    environment:
+        name: Production
+        url: "${{ steps.deploy.outputs.url }}"
+    steps:
+      # Checkout (without LFS)
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Git LFS Pull
+        run: |
+          git lfs pull
+          git add .
+          git reset --hard
+
+      # Cache
+      - name: Local cache for Library
+        id: api-cache-wgl
+        uses: MasterworksIO/action-local-cache@1.0.0
+        with:
+          path: './the-forest-spirits/Library/'
+          key: 'Library-wgl'
+
+      # Build
+      - name: Build project
+        uses: game-ci/unity-builder@v2
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          targetPlatform: WebGL
+          projectPath: ./the-forest-spirits
+
+      # Output
+      - name: Upload Build
+        run: |-
+          cd build/WebGL
+          tar -czvf ../Build-WebGL.tar.gz .
+          curl -X PUT --user admin:${{ secrets.DUFS_PASS }} --digest --data-binary @../Build-WebGL.tar.gz https://${{ secrets.DUFS_URL }}/the-forest-spirits/$(git rev-parse --short HEAD)-WebGL.tar.gz
+
+      # Deploy
+      - name: Deploy
+        id: deploy
+        run: |-
+          npm install -g vercel
+          cd build/WebGL/WebGL
+          sudo cp -r ../../../.vercel-for-build ./.vercel
+          sudo mv ./.vercel/config.json ./vercel.json
+          vercel deploy --token ${{ secrets.JONA_VERCEL_TOKEN }} ${{ (contains(github.event.head_commit.message, '[prod]') && github.event_name != 'workflow_dispatch') && '--prod' || '' }} | tee ${{ runner.temp }}/_OUT_URL.txt
+          echo "url=$(cat ${{ runner.temp }}/_OUT_URL.txt)" >> "$GITHUB_OUTPUT"
+          rm ${{ runner.temp }}/_OUT_URL.txt
+  build-macos:
+    needs: [build-wgl]
+    name: 'Build and upload MacOS'
+    timeout-minutes: 45
+    runs-on: [self-hosted, linux]
+    if: |-
+      (contains(github.event.head_commit.message, '[prod]') || github.event_name == 'workflow_dispatch')
+    steps:
+      # Checkout (without LFS)
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Git LFS Pull
+        run: |
+          git lfs pull
+          git add .
+          git reset --hard
+
+      # Cache
+      - name: Local cache for Library
+        id: api-cache-macos
+        uses: MasterworksIO/action-local-cache@1.0.0
+        with:
+          path: './the-forest-spirits/Library/'
+          key: 'Library-macos'
+
+      # Build
+      - name: Build project
+        uses: game-ci/unity-builder@v2
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          targetPlatform: StandaloneOSX
+          projectPath: ./the-forest-spirits
+
+      # Output
+      - name: Upload Build
+        run: |-
+          cd build/StandaloneOSX
+          tar -czvf ../Build-StandaloneOSX.tar.gz .
+          curl -X PUT --user admin:${{ secrets.DUFS_PASS }} --digest --data-binary @../Build-StandaloneOSX.tar.gz https://${{ secrets.DUFS_URL }}/the-forest-spirits/$(git rev-parse --short HEAD)-StandaloneOSX.tar.gz
+  build-windows:
+    needs: [build-wgl]
+    name: 'Build and upload Windows'
+    timeout-minutes: 45
+    runs-on: [self-hosted, linux]
+    if: |-
+      (contains(github.event.head_commit.message, '[prod]') || github.event_name == 'workflow_dispatch')
+    steps:
+      # Checkout (without LFS)
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Git LFS Pull
+        run: |
+          git lfs pull
+          git add .
+          git reset --hard
+
+      # Cache
+      - name: Local cache for Library
+        id: api-cache-win
+        uses: MasterworksIO/action-local-cache@1.0.0
+        with:
+          path: './the-forest-spirits/Library/'
+          key: 'Library-win'
+
+      # Build
+      - name: Build project
+        uses: game-ci/unity-builder@v2
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          targetPlatform: StandaloneWindows64
+          projectPath: ./the-forest-spirits
+
+      # Output
+      - name: Upload Build
+        run: |-
+          cd build/StandaloneWindows64
+          tar -czvf ../Build-StandaloneWindows64.tar.gz .
+          curl -X PUT --user admin:${{ secrets.DUFS_PASS }} --digest --data-binary @../Build-StandaloneWindows64.tar.gz https://${{ secrets.DUFS_URL }}/the-forest-spirits/$(git rev-parse --short HEAD)-StandaloneWindows64.tar.gz
+  build-linux:
+    needs: [build-wgl]
+    name: 'Build and upload Linux'
+    timeout-minutes: 45
+    runs-on: [self-hosted, linux]
+    if: |-
+      (contains(github.event.head_commit.message, '[prod]') || github.event_name == 'workflow_dispatch')
+    steps:
+      # Checkout (without LFS)
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Git LFS Pull
+        run: |
+          git lfs pull
+          git add .
+          git reset --hard
+
+      # Cache
+      - name: Local cache for Library
+        id: api-cache-linx
+        uses: MasterworksIO/action-local-cache@1.0.0
+        with:
+          path: './the-forest-spirits/Library/'
+          key: 'Library-linx'
+
+      # Build
+      - name: Build project
+        uses: game-ci/unity-builder@v2
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          targetPlatform: StandaloneLinux64
+          projectPath: ./the-forest-spirits
+
+      # Output
+      - name: Upload Build
+        run: |-
+          cd build/StandaloneLinux64
+          tar -czvf ../Build-StandaloneLinux64.tar.gz .
+          curl -X PUT --user admin:${{ secrets.DUFS_PASS }} --digest --data-binary @../Build-StandaloneLinux64.tar.gz https://${{ secrets.DUFS_URL }}/the-forest-spirits/$(git rev-parse --short HEAD)-StandaloneLinux64.tar.gz
