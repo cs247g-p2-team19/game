@@ -1,3 +1,4 @@
+    using System;
     using UnityEngine;
 
     public class ZStackItem : AutoMonoBehaviour
@@ -7,6 +8,10 @@
 
         [ReadOnly]
         public string debugStackState;
+
+        private void Start() {
+            MoveToTop();
+        }
 
         public void MoveToTop() {
             stack.MoveToTop(this);
