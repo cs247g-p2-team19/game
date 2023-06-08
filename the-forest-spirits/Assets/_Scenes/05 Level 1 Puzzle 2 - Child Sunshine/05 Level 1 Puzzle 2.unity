@@ -928,6 +928,18 @@ MonoBehaviour:
           m_StringArgument: True
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 290284922}
+        m_TargetAssemblyTypeName: Talker, Assembly-CSharp
+        m_MethodName: StopConversation
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &147718364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3956,7 +3968,7 @@ GameObject:
   - component: {fileID: 472533999}
   - component: {fileID: 472534000}
   m_Layer: 0
-  m_Name: notopen-hasKey?
+  m_Name: notopen-isBright?
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3995,7 +4007,7 @@ MonoBehaviour:
   verb: 0
   value: True
   thenGoTo: {fileID: 1869274088}
-  otherwiseGoTo: {fileID: 958864842}
+  otherwiseGoTo: {fileID: 0}
 --- !u!1 &489797221
 GameObject:
   m_ObjectHideFlags: 0
@@ -5696,6 +5708,68 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &739460503
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 739460504}
+  - component: {fileID: 739460505}
+  m_Layer: 0
+  m_Name: hasStencil
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &739460504
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 739460503}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 958864841}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &739460505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 739460503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ad032f19f11a4fabbfd74e7b4b25829, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue:
+  - text: '*sniffles*'
+    stopUntilForced: 0
+    onStart:
+      m_PersistentCalls:
+        m_Calls: []
+    linkResponders: []
+    onEnd:
+      m_PersistentCalls:
+        m_Calls: []
+    waitTime: 0
+  andThen: {fileID: 0}
+  onStart:
+    m_PersistentCalls:
+      m_Calls: []
+  onEnd:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &755079430
 GameObject:
   m_ObjectHideFlags: 0
@@ -8604,7 +8678,7 @@ GameObject:
   - component: {fileID: 958864841}
   - component: {fileID: 958864842}
   m_Layer: 0
-  m_Name: noJournal
+  m_Name: wasGivenStencil?
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8621,7 +8695,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 739460504}
+  - {fileID: 1593286511}
   m_Father: {fileID: 1417375563}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8634,103 +8710,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 958864840}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ad032f19f11a4fabbfd74e7b4b25829, type: 3}
+  m_Script: {fileID: 11500000, guid: 06380d0bbb3c41e287b68e137d1bb794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue:
-  - text: '*sniffles* '
-    stopUntilForced: 0
-    onStart:
-      m_PersistentCalls:
-        m_Calls: []
-    linkResponders: []
-    onEnd:
-      m_PersistentCalls:
-        m_Calls: []
-    waitTime: 0
-  - text: "will you help me? i can\u2019t find my parents\u2026"
-    stopUntilForced: 0
-    onStart:
-      m_PersistentCalls:
-        m_Calls: []
-    linkResponders: []
-    onEnd:
-      m_PersistentCalls:
-        m_Calls: []
-    waitTime: 0
-  - text: "it\u2019s so dark\u2026 i\u2019m scared\u2026"
-    stopUntilForced: 0
-    onStart:
-      m_PersistentCalls:
-        m_Calls: []
-    linkResponders: []
-    onEnd:
-      m_PersistentCalls:
-        m_Calls: []
-    waitTime: 0
-  - text: i miss the <link="sunshine"><u>sunshine</u></link>.
-    stopUntilForced: 0
-    onStart:
-      m_PersistentCalls:
-        m_Calls: []
-    linkResponders:
-    - linkId: sunshine
-      thenContinue: 1
-      onLink:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 321877900}
-            m_TargetAssemblyTypeName: InventoryItem, Assembly-CSharp
-            m_MethodName: Unlock
-            m_Mode: 1
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-    onEnd:
-      m_PersistentCalls:
-        m_Calls: []
-    waitTime: 0
-  - text: '*sniffles*
-
-'
-    stopUntilForced: 0
-    onStart:
-      m_PersistentCalls:
-        m_Calls: []
-    linkResponders:
-    - linkId: sunshine
-      thenContinue: 1
-      onLink:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 321877900}
-            m_TargetAssemblyTypeName: InventoryItem, Assembly-CSharp
-            m_MethodName: Unlock
-            m_Mode: 1
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-    onEnd:
-      m_PersistentCalls:
-        m_Calls: []
-    waitTime: 0
-  andThen: {fileID: 0}
-  onStart:
-    m_PersistentCalls:
-      m_Calls: []
-  onEnd:
-    m_PersistentCalls:
-      m_Calls: []
+  key: 0
+  verb: 0
+  value: 
+  thenGoTo: {fileID: 0}
+  otherwiseGoTo: {fileID: 0}
 --- !u!1 &982314837
 GameObject:
   m_ObjectHideFlags: 0
@@ -10851,7 +10838,7 @@ GameObject:
   - component: {fileID: 1417375563}
   - component: {fileID: 1417375564}
   m_Layer: 0
-  m_Name: noKey-hasJournal?
+  m_Name: hasSunshine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12070,6 +12057,144 @@ Transform:
   m_Father: {fileID: 204691241}
   m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1593286510
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1593286511}
+  - component: {fileID: 1593286512}
+  m_Layer: 0
+  m_Name: noStencil
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1593286511
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1593286510}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 958864841}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1593286512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1593286510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ad032f19f11a4fabbfd74e7b4b25829, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue:
+  - text: '*sniffles* '
+    stopUntilForced: 0
+    onStart:
+      m_PersistentCalls:
+        m_Calls: []
+    linkResponders: []
+    onEnd:
+      m_PersistentCalls:
+        m_Calls: []
+    waitTime: 0
+  - text: "will you help me? i can\u2019t find my parents\u2026"
+    stopUntilForced: 0
+    onStart:
+      m_PersistentCalls:
+        m_Calls: []
+    linkResponders: []
+    onEnd:
+      m_PersistentCalls:
+        m_Calls: []
+    waitTime: 0
+  - text: "it\u2019s so dark\u2026 i\u2019m scared\u2026"
+    stopUntilForced: 0
+    onStart:
+      m_PersistentCalls:
+        m_Calls: []
+    linkResponders: []
+    onEnd:
+      m_PersistentCalls:
+        m_Calls: []
+    waitTime: 0
+  - text: i miss the <link="sunshine"><u>sunshine</u></link>.
+    stopUntilForced: 0
+    onStart:
+      m_PersistentCalls:
+        m_Calls: []
+    linkResponders:
+    - linkId: sunshine
+      thenContinue: 1
+      onLink:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 321877900}
+            m_TargetAssemblyTypeName: InventoryItem, Assembly-CSharp
+            m_MethodName: Unlock
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+    onEnd:
+      m_PersistentCalls:
+        m_Calls: []
+    waitTime: 0
+  - text: '*sniffles*
+
+'
+    stopUntilForced: 0
+    onStart:
+      m_PersistentCalls:
+        m_Calls: []
+    linkResponders:
+    - linkId: sunshine
+      thenContinue: 1
+      onLink:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 321877900}
+            m_TargetAssemblyTypeName: InventoryItem, Assembly-CSharp
+            m_MethodName: Unlock
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+    onEnd:
+      m_PersistentCalls:
+        m_Calls: []
+    waitTime: 0
+  andThen: {fileID: 0}
+  onStart:
+    m_PersistentCalls:
+      m_Calls: []
+  onEnd:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1596568881
 GameObject:
   m_ObjectHideFlags: 0
@@ -13827,7 +13952,7 @@ GameObject:
   - component: {fileID: 1808257983}
   - component: {fileID: 1808257984}
   m_Layer: 0
-  m_Name: hasJournal
+  m_Name: hasSunshine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14353,7 +14478,7 @@ GameObject:
   - component: {fileID: 1869274087}
   - component: {fileID: 1869274088}
   m_Layer: 0
-  m_Name: hasKey
+  m_Name: isBright
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
