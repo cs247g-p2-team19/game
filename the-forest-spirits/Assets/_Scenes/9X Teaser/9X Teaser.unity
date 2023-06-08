@@ -134,6 +134,8 @@ GameObject:
   - component: {fileID: 449794218}
   - component: {fileID: 449794217}
   - component: {fileID: 449794216}
+  - component: {fileID: 449794220}
+  - component: {fileID: 449794219}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -207,6 +209,39 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &449794219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 449794215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfff4a84803a4fce8627f160ac98859c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layers:
+  - clip: {fileID: 8300000, guid: 71bc635fc7b31417bb180146720a6ede, type: 3}
+    automaticallyEnabled: 1
+    volume: 0.3
+--- !u!114 &449794220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 449794215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 509c0a011dada467884cdfcece740c39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  backgroundAudio: {fileID: 449794219}
+  musicLayerMode: 0
+  doorOpen: {fileID: 0}
+  doorClosed: {fileID: 0}
+  defaultOnCollectCollectable: {fileID: 0}
 --- !u!1 &729674081
 GameObject:
   m_ObjectHideFlags: 0
