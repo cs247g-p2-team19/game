@@ -43,4 +43,8 @@ public class FolderMenu : AutoMonoBehaviour, IMouseEventReceiver
         OpenFolder();
         return true;
     }
+
+    public float GetScreenOrdering() {
+        return transform.position.z;
+    }
 }

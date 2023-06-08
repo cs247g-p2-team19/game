@@ -88,6 +88,10 @@ public class InventoryItem : AutoMonoBehaviour, IMouseEventReceiver
     public virtual bool IsMouseInteractableAt(Vector2 screenPos, Camera cam, IMouseAttachable receiver) {
         return onUse.GetPersistentEventCount() > 0 && receiver == null;
     }
+    
+    public float GetScreenOrdering() {
+        return transform.position.z;
+    }
 
     public void Unlock() {
         if (onUnlockSound != null) {

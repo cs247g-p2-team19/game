@@ -240,8 +240,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   help1Delay: 10
   help1Animator: {fileID: 706858335}
-  help2Delay: 0
-  help2Animator: {fileID: 0}
 --- !u!1001 &427120943
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -597,10 +595,6 @@ PrefabInstance:
     - target: {fileID: 5046204119355467580, guid: 80105b6d7e84f420d9f02ba8c4a24f7c, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5046204119355467580, guid: 80105b6d7e84f420d9f02ba8c4a24f7c, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -3.06
       objectReference: {fileID: 0}
     - target: {fileID: 5046204119355467580, guid: 80105b6d7e84f420d9f02ba8c4a24f7c, type: 3}
       propertyPath: m_LocalRotation.w

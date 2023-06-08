@@ -206,6 +206,10 @@ public class Talker : AutoMonoBehaviour, IMouseEventReceiver
 
     }
 
+    public float GetScreenOrdering() {
+        return transform.position.z;
+    }
+
     /** Shows the "clickable" cursor only if we're hovering over a link */
     public bool IsMouseInteractableAt(Vector2 screenPos, Camera cam, IMouseAttachable receiver) {
         if (!_talking || _currentConversation == null || receiver != null) {

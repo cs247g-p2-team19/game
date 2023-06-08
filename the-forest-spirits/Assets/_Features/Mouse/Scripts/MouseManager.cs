@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -115,18 +116,33 @@ public class MouseManager : AutoMonoBehaviour
      * hovering over them and their IsMouseInteractableAt callbacks return true)
      */
     private List<IMouseEventReceiver> GetValidClickables(Vector2 screenPos) {
-        List<IMouseEventReceiver> clickables = new();
-
         Ray toCast = mainCamera.ScreenPointToRay(screenPos);
         var size = Physics2D.RaycastNonAlloc(toCast.origin, toCast.direction, _resultsBuf, Mathf.Infinity);
+
+        List<IMouseEventReceiver> rawReceivers = new();
 
         for (int i = 0; i < size; i++) {
             Collider2D collider = _resultsBuf[i].collider;
             foreach (var clickable in collider.GetComponentsInParent<IMouseEventReceiver>()) {
-                bool validHover = clickable.IsMouseInteractableAt(screenPos, mainCamera, CurrentAttached);
-                if (!validHover) continue;
-                clickables.Add(clickable);
+                if (rawReceivers.Contains(clickable)) continue;
+                rawReceivers.Add(clickable);
             }
+        }
+
+        rawReceivers.Sort((a, b) => (a.GetScreenOrdering() - b.GetScreenOrdering()) switch {
+            < 0 => -1,
+            > 0 => 1,
+            _ => 0
+        });
+
+        List<IMouseEventReceiver> clickables = new();
+
+        foreach (var receiver in rawReceivers) {
+            bool validHover = receiver.IsMouseInteractableAt(screenPos, mainCamera, CurrentAttached);
+            if (!validHover) continue;
+            if (receiver is MouseEventBlocker) break;
+            
+            clickables.Add(receiver);
         }
 
         return clickables;

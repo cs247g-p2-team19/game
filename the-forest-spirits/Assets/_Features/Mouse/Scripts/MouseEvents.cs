@@ -18,7 +18,7 @@ public class MouseEvents : AutoMonoBehaviour, IMouseEventReceiver
 
     protected override void OnValidate() {
         base.OnValidate();
-        
+
         // Clickable handlers used by the draggable things
         if (isDraggable) {
             isClickable = true;
@@ -46,6 +46,7 @@ public class MouseEvents : AutoMonoBehaviour, IMouseEventReceiver
         if (isClickable || isDraggable) {
             onMouseDown.Invoke(screenPos);
         }
+
         Debug.Log("you clicked on a thing >:C");
 
         return true;
@@ -70,5 +71,9 @@ public class MouseEvents : AutoMonoBehaviour, IMouseEventReceiver
 
     public void SetDraggable(bool setter) {
         isDraggable = setter;
+    }
+
+    public float GetScreenOrdering() {
+        return transform.position.z;
     }
 }

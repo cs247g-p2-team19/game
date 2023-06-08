@@ -18,11 +18,10 @@ public class Word : AutoMonoBehaviour, IMouseEventReceiver
     public Collider2D _collider;
 
     private List<Word> _overlapping = new();
-    
+
     public string CurrentWord =>
         _overlapping.Aggregate("", (current, w) => current + w.word);
-    
-    
+
 
     private void Awake() {
         _overlapping.Add(this);
@@ -66,6 +65,7 @@ public class Word : AutoMonoBehaviour, IMouseEventReceiver
             foreach (Word word in (_overlapping)) {
                 Debug.Log(word.word);
             }
+
             print(CurrentWord);
         }
     }
@@ -74,11 +74,11 @@ public class Word : AutoMonoBehaviour, IMouseEventReceiver
         if (w != null) {
             Debug.Log("removing " + w.word);
             _overlapping.Remove(w);
-            
         }
+
         print(CurrentWord);
     }
-    
+
     // private void OnTriggerEnter2D(Collider2D other) {
     //     Debug.Log("ow we trigger");
     //     Debug.Log(other.gameObject.name);
@@ -116,9 +116,11 @@ public class Word : AutoMonoBehaviour, IMouseEventReceiver
     // }
 
 
-
-
     public bool IsMouseInteractableAt(Vector2 screenPos, Camera cam, IMouseAttachable receiver) {
         return receiver is Stencil stencil && stencil.targetWord.ToLower() == CurrentWord.ToLower();
+    }
+
+    public float GetScreenOrdering() {
+        return transform.position.z;
     }
 }
