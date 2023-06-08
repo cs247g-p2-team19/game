@@ -797,6 +797,8 @@ GameObject:
   - component: {fileID: 290284921}
   - component: {fileID: 290284922}
   - component: {fileID: 290284923}
+  - component: {fileID: 290284925}
+  - component: {fileID: 290284924}
   m_Layer: 0
   m_Name: door1
   m_TagString: Untagged
@@ -1022,6 +1024,59 @@ MonoBehaviour:
   onMouseDrag:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &290284924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 290284914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1b43354c3de4bdabc3153b7e97cb610, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: 11
+--- !u!114 &290284925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 290284914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4f084d618054afc907dc989c7aa03e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  matchingItemId: handle
+  onMatch:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 290284924}
+        m_TargetAssemblyTypeName: KeyValueHelper, Assembly-CSharp
+        m_MethodName: Set
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: true
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 290284922}
+        m_TargetAssemblyTypeName: Talker, Assembly-CSharp
+        m_MethodName: GoTo
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1817131729}
+          m_ObjectArgumentAssemblyTypeName: Branch, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &315027849
 GameObject:
   m_ObjectHideFlags: 0
@@ -2223,13 +2278,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 472533998}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d090a99bf89494bb889c480a30b0cbf, type: 3}
+  m_Script: {fileID: 11500000, guid: 06380d0bbb3c41e287b68e137d1bb794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  next: {fileID: 1869274088}
-  doesnt: 0
-  itemId: handle
-  fallbackTo: {fileID: 1417375564}
+  key: 11
+  verb: 2
+  value: 
+  thenGoTo: {fileID: 1869274088}
+  otherwiseGoTo: {fileID: 1417375564}
 --- !u!1 &489797221
 GameObject:
   m_ObjectHideFlags: 0
@@ -9607,29 +9663,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5046204119355467580, guid: 80105b6d7e84f420d9f02ba8c4a24f7c, type: 3}
   m_PrefabInstance: {fileID: 1931375153}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5264004052110809188
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9007220639816292381}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f653e9ebcf1840728a679f1fa4296d27, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: handle
-  onUnlockSound: {fileID: 0}
-  onUseSound: {fileID: 0}
-  isLocked: 1
-  onUnlock:
-    m_PersistentCalls:
-      m_Calls: []
-  onUse:
-    m_PersistentCalls:
-      m_Calls: []
-  isNote: 0
 --- !u!114 &6334510317501831952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9804,13 +9837,41 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 117977150723343728}
-  - component: {fileID: 5264004052110809188}
   - component: {fileID: 3576890902490364078}
   - component: {fileID: 530150629528551821}
+  - component: {fileID: 9007220639816292382}
   m_Layer: 5
-  m_Name: Key Holder
+  m_Name: Handle Item
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &9007220639816292382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9007220639816292381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06c71837109544e7ab770c9c79e37cf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: handle
+  onUnlockSound: {fileID: 0}
+  onUseSound: {fileID: 0}
+  isLocked: 1
+  onUnlock:
+    m_PersistentCalls:
+      m_Calls: []
+  onUse:
+    m_PersistentCalls:
+      m_Calls: []
+  isNote: 0
+  spriteToAttach: {fileID: 21300000, guid: be3c084b92e5242c7bcb66c3f1cf4b02, type: 3}
+  onMatch:
+    m_PersistentCalls:
+      m_Calls: []
+  _spriteAttachable: {fileID: 2053881710895399350, guid: 757bbc39cb60a44c296fc76597822f9b, type: 3}

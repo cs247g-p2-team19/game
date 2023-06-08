@@ -11,8 +11,8 @@ public class TutorialHelper : MonoBehaviour
     private void Update() {
         KeyValueStore kv = KeyValueStore.Instance;
 
-        if (kv.Get(KVStoreKey.L4HasNote).Length != 0 && kv.Get(KVStoreKey.L4HasStencil).Length != 0 &&
-            kv.Get(KVStoreKey.L4DidManifest).Length == 0) {
+        if (kv.Get(KVStoreKey.L1HasNote).Length != 0 && kv.Get(KVStoreKey.L1HasStencil).Length != 0 &&
+            kv.Get(KVStoreKey.L1DidManifest).Length == 0) {
             if (kv.Get(KVStoreKey.FolderOpen).Length == 0) {
                 spot1folder.SetActive(true);
                 spot2stencil.SetActive(false);
