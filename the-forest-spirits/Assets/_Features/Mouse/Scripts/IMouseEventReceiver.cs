@@ -57,4 +57,6 @@ public interface IMouseEventReceiver
     public AnimatorOverrideController GetCustomAnimation() {
         return null;
     }
+
+    public float GetScreenOrdering();
 }
