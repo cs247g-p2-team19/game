@@ -18,6 +18,7 @@ public enum KVStoreKey
     L4GotFlower = 53,
     L4GotIceStencil = 54,
     L4GotIce = 55,
+    L4WasFlowerPlanted = 56,
 
     FolderOpen = 990,
     StencilAttached = 991,

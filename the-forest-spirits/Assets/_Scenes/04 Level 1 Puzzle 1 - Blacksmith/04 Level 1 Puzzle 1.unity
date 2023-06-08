@@ -2246,7 +2246,7 @@ GameObject:
   - component: {fileID: 472533999}
   - component: {fileID: 472534000}
   m_Layer: 0
-  m_Name: notopen-hasKey?
+  m_Name: notopen-wasGivenHandle?
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4912,7 +4912,7 @@ GameObject:
   - component: {fileID: 958864842}
   - component: {fileID: 958864843}
   m_Layer: 0
-  m_Name: noJournal
+  m_Name: needsStencil
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6313,7 +6313,7 @@ GameObject:
   - component: {fileID: 1417375563}
   - component: {fileID: 1417375564}
   m_Layer: 0
-  m_Name: noKey-hasJournal?
+  m_Name: hasStencil?
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6345,13 +6345,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1417375562}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d090a99bf89494bb889c480a30b0cbf, type: 3}
+  m_Script: {fileID: 11500000, guid: 06380d0bbb3c41e287b68e137d1bb794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  next: {fileID: 1808257984}
-  doesnt: 0
-  itemId: handlestencil
-  fallbackTo: {fileID: 958864842}
+  key: 41
+  verb: 2
+  value: 
+  thenGoTo: {fileID: 1808257984}
+  otherwiseGoTo: {fileID: 958864842}
 --- !u!1 &1445392970
 GameObject:
   m_ObjectHideFlags: 0
@@ -7992,7 +7993,7 @@ GameObject:
   - component: {fileID: 1808257983}
   - component: {fileID: 1808257984}
   m_Layer: 0
-  m_Name: hasJournal
+  m_Name: hasStencil
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8215,7 +8216,7 @@ GameObject:
   - component: {fileID: 1869274087}
   - component: {fileID: 1869274088}
   m_Layer: 0
-  m_Name: hasKey
+  m_Name: wasGivenHandle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
