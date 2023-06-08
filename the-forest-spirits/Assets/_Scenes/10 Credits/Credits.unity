@@ -240,8 +240,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   help1Delay: 10
   help1Animator: {fileID: 706858335}
-  help2Delay: 0
-  help2Animator: {fileID: 0}
 --- !u!1001 &427120943
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1039,6 +1037,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6187911570451958519, guid: ed8d47900e17746359c424d91e341227, type: 3}
+      propertyPath: musicLayerMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6187911570451958519, guid: ed8d47900e17746359c424d91e341227, type: 3}
       propertyPath: backgroundAudio
       value: 
       objectReference: {fileID: 1797791857}
@@ -1121,6 +1123,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   layers:
-  - clip: {fileID: 8300000, guid: 38ffa9c9167794114812052ed6d19902, type: 3}
+  - clip: {fileID: 8300000, guid: 8421aeeaaf9d140c8b7e06a45ca0bd5e, type: 3}
+    automaticallyEnabled: 1
+    volume: 0.3
+  - clip: {fileID: 8300000, guid: bc0b794d5de0a45f8b1af6d3e77bfd91, type: 3}
+    automaticallyEnabled: 1
+    volume: 0.3
+  - clip: {fileID: 8300000, guid: 3a41129c82e644678a6de71fe83608a5, type: 3}
+    automaticallyEnabled: 1
+    volume: 0.3
+  - clip: {fileID: 8300000, guid: 059db7a18376a408fa1868a24706c351, type: 3}
     automaticallyEnabled: 1
     volume: 0.3
