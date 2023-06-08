@@ -2075,8 +2075,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29d1adf865ed4c6396fa295d50ee0ba0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minLocalZ: 0
-  maxLocalZ: 1
+  minLocalZ: -1
+  maxLocalZ: -2
 --- !u!1 &6987484695241935795
 GameObject:
   m_ObjectHideFlags: 0
