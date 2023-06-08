@@ -7434,7 +7434,7 @@ PrefabInstance:
     - target: {fileID: 6187911570451958519, guid: ed8d47900e17746359c424d91e341227, type: 3}
       propertyPath: backgroundAudio
       value: 
-      objectReference: {fileID: 8300000, guid: ad5e906f513df4b9090d6c8d4ff80a05, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 6187911570451958519, guid: ed8d47900e17746359c424d91e341227, type: 3}
       propertyPath: defaultOnCollectCollectable
       value: 
